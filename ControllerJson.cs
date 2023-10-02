@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Quic;
 using System.Text;
@@ -31,13 +31,15 @@ public class ControllerJson
             return false;
         }
     }
-    // gebruik List<TypeInList> ListName = JsonConvert.DeserializeObject<List<TypeInList>>(outputVanReadJson); voor de list in C# speak
-    public JArray string ReadJson(string FileName)
+    // gebruik volgende 2 lijnen om te benutten (verander Type naar het type wat je nodig hebt en verander ListName naar wat je wil):
+    // string FileCont = ReadJson("file.json");
+    // List<Type> ListName = JsonConvert.DeserializeObject<List<Type>>(FileCont);
+    public string ReadJson(string FileName)
     {
         try
         {
-            JArray o1 = JArray.Parse(File.ReadAllText(@FileName));
-            return o1;
+            string FileContent = File.ReadAllText(@FileName);
+            return FileContent;
         }
         catch (FileNotFoundException ex)
         {
