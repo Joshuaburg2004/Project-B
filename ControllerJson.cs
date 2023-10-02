@@ -34,7 +34,7 @@ public class ControllerJson
     // gebruik volgende 2 lijnen om te benutten (verander Type naar het type wat je nodig hebt en verander ListName naar wat je wil):
     // string FileCont = ReadJson("file.json");
     // List<Type> ListName = JsonConvert.DeserializeObject<List<Type>>(FileCont);
-    public string ReadJson(string FileName)
+    public string? ReadJson(string FileName)
     {
         try
         {
