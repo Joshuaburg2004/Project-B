@@ -37,6 +37,5 @@ public class Program{
     {
         menu.view_menu();
         menu.view();
-
     }
 }
