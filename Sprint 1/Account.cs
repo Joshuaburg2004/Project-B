@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Quic;
 using System.Text;
@@ -18,6 +18,9 @@ public class Account
     {
         Account account = new Account(name, password);
         AccountManager.Accounts.Add(account);
+        string json = JsonConvert.SerializeObject(AccountManager.Accounts, Formatting.Indented);
+        JArray Object = JArray.Parse(json);
+        ControllerJson.WriteJson(Object, "Accounts.json");
         return account;
     }
     public static Account? GetAccount(int id)
@@ -39,6 +42,9 @@ public class Account
             {
                 Console.Write("Please enter your new password: ");
                 account.Password = Console.ReadLine() ?? password;
+                string json = JsonConvert.SerializeObject(AccountManager.Accounts, Formatting.Indented);
+                JArray Object = JArray.Parse(json);
+                ControllerJson.WriteJson(Object, "Accounts.json");
                 return account.Password;
             }
         }
