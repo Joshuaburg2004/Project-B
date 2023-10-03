@@ -8,15 +8,17 @@ public class Account
     public int id { get; private set; }
     public string Name { get; set; }
     public string Password { get; set; }
-    public Account(string name, string password)
+    public string Email { get; set; }
+    public Account(string email, string name, string password)
     {
         id = Interlocked.Increment(ref nextID);
+        Email = email;
         Name = name;
         Password = password;
     }
-    public static Account CreateAccount(string name, string password)
+    public static Account CreateAccount(string email, string name, string password)
     {
-        Account account = new Account(name, password);
+        Account account = new Account(email, name, password);
         AccountManager.Accounts.Add(account);
         string json = JsonConvert.SerializeObject(AccountManager.Accounts, Formatting.Indented);
         JArray Object = JArray.Parse(json);
@@ -34,11 +36,11 @@ public class Account
         }
         return null;
     }
-    public static string? ChangePassword(string name, string password)
+    public static string? ChangePassword(string email, string name, string password)
     {
         foreach (Account account in AccountManager.Accounts)
         {
-            if(account.Name == name && account.Password == password)
+            if(account.Email == email && account.Name == name && account.Password == password)
             {
                 Console.Write("Please enter your new password: ");
                 account.Password = Console.ReadLine() ?? password;
