@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Quic;
+using System.Security.Principal;
 using System.Text;
 public class Account
 {
@@ -9,15 +10,15 @@ public class Account
     public string Name { get; set; }
     public string Password { get; set; }
     public string Email;
-    public string Status;
+    public string Role;
 
-    public Account(string name, string email, string password)
+    public Account(string name, string email, string password, string role = "Customer")
     {
         Id = Interlocked.Increment(ref nextID);
         Name = name;
         Password = password;
         Email = email;
-        Status = "Customer";
+        Role = role;
     }
     public static Account CreateAccount(string name, string email, string password)
     {
@@ -31,7 +32,7 @@ public class Account
     }
     public static Account? GetAccount(int id)
     {
-        foreach(Account account in AccountManager.Accounts)
+        foreach (Account account in AccountManager.Accounts)
         {
             if (account.Id == id)
             {
@@ -44,7 +45,7 @@ public class Account
     {
         foreach (Account account in AccountManager.Accounts)
         {
-            if(account.Name == name && account.Password == password)
+            if (account.Name == name && account.Password == password)
             {
                 Console.Write("Please enter your new password: ");
                 account.Password = Console.ReadLine() ?? password;
