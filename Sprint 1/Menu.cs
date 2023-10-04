@@ -31,10 +31,4 @@ public class Menu
             Console.WriteLine($"Name: {item.Name} Category: {item.Category} Price: {item.Price}");
         }
     } 
-    
-    public static void Main()
-    {
-        RestaurantInfo restaurant = new RestaurantInfo();
-        restaurant.Info_Restaurant();
-    }
 }
