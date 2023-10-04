@@ -2,10 +2,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Quic;
 using System.Text;
-public class Account
+public class Account : IAccount
 {
     static int nextID;
-    public int id { get; private set; }
+    public int Id { get; set; }
     public string Name { get; set; }
     public string Password { get; set; }
     public string Email;
@@ -13,7 +13,7 @@ public class Account
 
     public Account(string name, string email, string password)
     {
-        id = Interlocked.Increment(ref nextID);
+        Id = Interlocked.Increment(ref nextID);
         Name = name;
         Password = password;
         Email = email;
@@ -33,7 +33,7 @@ public class Account
     {
         foreach(Account account in AccountManager.Accounts)
         {
-            if (account.id == id)
+            if (account.Id == id)
             {
                 return account;
             }
