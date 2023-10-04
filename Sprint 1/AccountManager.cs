@@ -13,7 +13,7 @@ public class AccountManager
         string? FileCont = ControllerJson.ReadJson("Accounts.json");
         if (FileCont != null)
         {
-            Accounts = JsonConvert.DeserializeObject<List<IAccount>>(FileCont) ?? new List<IAccount> { };
+            Accounts = JsonConvert.DeserializeObject<List<Account>>(FileCont) ?? new List<Account> { };
         }
     }
 }
