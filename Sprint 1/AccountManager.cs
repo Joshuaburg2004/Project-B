@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System.Data;
 using System.Net.Quic;
 using System.Text;
-public static class AccountManager
+public class AccountManager
 {
     public static List<Account> Accounts = new();
     public AccountManager()
