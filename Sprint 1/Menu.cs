@@ -1,7 +1,3 @@
-// De klant kan de gerechten per onderdeel in kan zien.
-// De Super-admin kan aanpassingen brengen aan de gerechten.
-
-// category (fish/meat/vegan/vegetarian)
 public class Menu
 {
     public double Price;
