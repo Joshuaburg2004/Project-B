@@ -7,16 +7,10 @@ using System.Text;
 public class AccountManager
 {
     public int Id { get; set; }
-    public static List<Account> Accounts = new();
     public static List<Customer> Customers = new();
     public static List<Admin> Admins = new();
     public AccountManager()
     {
-        string? FileCont = ControllerJson.ReadJson("Accounts.json");
-        if (FileCont != null)
-        {
-            Accounts = JsonConvert.DeserializeObject<List<Account>>(FileCont) ?? new List<Account> { };
-        }
         string? FileCont1 = ControllerJson.ReadJson("Customers.json");
         if (FileCont1 != null)
         {

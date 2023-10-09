@@ -3,23 +3,23 @@ using Newtonsoft.Json;
 
 public class Customer : Account
 {
-    public Customer(string name, string email, string password) : base(name, email, password) { }
+    public Customer(string name, string email, string password, string role = "Customer") : base(name, email, password, role) { }
     public List<Reservation> My_Reservation = new List<Reservation>() { };
 
-    public static Customer CreateAccount(string name, string email, string password)
+    public static Customer CreateAccount(string name, string email, string password, string role = "Customer")
     {
 
         Customer customer = new Customer(name, email, password);
-        AccountManager.Accounts.Add(customer);
+        AccountManager.Customers.Add(customer);
         string json = JsonConvert.SerializeObject(AccountManager.Accounts, Formatting.Indented);
         JArray Object = JArray.Parse(json);
         ControllerJson.WriteJson(Object, "Accounts.json");
         return customer;
     }
 
-    public static Customer? GetAccount(int id)
+    public static Customer? GetCustomer(int id)
     {
-        foreach (Customer customer in AccountManager.Accounts)
+        foreach (Customer customer in AccountManager.Customers)
         {
             if (customer.Id == id)
             {
@@ -29,13 +29,33 @@ public class Customer : Account
         return null;
     }
 
+    public static string? ChangePassword(string name, string password)
+    {
+        foreach (Customer customer in AccountManager.Customers)
+        {
+            if (customer.Name == name && customer.Password == password)
+            {
+                Console.Write("Please enter your new password: ");
+                customer.Password = Console.ReadLine() ?? password;
+                string json = JsonConvert.SerializeObject(AccountManager.Customers, Formatting.Indented);
+                JArray Object = JArray.Parse(json);
+                ControllerJson.WriteJson(Object, "Customers.json");
+                return customer.Password;
+            }
+        }
+        return null;
+    }
+
     public void Add_Reservation(int table, int guest, string date, string time)
     {
-        Reservation.Add_Reservation(new Reservation(Customer.GetAccount(this.Id), table, guest, date, time));
+        if(GetCustomer(Id) != null)
+        {
+            Reservation.Add_Reservation(new Reservation(GetCustomer(Id), table, guest, date, time));
+        }
     }
 
     // dit zet mijn reserveringen in een lijst en returned het.
-    public List<Reservation> View_Reservation()
+    public List<Reservation>? View_Reservation()
     {
         foreach (Reservation reservation in Reservation.All_Reservations)
         {
@@ -49,7 +69,7 @@ public class Customer : Account
     }
 
     // later door.
-    public Reservation Change_Reservation()
+    public Reservation? Change_Reservation()
     {
         foreach (Reservation reservation in My_Reservation)
         {
