@@ -11,9 +11,9 @@ public class Customer : Account
 
         Customer customer = new Customer(name, email, password);
         AccountManager.Customers.Add(customer);
-        string json = JsonConvert.SerializeObject(AccountManager.Accounts, Formatting.Indented);
+        string json = JsonConvert.SerializeObject(AccountManager.Customers, Formatting.Indented);
         JArray Object = JArray.Parse(json);
-        ControllerJson.WriteJson(Object, "Accounts.json");
+        ControllerJson.WriteJson(Object, "Customers.json");
         return customer;
     }
 
