@@ -6,7 +6,7 @@ using System.Text;
 public class Admin : Account
 {
     
-    public Admin(string name, string email, string password, string role = "Admin") : base(name, email, password, role) { }
+    private Admin(string name, string email, string password, string role = "Admin") : base(name, email, password, role) { }
     public static Admin CreateAdmin(string name, string email, string password)
     {
         Admin admin = new Admin(name, email, password);
