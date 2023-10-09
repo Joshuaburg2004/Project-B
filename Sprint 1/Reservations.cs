@@ -1,3 +1,7 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net.Quic;
+using System.Text;
 public class Reservation
 {
 
@@ -33,7 +37,12 @@ public class Reservation
 
     public static string Info(Reservation reservation, Customer customer)
     {
-        return $"{Customer.Info(customer)}, Table: {reservation.Table}, Geusts: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}"
+        return $"{Customer.Info(customer)}, Table: {reservation.Table}, Geusts: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
     }
-
+    public bool SendJson()
+    {
+        string json = JsonConvert.SerializeObject(All_Reservations, Formatting.Indented);
+        JArray Object = JArray.Parse(json);
+        return ControllerJson.WriteJson(Object, "Reservations.json");
+    }
 }
