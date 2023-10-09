@@ -50,7 +50,7 @@ public class Customer : Account
     {
         if(GetCustomer(Id) != null)
         {
-            Reservation.Add_Reservation(new Reservation(GetCustomer(Id), table, guest, date, time));
+            Reservation.Add_Reservation(new Reservation(Id, table, guest, date, time));
         }
     }
 
