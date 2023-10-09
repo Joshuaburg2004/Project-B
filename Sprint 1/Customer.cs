@@ -59,7 +59,7 @@ public class Customer : Account
     {
         foreach (Reservation reservation in Reservation.All_Reservations)
         {
-            if (reservation.Customer.Id == Id)
+            if (reservation.CustomerId == Id)
             {
                 My_Reservation.Add(reservation);
                 return My_Reservation;
@@ -69,7 +69,7 @@ public class Customer : Account
     }
 
     // later door.
-    public Reservation? Change_Reservation()
+/*    public Reservation? Change_Reservation()
     {
         foreach (Reservation reservation in My_Reservation)
         {
@@ -80,7 +80,7 @@ public class Customer : Account
             return reservation;
         }
         return null;
-    }
+    }*/
 
     public static string Info(Customer customer)
     {
