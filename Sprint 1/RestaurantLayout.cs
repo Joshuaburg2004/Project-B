@@ -1,6 +1,6 @@
-﻿public class Program
+﻿public class RestaurantLayout
 {
-    public static void Main()
+    public static void ViewLayout()
     {
 
         Console.WriteLine(" __________________________________________________________________________________________     ");
