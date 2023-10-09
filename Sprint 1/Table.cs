@@ -12,11 +12,12 @@ public abstract class Table
     public string tafel_bezet = "| O |";
     public string tafel_zelf_gereserveerd = "| O |";
 
-
+    // datum gaat in list
     public List<string> TimeSlot_1_reserved = new() { };
     public List<string> TimeSlot_2_reserved = new() { };
     public List<string> TimeSlot_3_reserved = new() { };
     public List<string> TimeSlot_4_reserved = new() { };
+
 
 
     public Table() { }
