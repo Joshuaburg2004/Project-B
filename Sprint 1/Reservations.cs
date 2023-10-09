@@ -6,7 +6,7 @@ public class Reservation
 {
 
     public static List<Reservation> All_Reservations = new();
-    public Customer Customer { get; set; }
+    public int CustomerId;
     static int nextID;
     public int Reservation_ID;
     public int Table;
@@ -15,10 +15,10 @@ public class Reservation
     public string Time;
 
     
-    public Reservation(Customer customer, int table, int guest, string date, string time)
+    public Reservation(int customerId, int table, int guest, string date, string time)
     {
         Reservation_ID = Interlocked.Increment(ref nextID);
-        Customer = customer;
+        CustomerId = customerId;
         Table = table;
         Guests = guest;
         Date = date;
