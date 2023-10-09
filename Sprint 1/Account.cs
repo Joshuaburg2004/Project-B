@@ -12,7 +12,7 @@ public class Account
     public string Email;
     public string Role;
 
-    public Account(string name, string email, string password, string role = "Customer")
+    private Account(string name, string email, string password, string role = "Customer")
     {
         Id = Interlocked.Increment(ref nextID);
         Name = name;
