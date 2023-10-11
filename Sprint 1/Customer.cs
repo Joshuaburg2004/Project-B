@@ -48,7 +48,7 @@ public class Customer : Account
 
     public void Add_Reservation(int table, int guest, string date, string time)
     {
-        if(GetCustomer(Id) != null)
+        if (GetCustomer(Id) != null)
         {
             Reservation.Add_Reservation(new Reservation(Id, table, guest, date, time));
         }
@@ -68,19 +68,31 @@ public class Customer : Account
         return null;
     }
 
-    // later door.
-/*    public Reservation? Change_Reservation()
+    public static Customer? Log_in(string name, string email, string password)
     {
-        foreach (Reservation reservation in My_Reservation)
+        foreach(Customer customer in AccountManager.Customers)
         {
-            if ()
+            if(customer.Name == name && customer.Email == email && customer.Password == password)
             {
-                
+                return customer;
             }
-            return reservation;
         }
         return null;
-    }*/
+    }
+
+    // later door.
+    /*    public Reservation? Change_Reservation()
+        {
+            foreach (Reservation reservation in My_Reservation)
+            {
+                if ()
+                {
+
+                }
+                return reservation;
+            }
+            return null;
+        }*/
 
     public static string Info(Customer customer)
     {
