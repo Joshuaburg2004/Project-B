@@ -1,4 +1,4 @@
-﻿public class RestaurantLayout
+﻿public static class RestaurantLayout
 {
     public static void ViewLayout()
     {
