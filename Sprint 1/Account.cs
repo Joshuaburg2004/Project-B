@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System.Net.Quic;
 using System.Security.Principal;
 using System.Text;
-public class Account
+public abstract class Account
 {
     static int nextID;
     public int Id { get; set; }
