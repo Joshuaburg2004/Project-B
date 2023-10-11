@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Data;
 using System.Net.Quic;
@@ -39,6 +39,17 @@ public class Admin : Account
                 JArray Object = JArray.Parse(json);
                 ControllerJson.WriteJson(Object, "Admins.json");
                 return admin.Password;
+            }
+        }
+        return null;
+    }
+    public static Admin? Log_in(string name, string email, string password)
+    {
+        foreach (Admin admin in AccountManager.Admins)
+        {
+            if (admin.Name == name && admin.Password == password && admin.Email == email)
+            {
+                return admin;
             }
         }
         return null;
