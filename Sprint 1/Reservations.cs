@@ -37,7 +37,7 @@ public class Reservation
 
     public static string Info(Reservation reservation, Customer customer)
     {
-        return $"{Customer.Info(customer)}, Table: {reservation.Table}, Geusts: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
+        return $"{Customer.Info(customer)}, Table: {reservation.Table}, Guests: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
     }
     public bool SendJson()
     {
