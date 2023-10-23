@@ -14,7 +14,7 @@ public class Reservation
     public string Date;
     public string Time;
 
-    
+
     public Reservation(int customerId, int table, int guest, string date, string time)
     {
         Reservation_ID = Interlocked.Increment(ref nextID);
@@ -35,10 +35,7 @@ public class Reservation
         return reservation;
     }
 
-    public static string Info(Reservation reservation, Customer customer)
-    {
-        return $"{Customer.Info(customer)}, Table: {reservation.Table}, Guests: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
-    }
+    public static string Info(Reservation reservation, Customer customer) => $"{Customer.Info(customer)}, Table: {reservation.Table}, Guests: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
     public bool SendJson()
     {
         string json = JsonConvert.SerializeObject(All_Reservations, Formatting.Indented);

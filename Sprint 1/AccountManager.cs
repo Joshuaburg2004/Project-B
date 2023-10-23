@@ -6,7 +6,6 @@ using System.Security.Principal;
 using System.Text;
 public class AccountManager
 {
-    public int Id { get; set; }
     public static List<Customer> Customers = new();
     public static List<Admin> Admins = new();
     public AccountManager()
@@ -21,5 +20,6 @@ public class AccountManager
         {
             Admins = JsonConvert.DeserializeObject<List<Admin>>(FileCont2) ?? new List<Admin> { };
         }
+        
     }
 }
