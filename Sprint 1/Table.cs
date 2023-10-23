@@ -26,8 +26,8 @@ public abstract class Table
     public virtual void reserve(int timeslot)
     {
         if (timeslot == 1) { Timeslot_1 = true; }
-        else if (timeslot == 2) {  Timeslot_2 = true; }
-        else if (timeslot == 3) {  Timeslot_3 = true; }
-        else if (timeslot == 4) {  Timeslot_4 = true; }
+        else if (timeslot == 2) { Timeslot_2 = true; }
+        else if (timeslot == 3) { Timeslot_3 = true; }
+        else if (timeslot == 4) { Timeslot_4 = true; }
     }
 }

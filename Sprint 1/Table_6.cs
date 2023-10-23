@@ -1,4 +1,4 @@
-public class Table_6 : Table
+﻿public class Table_6 : Table
 {
     private static int _nextId;
     public int TableNumber;

@@ -1,9 +1,7 @@
-using System.Runtime.CompilerServices;
-
-public class Program
+﻿public class Program
 {
     public static void Main()
-    {
+    { 
         Table_6 table_1 = new Table_6();
         Table_6 table_2 = new Table_6();
 
@@ -23,40 +21,43 @@ public class Program
         Table_2 table_14 = new Table_2();
         Table_2 table_15 = new Table_2();
 
-        var Current_user = 0;
-/*--------------------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------------------------------------------------------------------------------------------*/
         Console.ForegroundColor = ConsoleColor.Green;
         RestaurantLayout.ViewLayout();
-
+        Account? curr_account = null;
         while (true)
         {
             Logo();
-            Console.WriteLine("""
-            press 1 to log in or to create an Account
-            press 2 to look at the menu
-            press 3 to read restaurant information
-            press 4 to close app
-            """);
-            int option = Convert.ToInt32(Console.ReadLine());
-            if (option == 1)
+            string? input = null;
+            while (input != "Q")
             {
+                if (curr_account == null)
+                {
+                    No_Account_Menu();
+                }
+                else if (curr_account.Role == "Admin")
+                {
+                    Console.WriteLine("Here are your options:");
+                    Console.WriteLine("(1) View Menu");
+                    Console.WriteLine("(2) Change Menu");
+                    Console.WriteLine("(3) View all reservations");
+                    Console.WriteLine("(4) Log out");
+                }
+                else if (curr_account.Role == "Customer")
+                {
+                    Console.WriteLine("(1) View Menu");
+                    Console.WriteLine("(2) Reserve a table");
+                    Console.WriteLine("(3) Log out");
 
-            }
-            else if (option == 2)
-            {
-
-            } 
-            else if (option == 3)
-            {
-
-            }
-            else if (option == 4)
-            {
-                Environment.Exit(0);
+                }
+                if (input == "Q")
+                    break;
+                
             }
         }
- 
+
     }
+
     public static void Logo()
     {
         Console.WriteLine("""
@@ -73,4 +74,75 @@ public class Program
             """);
     }
 
+    public static SuperAdmin? SuperAdmin_log_in(string? name, string? email, string? password)
+    {
+        SuperAdmin admin = AccountManager.superAdmin;
+        if (admin.Name == name && admin.Email == email && admin.Password == password)
+        {
+            return admin;
+        }
+        return null;
+    }
+
+    public static Admin? Admin_log_in(string? name, string? email, string? password)
+    {
+        foreach (Admin admin in AccountManager.Admins)
+        {
+            if (admin.Name == name && admin.Password == password && admin.Email == email)
+            {
+                return admin;
+            }
+        }
+        return null;
+    }
+
+    public static Customer? Customer_log_in(string? name, string? email, string? password)
+    {
+        foreach (Customer customer in AccountManager.Customers)
+        {
+            if (customer.Name == name && customer.Password == password && customer.Email == email)
+            {
+                return customer;
+            }
+        }
+        return null;
+    }
+    public static Account? No_Account_Menu() 
+    {
+        Console.WriteLine("Here are your options:");
+        Console.WriteLine("(1) Log in");
+        Console.WriteLine("(2) View Menu");
+        string? input = Console.ReadLine();
+        if (input == "1")
+        {
+            Console.Write("Enter the role for the appropriate log in page (C)ustomer, (A)dmin, (S)uperAdmin: ");
+            string? Role = Console.ReadLine();
+            Console.Write("Enter your name: ");
+            string? Name = Console.ReadLine();
+            Console.Write("Enter your email: ");
+            string? Email = Console.ReadLine();
+            Console.Write("Enter your password: ");
+            string? Password = Console.ReadLine();
+            if(Role is not null)
+            {
+                if (Role.ToUpper() == "C")
+                {
+                    return Customer_log_in(Name, Email, Password);
+                }
+                if (Role.ToUpper() == "A")
+                {
+                    return Admin_log_in(Name, Email, Password);
+                }
+                if (Role.ToUpper() == "S")
+                {
+                    return SuperAdmin_log_in(Name, Email, Password);
+                }
+            }
+        }
+        else if (input == "2")
+        {
+            Menu.view();
+        }
+        return null;
+    }
 }
