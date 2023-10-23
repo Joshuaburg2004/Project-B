@@ -1,4 +1,4 @@
-﻿public class Program
+public class Program
 {
     public static void Main()
     { 
@@ -112,6 +112,7 @@
         Console.WriteLine("Here are your options:");
         Console.WriteLine("(1) Log in");
         Console.WriteLine("(2) View Menu");
+        Console.WriteLine("(3) View Restaurant info");
         string? input = Console.ReadLine();
         if (input == "1")
         {
@@ -142,6 +143,11 @@
         else if (input == "2")
         {
             Menu.view();
+        }
+        else if (input == "3")
+        {
+            RestaurantInfo info = new();
+            info.Info_Restaurant();
         }
         return null;
     }
