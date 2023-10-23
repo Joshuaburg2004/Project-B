@@ -37,11 +37,7 @@ public class Program
                 }
                 else if (curr_account.Role == "Admin")
                 {
-                    Console.WriteLine("Here are your options:");
-                    Console.WriteLine("(1) View Menu");
-                    Console.WriteLine("(2) Change Menu");
-                    Console.WriteLine("(3) View all reservations");
-                    Console.WriteLine("(4) Log out");
+                    Admin_Menu();
                 }
                 else if (curr_account.Role == "Customer")
                 {
@@ -150,5 +146,29 @@ public class Program
             info.Info_Restaurant();
         }
         return null;
+    }
+    public static void Admin_Menu()
+    {
+        Console.WriteLine("Here are your options:");
+        Console.WriteLine("(1) View Menu");
+        Console.WriteLine("(2) Change Menu");
+        Console.WriteLine("(3) View all reservations");
+        Console.WriteLine("(4) Log out");
+        string? input = Console.ReadLine();
+        if(input == "1")
+        {
+            Menu.view();
+        }
+        if(input == "2")
+        {
+            //TODO
+        }
+        if(input == "3")
+        {
+            foreach(Reservation reservation in Reservation.All_Reservations)
+            {
+                Console.WriteLine(reservation.Reservation_Info());
+            }
+        }
     }
 }
