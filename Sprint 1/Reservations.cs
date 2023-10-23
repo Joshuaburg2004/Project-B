@@ -30,11 +30,7 @@ public class Reservation
         All_Reservations.Add(reservation);
     }
 
-    public static Reservation Reservation_Info(Reservation reservation)
-    {
-        return reservation;
-    }
-
+    public string? Reservation_Info() => $"Customer: {CustomerId}, Reservation_ID: {Reservation_ID}, Table {Table}, number of guests: {Guests}, Date: {Date}, Time: {Time}";
     public static string Info(Reservation reservation, Customer customer) => $"{Customer.Info(customer)}, Table: {reservation.Table}, Guests: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
     public bool SendJson()
     {
@@ -42,4 +38,5 @@ public class Reservation
         JArray Object = JArray.Parse(json);
         return ControllerJson.WriteJson(Object, "Reservations.json");
     }
+
 }
