@@ -8,6 +8,7 @@ public class AccountManager
 {
     public static List<Customer> Customers = new();
     public static List<Admin> Admins = new();
+    public static SuperAdmin superAdmin = new();
     public AccountManager()
     {
         string? FileCont1 = ControllerJson.ReadJson("Customers.json");
