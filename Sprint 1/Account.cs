@@ -7,8 +7,8 @@ public abstract class Account
 {
     static int nextID;
     public int Id { get; }
-    public string Name { get; set; }
-    public string Password { get; set; }
+    public string Name;
+    public string Password;
     public string Email;
     public string Role;
 
