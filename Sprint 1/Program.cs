@@ -1,4 +1,4 @@
-public class Program
+﻿public class Program
 {
     public static void Main()
     { 
@@ -25,33 +25,30 @@ public class Program
         Console.ForegroundColor = ConsoleColor.Green;
         RestaurantLayout.ViewLayout();
         Account? curr_account = null;
-        while (true)
+        Logo();
+        string? input = null;
+        while (input != "Q")
         {
-            Logo();
-            string? input = null;
-            while (input != "Q")
+            if (curr_account == null)
             {
-                if (curr_account == null)
-                {
-                    No_Account_Menu();
-                }
-                else if (curr_account.Role == "Admin")
-                {
-                    Admin_Menu();
-                }
-                else if (curr_account.Role == "Customer")
-                {
-                    Console.WriteLine("(1) View Menu");
-                    Console.WriteLine("(2) Reserve a table");
-                    Console.WriteLine("(3) Log out");
-
-                }
-                if (input == "Q")
-                    break;
-                
+                No_Account_Menu();
             }
-        }
+            else if (curr_account.Role == "Admin")
+            {
+                Admin_Menu();
+                curr_account = null;
+            }
+            else if (curr_account.Role == "Customer")
+            {
+                Console.WriteLine("(1) View Menu");
+                Console.WriteLine("(2) Reserve a table");
+                Console.WriteLine("(3) Log out");
 
+            }
+            if (input == "Q")
+                break;
+                
+        }
     }
 
     public static void Logo()
@@ -149,26 +146,86 @@ public class Program
     }
     public static void Admin_Menu()
     {
-        Console.WriteLine("Here are your options:");
-        Console.WriteLine("(1) View Menu");
-        Console.WriteLine("(2) Change Menu");
-        Console.WriteLine("(3) View all reservations");
-        Console.WriteLine("(4) Log out");
-        string? input = Console.ReadLine();
-        if(input == "1")
+        while (true)
         {
-            Menu.view();
-        }
-        if(input == "2")
-        {
-            //TODO
-        }
-        if(input == "3")
-        {
-            foreach(Reservation reservation in Reservation.All_Reservations)
+            Console.WriteLine("Here are your options:");
+            Console.WriteLine("(1) View Menu");
+            Console.WriteLine("(2) Change Menu");
+            Console.WriteLine("(3) View all reservations");
+            Console.WriteLine("(4) Log out");
+            string? input = Console.ReadLine();
+            if (input == "1")
             {
-                Console.WriteLine(reservation.Reservation_Info());
+                Menu.view();
+            }
+            if (input == "2")
+            {
+                Console.WriteLine("(A) Add an item\n(R) Remove an item");
+                string? choice = Console.ReadLine();
+                if(choice is not null)
+                {
+                    if (choice == "A")
+                    {
+                        Console.WriteLine("Enter the name of the item: ");
+                        string? name1 = Console.ReadLine();
+                        Console.WriteLine("Enter the category (fish/meat/vegan/vegetarian):");
+                        string? category1 = Console.ReadLine();
+                        Console.WriteLine("Enter the price:");
+                        string? price1 = Console.ReadLine();
+                        bool Added_Bool = Menu_List.Add_item(name1, category1, price1);
+                        if (Added_Bool)
+                        {
+                            Console.WriteLine($"Added {name1} to the menu.");
+                        }
+                        else
+                        {
+                            if (name1 is null)
+                                Console.WriteLine("No name was submitted.");
+                            if (category1 is null)
+                                Console.WriteLine("No category was submitted.");
+                            if (price1 is null)
+                                Console.WriteLine("No price was submitted.");
+                            Console.WriteLine("Item was not added.");
+                        }
+                    }
+                    else if (choice == "R")
+                    {
+                        Console.WriteLine("Enter the name of the item: ");
+                        string? name1 = Console.ReadLine();
+                        Console.WriteLine("Enter the category (fish/meat/vegan/vegetarian):");
+                        string? category1 = Console.ReadLine();
+                        Console.WriteLine("Enter the price:");
+                        string? price1 = Console.ReadLine();
+                        bool Removed_Bool = Menu_List.Remove_item(name1, category1, price1);
+                        if (Removed_Bool)
+                        {
+                            Console.WriteLine($"Removed {name1} from the menu.");
+                        }
+                        else
+                        {
+                            if (name1 is null)
+                                Console.WriteLine("No name was submitted.");
+                            if (category1 is null)
+                                Console.WriteLine("No category was submitted.");
+                            if (price1 is null)
+                                Console.WriteLine("No price was submitted.");
+                            Console.WriteLine("Item was not removed.");
+                        }
+                    }
+                }
+            }
+            if (input == "3")
+            {
+                foreach (Reservation reservation in Reservation.All_Reservations)
+                {
+                    Console.WriteLine(reservation.Reservation_Info());
+                }
+            }
+            if (input == "4")
+            {
+                return;
             }
         }
+            
     }
 }

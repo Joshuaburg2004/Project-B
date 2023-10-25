@@ -1,7 +1,22 @@
-public class Menu_List
+using Newtonsoft.Json;
+using System.Xml.Linq;
+
+public static class Menu_List
 {
-    public List<Menu> Menu_item = new();
-    public void view()
+    public static List<Menu> Menu_item = new List<Menu> { };
+    static Menu_List()
+    {
+        string? FileCont = ControllerJson.ReadJson("file.json");
+        if (FileCont is not null)
+        { 
+            Menu_item = JsonConvert.DeserializeObject<List<Menu>>(FileCont) ?? new List<Menu> { }; 
+        }
+        else
+        {
+            Menu_item = new List<Menu> { };
+        }
+    }
+    public static void view()
     {
         foreach(Menu item in Menu_item)
         {
@@ -9,14 +24,8 @@ public class Menu_List
         }
     }
 
-    public bool Add_item()
+    public static bool Add_item(string? name1, string? category1, string? price1)
     {
-        Console.WriteLine("What is the Name of the item ?: ");
-        string? name1 = Console.ReadLine();
-        Console.WriteLine("What is the Category (fish/meat/vegan/vegetarian) ?:");
-        string? category1 = Console.ReadLine();
-        Console.WriteLine("What will the price be ?:");
-        string? price1 = Console.ReadLine();
         foreach (Menu menu in Menu_item)
         {
             if (menu.Name == name1)
@@ -32,9 +41,20 @@ public class Menu_List
         return false;
     }
 
-    public bool Remove_item()
+    public static bool Remove_item(string? name, string? category, string? price)
     {
-        //TODO
+        if (name is not null && category is not null && price is not null)
+        {
+            double price1 = Convert.ToDouble(price);
+            foreach (Menu menu in Menu_item)
+            {
+                if(menu.Name == name && menu.Category == category && menu.Price == price1)
+                {
+                    Menu_item.Remove(menu);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

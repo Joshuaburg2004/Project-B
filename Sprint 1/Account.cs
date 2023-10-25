@@ -6,13 +6,13 @@ using System.Text;
 public abstract class Account
 {
     static int nextID;
-    public int Id { get; set; }
+    public int Id { get; }
     public string Name { get; set; }
     public string Password { get; set; }
     public string Email;
     public string Role;
 
-    public Account(string name, string email, string password, string role)
+    protected Account(string name, string email, string password, string role)
     {
         Id = Interlocked.Increment(ref nextID);
         Name = name;
