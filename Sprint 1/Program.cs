@@ -1,7 +1,7 @@
 ﻿public class Program
 {
     public static void Main()
-    { 
+    {
         Table_6 table_1 = new Table_6();
         Table_6 table_2 = new Table_6();
 
@@ -40,14 +40,11 @@
             }
             else if (curr_account.Role == "Customer")
             {
-                Console.WriteLine("(1) View Menu");
-                Console.WriteLine("(2) Reserve a table");
-                Console.WriteLine("(3) Log out");
-
+                CustomerMenu((Customer)curr_account);
             }
             if (input == "Q")
                 break;
-                
+
         }
     }
 
@@ -100,7 +97,7 @@
         }
         return null;
     }
-    public static Account? No_Account_Menu() 
+    public static Account? No_Account_Menu()
     {
         Console.WriteLine("Here are your options:");
         Console.WriteLine("(1) Log in");
@@ -117,7 +114,7 @@
             string? Email = Console.ReadLine();
             Console.Write("Enter your password: ");
             string? Password = Console.ReadLine();
-            if(Role is not null)
+            if (Role is not null)
             {
                 if (Role.ToUpper() == "C")
                 {
@@ -162,7 +159,7 @@
             {
                 Console.WriteLine("(A) Add an item\n(R) Remove an item");
                 string? choice = Console.ReadLine();
-                if(choice is not null)
+                if (choice is not null)
                 {
                     if (choice == "A")
                     {
@@ -226,6 +223,46 @@
                 return;
             }
         }
-            
+    }
+    public static void CustomerMenu(Customer customer)
+    {
+        while (true)
+        {
+            Console.WriteLine("(1) View Menu");
+            Console.WriteLine("(2) Reserve a table");
+            Console.WriteLine("(3) View reservations");
+            Console.WriteLine("(4) Log out");
+            string? input = Console.ReadLine();
+            if(input is not null)
+            {
+                if(input == "1")
+                {
+                    Menu.view();
+                }
+                if(input == "2")
+                {
+                    RestaurantLayout.ViewLayout();
+                    Console.Write("What table do you wish to reserve? (1-15, bar cannot be reserved) ");
+                    int? table = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("How many guests do you expect? ");
+                    int? guests = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Which date do you wish to reserve the table? (DD/MM/YYYY) ");
+                    string? date = Console.ReadLine();
+                    Console.Write("What time do you wish to arrive? ");
+                    string? time = Console.ReadLine();
+                    if(table is not null && guests is not null && date is not null && time is not null)
+                        customer.Add_Reservation((int)table, (int)guests, date, time);
+                }
+                if(input == "3")
+                {
+                    customer.View_Reservation();
+                }
+                if(input == "4")
+                {
+                    return;
+                }
+            }
+
+        }
     }
 }
