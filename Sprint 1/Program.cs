@@ -33,12 +33,12 @@
             {
                 No_Account_Menu();
             }
-            else if (curr_account.Role == "Admin")
+            else if (curr_account as admin is not null)
             {
                 Admin_Menu();
                 curr_account = null;
             }
-            else if (curr_account.Role == "Customer")
+            else if (curr_account as Customer is not null)
             {
                 CustomerMenu((Customer)curr_account);
             }
