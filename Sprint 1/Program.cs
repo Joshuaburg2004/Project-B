@@ -103,6 +103,7 @@
         Console.WriteLine("(1) Log in");
         Console.WriteLine("(2) View Menu");
         Console.WriteLine("(3) View Restaurant info");
+        Console.WriteLine("(4) Create account");
         string? input = Console.ReadLine();
         if (input == "1")
         {
@@ -138,6 +139,10 @@
         {
             RestaurantInfo info = new();
             info.Info_Restaurant();
+        }
+        else if (input == "4")
+        {
+           // TODO
         }
         return null;
     }
