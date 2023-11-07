@@ -142,7 +142,13 @@
         }
         else if (input == "4")
         {
-           // TODO
+           Console.Write("What is your name? ");
+           string name = Console.ReadLine();
+           Console.Write("What is your email? ");
+           string email = Console.ReadLine();
+           Console.WriteLine("What do you want your password to be? ");
+           string password = Console.ReadLine();
+           return Customer.CreateAccount(name, email, password);
         }
         return null;
     }
