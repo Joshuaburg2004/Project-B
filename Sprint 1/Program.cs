@@ -31,7 +31,7 @@
         {
             if (curr_account == null)
             {
-                No_Account_Menu();
+                curr_account = No_Account_Menu();
             }
             else if (curr_account as admin is not null)
             {
