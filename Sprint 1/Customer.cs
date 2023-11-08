@@ -50,22 +50,20 @@ public class Customer : Account
     {
         if (GetCustomer(Id) != null)
         {
-            Reservation.Add_Reservation(new Reservation(Id, table, guest, date, time));
+            My_Reservation.Add(new Reservation(Id, table, guest, date, time));
+            string json = JsonConvert.SerializeObject(AccountManager.Customers, Formatting.Indented);
+            JArray Object = JArray.Parse(json);
+            ControllerJson.WriteJson(Object, "Customers.json");
         }
     }
 
-    // dit zet mijn reserveringen in een lijst en returned het.
-    public List<Reservation>? View_Reservation()
+    // Print de info van de Reservations die de customer heeft gemaakt.
+    public void View_Reservation()
     {
-        foreach (Reservation reservation in Reservation.All_Reservations)
+        foreach(Reservation reservation in My_Reservation)
         {
-            if (reservation.CustomerId == Id)
-            {
-                My_Reservation.Add(reservation);
-                return My_Reservation;
-            }
+            Console.WriteLine(reservation.Reservation_Info());
         }
-        return null;
     }
 
     public static Customer? Log_in(string name, string email, string password)
