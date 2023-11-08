@@ -1,4 +1,4 @@
-﻿public class Program
+public class Program
 {
     public static void Main()
     {
@@ -33,7 +33,7 @@
             {
                 curr_account = No_Account_Menu();
             }
-            else if (curr_account as admin is not null)
+            else if (curr_account as Admin is not null)
             {
                 Admin_Menu();
                 curr_account = null;
@@ -142,13 +142,14 @@
         }
         else if (input == "4")
         {
-           Console.Write("What is your name? ");
-           string name = Console.ReadLine();
-           Console.Write("What is your email? ");
-           string email = Console.ReadLine();
-           Console.WriteLine("What do you want your password to be? ");
-           string password = Console.ReadLine();
-           return Customer.CreateAccount(name, email, password);
+            Console.Write("What is your name? ");
+            string? name = Console.ReadLine();
+            Console.Write("What is your email? ");
+            string? email = Console.ReadLine();
+            Console.WriteLine("What do you want your password to be? ");
+            string? password = Console.ReadLine();
+            if(name is not null && email is not null && password is not null)
+                return Customer.CreateAccount(name, email, password);
         }
         return null;
     }
@@ -244,13 +245,13 @@
             Console.WriteLine("(3) View reservations");
             Console.WriteLine("(4) Log out");
             string? input = Console.ReadLine();
-            if(input is not null)
+            if (input is not null)
             {
-                if(input == "1")
+                if (input == "1")
                 {
                     Menu.view();
                 }
-                if(input == "2")
+                if (input == "2")
                 {
                     RestaurantLayout.ViewLayout();
                     Console.Write("What table do you wish to reserve? (1-15, bar cannot be reserved) ");
@@ -261,14 +262,14 @@
                     string? date = Console.ReadLine();
                     Console.Write("What time do you wish to arrive? ");
                     string? time = Console.ReadLine();
-                    if(table is not null && guests is not null && date is not null && time is not null)
+                    if (table is not null && guests is not null && date is not null && time is not null)
                         customer.Add_Reservation((int)table, (int)guests, date, time);
                 }
-                if(input == "3")
+                if (input == "3")
                 {
                     customer.View_Reservation();
                 }
-                if(input == "4")
+                if (input == "4")
                 {
                     return;
                 }
