@@ -26,7 +26,6 @@ public class Program
         RestaurantLayout.ViewLayout();
         Account? curr_account = null;
         Logo();
-        string? input = null;
         while (input != "Q")
         {
             if (curr_account == null)
@@ -43,8 +42,6 @@ public class Program
                 CustomerMenu((Customer)curr_account);
                 curr_account = null;
             }
-            if (input == "Q")
-                break;
         }
     }
 
