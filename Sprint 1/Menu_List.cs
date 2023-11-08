@@ -8,7 +8,7 @@ public static class Menu_List
     public static List<Menu> Menu_item = new List<Menu> { };
     static Menu_List()
     {
-        string? FileCont = ControllerJson.ReadJson("file.json");
+        string? FileCont = ControllerJson.ReadJson("Menu.json");
         if (FileCont is not null)
         { 
             Menu_item = JsonConvert.DeserializeObject<List<Menu>>(FileCont) ?? new List<Menu> { }; 
