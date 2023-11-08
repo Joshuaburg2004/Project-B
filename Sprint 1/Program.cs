@@ -26,6 +26,7 @@ public class Program
         RestaurantLayout.ViewLayout();
         Account? curr_account = null;
         Logo();
+        string input = "";
         while (input != "Q")
         {
             if (curr_account == null)
