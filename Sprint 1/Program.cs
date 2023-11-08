@@ -1,4 +1,4 @@
-﻿public class Program
+public class Program
 {
     public static void Main()
     {
@@ -22,10 +22,10 @@
         Table_2 table_15 = new Table_2();
 
         /*--------------------------------------------------------------------------------------------------------------------------------*/
+        Logo();
         Console.ForegroundColor = ConsoleColor.Green;
         RestaurantLayout.ViewLayout();
         Account? curr_account = null;
-        Logo();
         string? input = null;
         while (input != "Q")
         {
