@@ -23,6 +23,9 @@ public class Reservation
         Guests = guest;
         Date = date;
         Time = time;
+        string json = JsonConvert.SerializeObject(All_Reservations, Formatting.Indented);
+        JArray Object = JArray.Parse(json);
+        ControllerJson.WriteJson(Object, "Reservations.json");
     }
 
     public static void Add_Reservation(Reservation reservation)
@@ -32,11 +35,4 @@ public class Reservation
 
     public string? Reservation_Info() => $"Customer: {CustomerId}, Reservation_ID: {Reservation_ID}, Table {Table}, number of guests: {Guests}, Date: {Date}, Time: {Time}";
     public static string Info(Reservation reservation, Customer customer) => $"{Customer.Info(customer)}, Table: {reservation.Table}, Guests: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
-    public bool SendJson()
-    {
-        string json = JsonConvert.SerializeObject(All_Reservations, Formatting.Indented);
-        JArray Object = JArray.Parse(json);
-        return ControllerJson.WriteJson(Object, "Reservations.json");
-    }
-
 }
