@@ -41,10 +41,10 @@ public class Program
             else if (curr_account as Customer is not null)
             {
                 CustomerMenu((Customer)curr_account);
+                curr_account = null;
             }
             if (input == "Q")
                 break;
-
         }
     }
 
