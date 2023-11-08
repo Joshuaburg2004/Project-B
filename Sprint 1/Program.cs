@@ -1,3 +1,6 @@
+using System.Net.Sockets;
+using System.Text.RegularExpressions;
+
 public class Program
 {
     public static void Main()
@@ -141,12 +144,60 @@ public class Program
         }
         else if (input == "4")
         {
-            Console.Write("What is your name? ");
-            string? name = Console.ReadLine();
-            Console.Write("What is your email? ");
-            string? email = Console.ReadLine();
-            Console.WriteLine("What do you want your password to be? ");
-            string? password = Console.ReadLine();
+            bool NameCheck = false;
+            bool EmailCheck = false;
+            bool PassCheck = false;
+            string? name = "";
+            string? email = "";
+            string? password = "";
+            while (NameCheck is false)
+            {
+                Console.Write("What is your name? ");
+                name = Console.ReadLine();
+                if(name is not null)
+                {
+                    if (!Regex.Match(name, @"[^\sa-zA-Z]").Success)
+                    {
+                        NameCheck = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Name was invalid, please try again");
+                    }
+                }
+            }
+            while (EmailCheck is false)
+            {
+                Console.Write("What is your email? ");
+                email = Console.ReadLine();
+                if (email is not null)
+                {
+                    if (!Regex.Match(email, @"[a-zA-Z0-9,.@]").Success)
+                    {
+                        EmailCheck = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Email was invalid, please try again");
+                    }
+                }
+            }
+            while (PassCheck is false)
+            {
+                Console.Write("What do you want your password to be? ");
+                password = Console.ReadLine();
+                if (password is not null)
+                {
+                    if (!Regex.Match(password, @"[^\sa-zA-Z]").Success)
+                    {
+                        PassCheck = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Password was invalid, please try again");
+                    }
+                }
+            }
             if(name is not null && email is not null && password is not null)
                 return Customer.CreateAccount(name, email, password);
         }
