@@ -17,7 +17,15 @@ public class Reservation
     static Reservation()
     {
         string FileCont = ReadJson("Reservation.json");
-        this.All_Reservations = JsonConvert.DeserializeObject<List<Reservation>>(FileCont);
+        if (FileCont is not null)
+        { 
+            All_Reservations = JsonConvert.DeserializeObject<List<Reservation>>(FileCont);
+        }
+        else
+        {
+            All_Reservations = new();
+        }
+        
     }
 
     public Reservation(int customerId, int table, int guest, string date, string time)
