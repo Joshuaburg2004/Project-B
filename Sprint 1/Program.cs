@@ -211,7 +211,7 @@ public class Program
         }
         else if (input == "5")
         {
-            Console.WriteLine("Goodbye and seeyou soon!");
+            Console.WriteLine("Goodbye and see you soon!");
             System.Environment.Exit(0);
         }
         return null;
@@ -302,7 +302,7 @@ public class Program
             }
             if (input == "5")
             {
-                Console.WriteLine("Goodbye and seeyou soon!");
+                Console.WriteLine("Goodbye and see you soon!");
                 System.Environment.Exit(0);
             }
         }
@@ -354,7 +354,7 @@ public class Program
                 }
                 if (input == "5")
                 {
-                    Console.WriteLine("Goodbye and seeyou soon!");
+                    Console.WriteLine("Goodbye and see you soon!");
                     System.Environment.Exit(0);
                 }
             }
