@@ -26,8 +26,8 @@ public class Program
 
         /*--------------------------------------------------------------------------------------------------------------------------------*/
         Logo();
-        Console.ForegroundColor = ConsoleColor.Green;
-        RestaurantLayout.ViewLayout();
+        //Console.ForegroundColor = ConsoleColor.Green;
+        //RestaurantLayout.ViewLayout();
         Console.ForegroundColor = ConsoleColor.White;
         Account? curr_account = null;
         string? input = null;
@@ -101,11 +101,15 @@ public class Program
     }
     public static Account? No_Account_Menu()
     {
+        Console.Clear();
+        Logo();
+
         Console.WriteLine("Here are your options:");
         Console.WriteLine("(1) Log in");
         Console.WriteLine("(2) View Menu");
         Console.WriteLine("(3) View Restaurant info");
         Console.WriteLine("(4) Create account");
+        Console.WriteLine("(5) Close app");
         string? input = Console.ReadLine();
         if (input == "1")
         {
@@ -136,11 +140,15 @@ public class Program
         else if (input == "2")
         {
             Menu.view();
+            Console.WriteLine("\npress the enter key to continue");
+            Console.ReadLine();
         }
         else if (input == "3")
         {
             RestaurantInfo info = new();
             info.Info_Restaurant();
+            Console.WriteLine("\npress the enter key to continue");
+            Console.ReadLine();
         }
         else if (input == "4")
         {
@@ -201,17 +209,25 @@ public class Program
             if(name is not null && email is not null && password is not null)
                 return Customer.CreateAccount(name, email, password);
         }
+        else if (input == "5")
+        {
+            Console.WriteLine("Goodbye and seeyou soon!");
+            System.Environment.Exit(0);
+        }
         return null;
     }
     public static void Admin_Menu()
     {
         while (true)
         {
+            Console.Clear();
+            Logo();
             Console.WriteLine("Here are your options:");
             Console.WriteLine("(1) View Menu");
             Console.WriteLine("(2) Change Menu");
             Console.WriteLine("(3) View all reservations");
             Console.WriteLine("(4) Log out");
+            Console.WriteLine("(5) Close app");
             string? input = Console.ReadLine();
             if (input == "1")
             {
@@ -284,22 +300,32 @@ public class Program
             {
                 return;
             }
+            if (input == "5")
+            {
+                Console.WriteLine("Goodbye and seeyou soon!");
+                System.Environment.Exit(0);
+            }
         }
     }
     public static void CustomerMenu(Customer customer)
     {
         while (true)
         {
+            Console.Clear();
+            Logo();
             Console.WriteLine("(1) View Menu");
             Console.WriteLine("(2) Reserve a table");
             Console.WriteLine("(3) View reservations");
             Console.WriteLine("(4) Log out");
+            Console.WriteLine("(5) Close app");
             string? input = Console.ReadLine();
             if (input is not null)
             {
                 if (input == "1")
                 {
                     Menu.view();
+                    Console.WriteLine("\npress the enter key to continue");
+                    Console.ReadLine();
                 }
                 if (input == "2")
                 {
@@ -314,14 +340,22 @@ public class Program
                     string? time = Console.ReadLine();
                     if (table is not null && guests is not null && date is not null && time is not null)
                         customer.Add_Reservation((int)table, (int)guests, date, time);
+
                 }
                 if (input == "3")
                 {
                     customer.View_Reservation();
+                    Console.WriteLine("\npress the enter key to continue");
+                    Console.ReadLine();
                 }
                 if (input == "4")
                 {
                     return;
+                }
+                if (input == "5")
+                {
+                    Console.WriteLine("Goodbye and seeyou soon!");
+                    System.Environment.Exit(0);
                 }
             }
         }
