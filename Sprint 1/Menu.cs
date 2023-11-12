@@ -5,7 +5,7 @@
 
 public class Menu
 {
-    public static List<Menu> Menu_item = new();
+    public static List<Menu> Menu_item = new(){new Menu("Lahmacun", "Meat", 6.99), new Menu("Pizza pepperoni","Meat",12.5)};
     public double Price;
     public string Category;
     public string Name;
