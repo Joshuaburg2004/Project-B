@@ -16,7 +16,7 @@ public class Reservation
 
     static Reservation()
     {
-        string FileCont = ReadJson("Reservation.json");
+        string FileCont = ControllerJson.ReadJson("Reservation.json");
         if (FileCont is not null)
         { 
             All_Reservations = JsonConvert.DeserializeObject<List<Reservation>>(FileCont);
