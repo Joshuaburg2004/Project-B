@@ -5,6 +5,7 @@ using System.Net.Quic;
 using System.Text;
 public class SuperAdmin : Account
 {
+    // essentially static, SuperAdmin is always the same
     public SuperAdmin() : base("Gert-Jan den heijer", "gjdenheijer@gmail.com", "123", "SuperAdmin") { }
     public Admin AddAdmin(string Name, string Email, string Password)
     {
