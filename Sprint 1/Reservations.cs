@@ -13,7 +13,7 @@ public class Reservation
     public int Guests;
     public string Date;
     public string Time;
-
+    // leest reservations.json uit en zet het binnen de list
     static Reservation()
     {
         string FileCont = ControllerJson.ReadJson("Reservation.json");
@@ -24,10 +24,9 @@ public class Reservation
         else
         {
             All_Reservations = new();
-        }
-        
+        }   
     }
-
+    // constructor. Schrijft het ook naar de json
     public Reservation(int customerId, int table, int guest, string date, string time)
     {
         Reservation_ID = Interlocked.Increment(ref nextID);
@@ -42,7 +41,8 @@ public class Reservation
         ControllerJson.WriteJson(Object, "Reservations.json");
     }
 
-
+    // returned de informatie van de reservatie
     public string Reservation_Info() => $"CustomerID: {CustomerId}, Reservation_ID: {Reservation_ID}, Table {Table}, number of guests: {Guests}, Date: {Date}, Time: {Time}";
+    // print de info van de reserevatie en de customer
     public static string Info(Reservation reservation, Customer customer) => $"{Customer.Info(customer)}, Table: {reservation.Table}, Guests: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
 }
