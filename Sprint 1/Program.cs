@@ -170,7 +170,7 @@ public class Program
                 name = Console.ReadLine();
                 if (name is not null)
                 {
-                    if (!Regex.Match(name, @"[^\sa-zA-Z]").Success)
+                    if (Regex.Match(name, @"[^\sa-zA-Z]").Success)
                     {
                         NameCheck = true;
                     }
@@ -182,11 +182,11 @@ public class Program
             }
             while (EmailCheck is false)
             {
-                Console.Write("What is your email? ");
+                Console.Write("What is your email (Requires a dot and an @)? ");
                 email = Console.ReadLine();
                 if (email is not null)
                 {
-                    if (!Regex.Match(email, @"[a-zA-Z0-9.@]").Success)
+                    if (Regex.Match(email, @"[a-zA-Z0-9.@]").Success)
                     {
                         EmailCheck = true;
                     }
@@ -198,11 +198,11 @@ public class Program
             }
             while (PassCheck is false)
             {
-                Console.Write("What do you want your password to be? ");
+                Console.Write("What do you want your password to be (Requires a capital letter, and a number)? ");
                 password = Console.ReadLine();
                 if (password is not null)
                 {
-                    if (!Regex.Match(password, @"[^\sa-zA-Z0-9]").Success)
+                    if (Regex.Match(password, @"[^\sa-zA-Z0-9]").Success)
                     {
                         PassCheck = true;
                     }
