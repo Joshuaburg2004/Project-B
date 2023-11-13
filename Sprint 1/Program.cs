@@ -198,11 +198,11 @@ public class Program
             }
             while (PassCheck is false)
             {
-                Console.Write("What do you want your password to be (Requires a capital letter, and a number)? ");
+                Console.Write("What do you want your password to be (Requires a capital letter, a number and a special character)? ");
                 password = Console.ReadLine();
                 if (password is not null)
                 {
-                    if (!Regex.Match(password, @"[a-zA-Z0-9]").Success)
+                    if (!Regex.Match(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$").Success)
                     {
                         PassCheck = true;
                     }
