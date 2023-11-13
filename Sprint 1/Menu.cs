@@ -9,6 +9,7 @@ public class Menu
     public double Price;
     public string Category;
     public string Name;
+    // items binnen het menu. wordt niet gebruikt, gebruik Menu_List.Add_item()
     public Menu(string name, string category, double price)
     {
         this.Price = price;
@@ -23,7 +24,7 @@ public class Menu
     //     Menu_item.Add(item2);
     //     return Menu_item;
     // }
-
+    // Print alle menu_items.
     public static void view()
     {
         foreach(Menu item in Menu_List.Menu_item)
