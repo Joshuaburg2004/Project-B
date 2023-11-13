@@ -202,7 +202,7 @@ public class Program
                 password = Console.ReadLine();
                 if (password is not null)
                 {
-                    if (!Regex.Match(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$").Success)
+                    if (!Regex.Match(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])$").Success)
                     {
                         PassCheck = true;
                     }
