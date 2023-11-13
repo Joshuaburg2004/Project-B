@@ -51,6 +51,7 @@ public class Program
             {
                 Console.WriteLine("SuperAdmin logged in");  // Placeholder, TODO: SuperAdminMenu()
                 curr_account = null;
+                Console.ReadLine();
             }
             if (input == "Q")
                 break;
@@ -167,7 +168,7 @@ public class Program
             {
                 Console.Write("What is your name? ");
                 name = Console.ReadLine();
-                if(name is not null)
+                if (name is not null)
                 {
                     if (!Regex.Match(name, @"[^\sa-zA-Z]").Success)
                     {
@@ -211,7 +212,7 @@ public class Program
                     }
                 }
             }
-            if(name is not null && email is not null && password is not null)
+            if (name is not null && email is not null && password is not null)
                 return Customer.CreateAccount(name, email, password);
         }
         else if (input == "5")
