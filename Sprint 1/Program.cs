@@ -109,39 +109,23 @@ public class Program
     {
         Console.Clear();
         Logo();
-
         Console.WriteLine("Here are your options:");
         Console.WriteLine("(1) Log in");
         Console.WriteLine("(2) View Menu");
         Console.WriteLine("(3) View Restaurant info");
         Console.WriteLine("(4) Create account");
+        Console.WriteLine("(5) Log in - Admin");
         Console.WriteLine("(5) Close app");
         string? input = Console.ReadLine();
         if (input == "1")
         {
-            Console.Write("Enter the role for the appropriate log in page (C)ustomer, (A)dmin, (S)uperAdmin: ");
-            string? Role = Console.ReadLine();
             Console.Write("Enter your name: ");
             string? Name = Console.ReadLine();
             Console.Write("Enter your email: ");
             string? Email = Console.ReadLine();
             Console.Write("Enter your password: ");
             string? Password = Console.ReadLine();
-            if (Role is not null)
-            {
-                if (Role.ToUpper() == "C")
-                {
-                    return Customer_log_in(Name, Email, Password);
-                }
-                if (Role.ToUpper() == "A")
-                {
-                    return Admin_log_in(Name, Email, Password);
-                }
-                if (Role.ToUpper() == "S")
-                {
-                    return SuperAdmin_log_in(Name, Email, Password);
-                }
-            }
+            return Customer_log_in(Name, Email, Password);
         }
         else if (input == "2")
         {
@@ -217,6 +201,26 @@ public class Program
                 return Customer.CreateAccount(name, email, password);
         }
         else if (input == "5")
+        {
+            Console.WriteLine("Are you an (A)dmin or (S)uperAdmin");
+            string Role = Console.ReadLine();
+            Console.Write("Enter your name: ");
+            string? Name = Console.ReadLine();
+            Console.Write("Enter your email: ");
+            string? Email = Console.ReadLine();
+            Console.Write("Enter your password: ");
+            string? Password = Console.ReadLine();
+            if (Role.ToUpper() == "A")
+            {
+                return Admin_log_in(Name, Email, Password);
+            }
+            if (Role.ToUpper() == "S")
+            {
+                return SuperAdmin_log_in(Name, Email, Password);
+            }
+        }
+                                                      
+        else if (input == "6")
         {
             Console.WriteLine("Goodbye and see you soon!");
             System.Environment.Exit(0);
