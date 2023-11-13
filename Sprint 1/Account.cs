@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System.Net.Quic;
 using System.Security.Principal;
 using System.Text;
+// abstract class, kan niet worden geïnitialiseerd. Wordt gebruikt voor Customer, Admin en SuperAdmin
 public abstract class Account
 {
     static int nextID;
