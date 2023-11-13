@@ -47,6 +47,10 @@ public class Program
                 CustomerMenu((Customer)curr_account);
                 curr_account = null;
             }
+            else if (curr_account as SuperAdmin is not null)
+            {
+                Console.WriteLine("SuperAdmin logged in");
+            }
             if (input == "Q")
                 break;
         }
