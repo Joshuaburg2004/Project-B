@@ -5,6 +5,7 @@ public class Program
 {
     public static void Main()
     {
+        // maakt de tafels aan
         Table_6 table_1 = new Table_6();
         Table_6 table_2 = new Table_6();
 
@@ -29,22 +30,28 @@ public class Program
         //Console.ForegroundColor = ConsoleColor.Green;
         //RestaurantLayout.ViewLayout();
         Console.ForegroundColor = ConsoleColor.White;
+        // Het account wat gebruikt wordt in de menu's
         Account? curr_account = null;
         string? input = null;
         while (input != "Q")
         {
             if (curr_account == null)
             {
+                // niet ingelogd, standaard op startup
                 curr_account = No_Account_Menu();
             }
             else if (curr_account as Admin is not null)
             {
+                // menu voor admins, enkel beschikbaar als ingelogd als admin
                 Admin_Menu();
+                // voor log out
                 curr_account = null;
             }
             else if (curr_account as Customer is not null)
             {
+                // menu voor customers, enkel beschikbaar als ingelogd als customer
                 CustomerMenu((Customer)curr_account);
+                // voor log out
                 curr_account = null;
             }
             else if (curr_account as SuperAdmin is not null)
@@ -57,7 +64,7 @@ public class Program
                 break;
         }
     }
-
+    // print het logo
     public static void Logo()
     {
         Console.WriteLine("""
@@ -71,7 +78,7 @@ public class Program
                                                                       
             """);
     }
-
+    // logt de superadmin in
     public static SuperAdmin? SuperAdmin_log_in(string? name, string? email, string? password)
     {
         SuperAdmin admin = AccountManager.superAdmin;
@@ -81,7 +88,7 @@ public class Program
         }
         return null;
     }
-
+    // logt een admin in
     public static Admin? Admin_log_in(string? name, string? email, string? password)
     {
         foreach (Admin admin in AccountManager.Admins)
@@ -93,7 +100,7 @@ public class Program
         }
         return null;
     }
-
+    // logt een customer in
     public static Customer? Customer_log_in(string? name, string? email, string? password)
     {
         foreach (Customer customer in AccountManager.Customers)
@@ -105,6 +112,7 @@ public class Program
         }
         return null;
     }
+    // menu als zonder account
     public static Account? No_Account_Menu()
     {
         Console.Clear();
@@ -148,6 +156,7 @@ public class Program
             string? name = "";
             string? email = "";
             string? password = "";
+            // Corrigeerd de naam
             while (NameCheck is false)
             {
                 Console.Write("What is your name? ");
@@ -164,6 +173,7 @@ public class Program
                     }
                 }
             }
+            // corrigeerd de email
             while (EmailCheck is false)
             {
                 Console.Write("What is your email (Requires a dot and an @)? ");
@@ -181,6 +191,7 @@ public class Program
                     }
                 }
             }
+            // corrigeerd de wachtwoorden
             while (PassCheck is false)
             {
                 Console.Write("What do you want your password to be (Requires a capital letter, a number and a special character)? ");
@@ -197,9 +208,11 @@ public class Program
                     }
                 }
             }
+            // maakt de account aan en logt je meteen in
             if (name is not null && email is not null && password is not null)
                 return Customer.CreateAccount(name, email, password);
         }
+        // logt de admins in
         else if (input == "5")
         {
             Console.WriteLine("Are you an (A)dmin or (S)uperAdmin");
@@ -219,7 +232,7 @@ public class Program
                 return SuperAdmin_log_in(Name, Email, Password);
             }
         }
-                                                      
+        // escapes the program                                    
         else if (input == "6")
         {
             Console.WriteLine("Goodbye and see you soon!");
@@ -227,6 +240,7 @@ public class Program
         }
         return null;
     }
+    // menu voor de admins
     public static void Admin_Menu()
     {
         while (true)
@@ -240,10 +254,14 @@ public class Program
             Console.WriteLine("(4) Log out");
             Console.WriteLine("(5) Close app");
             string? input = Console.ReadLine();
+            // laat het menu zien
             if (input == "1")
             {
                 Menu.view();
+                Console.WriteLine("\npress the enter key to continue");
+                Console.ReadLine();
             }
+            // laat je een item toevoegen of verwijderen
             if (input == "2")
             {
                 Console.WriteLine("(A) Add an item\n(R) Remove an item");
@@ -300,17 +318,22 @@ public class Program
                     }
                 }
             }
+            // laat de reservaties zien. TODO: per dag/met pagina's
             if (input == "3")
             {
                 foreach (Reservation reservation in Reservation.All_Reservations)
                 {
                     Console.WriteLine(reservation.Reservation_Info());
                 }
+                Console.WriteLine("\npress the enter key to continue");
+                Console.ReadLine();
             }
+            // logt uit
             if (input == "4")
             {
                 return;
             }
+            // exit het programma
             if (input == "5")
             {
                 Console.WriteLine("Goodbye and see you soon!");
@@ -318,11 +341,13 @@ public class Program
             }
         }
     }
+    // menu voor de customers
     public static void CustomerMenu(Customer customer)
     {
         while (true)
         {
             Console.Clear();
+            // laat het logo zien
             Logo();
             Console.WriteLine("(1) View Menu");
             Console.WriteLine("(2) Reserve a table");
@@ -332,12 +357,14 @@ public class Program
             string? input = Console.ReadLine();
             if (input is not null)
             {
+                // laat het menu zien
                 if (input == "1")
                 {
                     Menu.view();
                     Console.WriteLine("\npress the enter key to continue");
                     Console.ReadLine();
                 }
+                // reservatiecode. TODO: Maak date en time, datetime en een timeslot respectievelijk
                 if (input == "2")
                 {
                     RestaurantLayout.ViewLayout();
@@ -353,16 +380,19 @@ public class Program
                         customer.Add_Reservation((int)table, (int)guests, date, time);
 
                 }
+                // laat de reservatie zien
                 if (input == "3")
                 {
                     customer.View_Reservation();
                     Console.WriteLine("\npress the enter key to continue");
                     Console.ReadLine();
                 }
+                // logt uit
                 if (input == "4")
                 {
                     return;
                 }
+                // laat je het programma uit
                 if (input == "5")
                 {
                     Console.WriteLine("Goodbye and see you soon!");
