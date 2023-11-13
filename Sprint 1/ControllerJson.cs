@@ -4,6 +4,7 @@ using System.Net.Quic;
 using System.Text;
 public class ControllerJson
 {
+    // Schrijft een object naar de json
     // Gebruik de volgende code (waarbij ObjectToJson je list is) om het naar de Json te sturen:
     // string json = JsonConvert.SerializeObject(ObjectToJson, Formatting.Indented);
     // JArray Object = JArray.Parse(json);
@@ -31,6 +32,7 @@ public class ControllerJson
             return false;
         }
     }
+    // Leest een json uit
     // gebruik volgende 2 lijnen om te benutten (verander Type naar het type wat je nodig hebt en verander ListName naar wat je wil):
     // string FileCont = ReadJson("file.json");
     // List<Type> ListName = JsonConvert.DeserializeObject<List<Type>>(FileCont);
