@@ -2,6 +2,7 @@
 {
     public static void ViewLayout()
     {
+        // print de layout
 
         Console.WriteLine(" __________________________________________________________________________________________     ");
         Console.WriteLine("|                                                                                          |    ");
