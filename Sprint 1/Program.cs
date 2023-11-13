@@ -50,6 +50,7 @@ public class Program
             else if (curr_account as SuperAdmin is not null)
             {
                 Console.WriteLine("SuperAdmin logged in");  // Placeholder, TODO: SuperAdminMenu()
+                curr_account = null;
             }
             if (input == "Q")
                 break;
