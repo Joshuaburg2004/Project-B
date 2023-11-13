@@ -186,7 +186,7 @@ public class Program
                 email = Console.ReadLine();
                 if (email is not null)
                 {
-                    if (!Regex.Match(email, @"[a-zA-Z0-9.@]").Success)
+                    if (email.Contains("@") && email.Contains("."))
                     {
                         EmailCheck = true;
                     }
