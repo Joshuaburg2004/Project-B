@@ -186,6 +186,7 @@ public class Program
                 email = Console.ReadLine();
                 if (email is not null)
                 {
+                    // prevents likes of @. - unlike contains
                     if (!Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
                     {
                         EmailCheck = true;
