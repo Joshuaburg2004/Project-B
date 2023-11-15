@@ -25,6 +25,7 @@ public static class AccountManager
         {
             Admins = JsonConvert.DeserializeObject<List<Admin>>(FileCont2) ?? new List<Admin> { };
         }
-        
+        // Maakt de ID voor de Accounts groter gebaseerd op de lengte van customers en admins. voorkomt overlap in de json
+        Account.nextID += Customers.Count + Admins.Count;
     }
 }
