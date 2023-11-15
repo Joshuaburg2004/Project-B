@@ -6,7 +6,7 @@ using System.Text;
 // abstract class, kan niet worden geïnitialiseerd. Wordt gebruikt voor Customer, Admin en SuperAdmin
 public abstract class Account
 {
-    static int nextID;
+    public static int nextID;
     public int Id { get; }
     public string Name;
     public string Password;
