@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System.Net.Quic;
 using System.Security.Principal;
 using System.Text;
-public interface Account
+public interface IAccount
 {
     public int Id { get; }
     public string Name { get; }
