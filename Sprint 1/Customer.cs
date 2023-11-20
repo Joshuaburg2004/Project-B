@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Data;
 using System.Xml.Linq;
 
-public class Customer : Account
+public class Customer : IAccount
 {
     public static int nextID = AccountManager.Customers.Count;
     public int Id { get; }
