@@ -5,7 +5,6 @@ public class Program
 {
     public static void Main()
     {
-        // maakt de tafels aan
         Table_6 table_1 = new Table_6();
         Table_6 table_2 = new Table_6();
 
@@ -27,44 +26,37 @@ public class Program
 
         /*--------------------------------------------------------------------------------------------------------------------------------*/
         Logo();
-        //Console.ForegroundColor = ConsoleColor.Green;
-        //RestaurantLayout.ViewLayout();
+        Console.ForegroundColor = ConsoleColor.Green;
+        RestaurantLayout.ViewLayout();
         Console.ForegroundColor = ConsoleColor.White;
-        // Het account wat gebruikt wordt in de menu's
         Account? curr_account = null;
         string? input = null;
         while (input != "Q")
         {
             if (curr_account == null)
             {
-                // niet ingelogd, standaard op startup
                 curr_account = No_Account_Menu();
             }
-            else if (curr_account as Admin is not null)
+            else if (curr_account as Admin is not null && curr_account as SuperAdmin is null)
             {
-                // menu voor admins, enkel beschikbaar als ingelogd als admin
                 Admin_Menu();
-                // voor log out
                 curr_account = null;
             }
             else if (curr_account as Customer is not null)
             {
-                // menu voor customers, enkel beschikbaar als ingelogd als customer
                 CustomerMenu((Customer)curr_account);
-                // voor log out
                 curr_account = null;
             }
             else if (curr_account as SuperAdmin is not null)
             {
-                Console.WriteLine("SuperAdmin logged in");  // Placeholder, TODO: SuperAdminMenu()
+                SuperAdminMenu();
                 curr_account = null;
-                Console.ReadLine();
             }
             if (input == "Q")
                 break;
         }
     }
-    // print het logo
+
     public static void Logo()
     {
         Console.WriteLine("""
@@ -78,7 +70,7 @@ public class Program
                                                                       
             """);
     }
-    // logt de superadmin in
+
     public static SuperAdmin? SuperAdmin_log_in(string? name, string? email, string? password)
     {
         SuperAdmin admin = AccountManager.superAdmin;
@@ -88,7 +80,7 @@ public class Program
         }
         return null;
     }
-    // logt een admin in
+
     public static Admin? Admin_log_in(string? name, string? email, string? password)
     {
         foreach (Admin admin in AccountManager.Admins)
@@ -100,7 +92,7 @@ public class Program
         }
         return null;
     }
-    // logt een customer in
+
     public static Customer? Customer_log_in(string? name, string? email, string? password)
     {
         foreach (Customer customer in AccountManager.Customers)
@@ -112,41 +104,48 @@ public class Program
         }
         return null;
     }
-    // menu als zonder account
     public static Account? No_Account_Menu()
     {
-        Console.Clear();
-        Logo();
         Console.WriteLine("Here are your options:");
         Console.WriteLine("(1) Log in");
         Console.WriteLine("(2) View Menu");
         Console.WriteLine("(3) View Restaurant info");
         Console.WriteLine("(4) Create account");
-        Console.WriteLine("(5) Log in - Admin");
-        Console.WriteLine("(5) Close app");
         string? input = Console.ReadLine();
         if (input == "1")
         {
+            Console.Write("Enter the role for the appropriate log in page (C)ustomer, (A)dmin, (S)uperAdmin: ");
+            string? Role = Console.ReadLine();
             Console.Write("Enter your name: ");
             string? Name = Console.ReadLine();
             Console.Write("Enter your email: ");
             string? Email = Console.ReadLine();
             Console.Write("Enter your password: ");
             string? Password = Console.ReadLine();
-            return Customer_log_in(Name, Email, Password);
+            if (Role is not null)
+            {
+                if (Role.ToUpper() == "C")
+                {
+                    return Customer_log_in(Name, Email, Password);
+                }
+                if (Role.ToUpper() == "A")
+                {
+                    return Admin_log_in(Name, Email, Password);
+                }
+                if (Role.ToUpper() == "S")
+                {
+                    return SuperAdmin_log_in(Name, Email, Password);
+                }
+            }
         }
         else if (input == "2")
         {
             Menu.view();
-            Console.WriteLine("\npress the enter key to continue");
-            Console.ReadLine();
         }
         else if (input == "3")
         {
             RestaurantInfo info = new();
             info.Info_Restaurant();
-            Console.WriteLine("\npress the enter key to continue");
-            Console.ReadLine();
         }
         else if (input == "4")
         {
@@ -156,12 +155,11 @@ public class Program
             string? name = "";
             string? email = "";
             string? password = "";
-            // Corrigeerd de naam
             while (NameCheck is false)
             {
                 Console.Write("What is your name? ");
                 name = Console.ReadLine();
-                if (name is not null)
+                if(name is not null)
                 {
                     if (!Regex.Match(name, @"[^\sa-zA-Z]").Success)
                     {
@@ -173,15 +171,13 @@ public class Program
                     }
                 }
             }
-            // corrigeerd de email
             while (EmailCheck is false)
             {
-                Console.Write("What is your email (Requires a dot and an @)? ");
+                Console.Write("What is your email? ");
                 email = Console.ReadLine();
                 if (email is not null)
                 {
-                    // prevents likes of @. - unlike contains
-                    if (Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
+                    if (!Regex.Match(email, @"[a-zA-Z0-9,.@]").Success)
                     {
                         EmailCheck = true;
                     }
@@ -191,14 +187,13 @@ public class Program
                     }
                 }
             }
-            // corrigeerd de wachtwoorden
             while (PassCheck is false)
             {
-                Console.Write("What do you want your password to be (Requires a capital letter, a number and a special character)? ");
+                Console.Write("What do you want your password to be? ");
                 password = Console.ReadLine();
                 if (password is not null)
                 {
-                    if (!Regex.Match(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$").Success) // => {8,15} is special character
+                    if (!Regex.Match(password, @"[^\sa-zA-Z]").Success)
                     {
                         PassCheck = true;
                     }
@@ -208,35 +203,8 @@ public class Program
                     }
                 }
             }
-            // maakt de account aan en logt je meteen in
-            if (name is not null && email is not null && password is not null)
+            if(name is not null && email is not null && password is not null)
                 return Customer.CreateAccount(name, email, password);
-        }
-        // logt de admins in
-        else if (input == "5")
-        {
-            Console.WriteLine("Are you an (A)dmin or (S)uperAdmin");
-            string Role = Console.ReadLine();
-            Console.Write("Enter your name: ");
-            string? Name = Console.ReadLine();
-            Console.Write("Enter your email: ");
-            string? Email = Console.ReadLine();
-            Console.Write("Enter your password: ");
-            string? Password = Console.ReadLine();
-            if (Role.ToUpper() == "A")
-            {
-                return Admin_log_in(Name, Email, Password);
-            }
-            if (Role.ToUpper() == "S")
-            {
-                return SuperAdmin_log_in(Name, Email, Password);
-            }
-        }
-        // escapes the program                                    
-        else if (input == "6")
-        {
-            Console.WriteLine("Goodbye and see you soon!");
-            System.Environment.Exit(0);
         }
         return null;
     }
@@ -341,6 +309,166 @@ public class Program
             }
         }
     }
+    public static void SuperAdminMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Logo();
+            Console.WriteLine("Here are your options:");
+            Console.WriteLine("(1) View Menu");
+            Console.WriteLine("(2) Change Menu");
+            Console.WriteLine("(3) View all reservations");
+            Console.WriteLine("(4) Add Admin");
+            Console.WriteLine("(5) Log out");
+            Console.WriteLine("(6) Close app");
+            string? input = Console.ReadLine();
+            // laat het menu zien
+            if (input == "1")
+            {
+                Menu.view();
+                Console.WriteLine("\npress the enter key to continue");
+                Console.ReadLine();
+            }
+            // laat je een item toevoegen of verwijderen
+            if (input == "2")
+            {
+                Console.WriteLine("(A) Add an item\n(R) Remove an item");
+                string? choice = Console.ReadLine();
+                if (choice is not null)
+                {
+                    if (choice == "A")
+                    {
+                        Console.WriteLine("Enter the name of the item: ");
+                        string? name1 = Console.ReadLine();
+                        Console.WriteLine("Enter the category (fish/meat/vegan/vegetarian):");
+                        string? category1 = Console.ReadLine();
+                        Console.WriteLine("Enter the price:");
+                        string? price1 = Console.ReadLine();
+                        bool Added_Bool = Menu_List.Add_item(name1, category1, price1);
+                        if (Added_Bool)
+                        {
+                            Console.WriteLine($"Added {name1} to the menu.");
+                        }
+                        else
+                        {
+                            if (name1 is null)
+                                Console.WriteLine("No name was submitted.");
+                            if (category1 is null)
+                                Console.WriteLine("No category was submitted.");
+                            if (price1 is null)
+                                Console.WriteLine("No price was submitted.");
+                            Console.WriteLine("Item was not added.");
+                        }
+                    }
+                    else if (choice == "R")
+                    {
+                        Console.WriteLine("Enter the name of the item: ");
+                        string? name1 = Console.ReadLine();
+                        Console.WriteLine("Enter the category (fish/meat/vegan/vegetarian):");
+                        string? category1 = Console.ReadLine();
+                        Console.WriteLine("Enter the price:");
+                        string? price1 = Console.ReadLine();
+                        bool Removed_Bool = Menu_List.Remove_item(name1, category1, price1);
+                        if (Removed_Bool)
+                        {
+                            Console.WriteLine($"Removed {name1} from the menu.");
+                        }
+                        else
+                        {
+                            if (name1 is null)
+                                Console.WriteLine("No name was submitted.");
+                            if (category1 is null)
+                                Console.WriteLine("No category was submitted.");
+                            if (price1 is null)
+                                Console.WriteLine("No price was submitted.");
+                            Console.WriteLine("Item was not removed.");
+                        }
+                    }
+                }
+            }
+            // laat de reservaties zien. TODO: per dag/met pagina's
+            if (input == "3")
+            {
+                foreach (Reservation reservation in Reservation.All_Reservations)
+                {
+                    Console.WriteLine(reservation.Reservation_Info());
+                }
+                Console.WriteLine("\npress the enter key to continue");
+                Console.ReadLine();
+            }
+            if (input == "4")
+            {
+                bool NameCheck = false;
+                bool EmailCheck = false;
+                bool PassCheck = false;
+                string? name = "";
+                string? email = "";
+                string? password = "";
+                while (NameCheck is false)
+                {
+                    Console.Write("What is your name? ");
+                    name = Console.ReadLine();
+                    if (name is not null)
+                    {
+                        if (!Regex.Match(name, @"[^\sa-zA-Z]").Success)
+                        {
+                            NameCheck = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Name was invalid, please try again");
+                        }
+                    }
+                }
+                while (EmailCheck is false)
+                {
+                    Console.Write("What is your email? ");
+                    email = Console.ReadLine();
+                    if (email is not null)
+                    {
+                        if (!Regex.Match(email, @"[a-zA-Z0-9,.@]").Success)
+                        {
+                            EmailCheck = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Email was invalid, please try again");
+                        }
+                    }
+                }
+                while (PassCheck is false)
+                {
+                    Console.Write("What do you want your password to be? ");
+                    password = Console.ReadLine();
+                    if (password is not null)
+                    {
+                        if (!Regex.Match(password, @"[^\sa-zA-Z]").Success)
+                        {
+                            PassCheck = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Password was invalid, please try again");
+                        }
+                    }
+                }
+                if (name is not null && email is not null && password is not null)
+                    Admin.CreateAdmin(name, email, password);
+            }
+            // logt uit
+            if (input == "5")
+            {
+                return;
+            }
+            // exit het programma
+            if (input == "6")
+            {
+                Console.WriteLine("Goodbye and see you soon!");
+                System.Environment.Exit(0);
+            }
+        }
+    }    
     // menu voor de customers
     public static void CustomerMenu(Customer customer)
     {
