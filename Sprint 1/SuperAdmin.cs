@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System.Data;
 using System.Net.Quic;
 using System.Text;
-public class SuperAdmin : Account
+public class SuperAdmin : IAccount
 {
     public int Id { get; } = 1;
     public string Name { get; } = "Gert-Jan den heijer";
