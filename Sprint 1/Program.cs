@@ -104,6 +104,7 @@ public class Program
         }
         return null;
     }
+//------------------------------------------------------------------ no account -------------------------------------------
     public static Account? No_Account_Menu()
     {
         Console.WriteLine("Here are your options:");
@@ -208,7 +209,7 @@ public class Program
         }
         return null;
     }
-    // menu voor de admins
+    // -------------------------------------------- menu voor de admins ------------------------------------------------------------------
     public static void Admin_Menu()
     {
         while (true)
@@ -309,6 +310,7 @@ public class Program
             }
         }
     }
+// ------------------------------------------------------- Superadmin --------------------------------------------------------
     public static void SuperAdminMenu()
     {
         while (true)
@@ -469,7 +471,7 @@ public class Program
             }
         }
     }    
-    // menu voor de customers
+    // -------------------------------------------------  menu voor de customers -------------------------------------------------
     public static void CustomerMenu(Customer customer)
     {
         while (true)
