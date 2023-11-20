@@ -5,7 +5,7 @@ using System.Net.Quic;
 using System.Text;
 public class Admin : Account
 {
-    public static int nextID;
+    public static int nextID = AccountManager.Admins.Count;
     public int Id { get; }
     public string Name { get; set; }
     public string Password { get; set; }

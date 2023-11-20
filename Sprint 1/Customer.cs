@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 public class Customer : Account
 {
-    public static int nextID;
+    public static int nextID = AccountManager.Customers.Count;
     public int Id { get; }
     public string Name { get; set; }
     public string Password { get; set; }
