@@ -3,13 +3,24 @@ using Newtonsoft.Json.Linq;
 using System.Data;
 using System.Net.Quic;
 using System.Text;
-// Account class voor de Admins
 public class Admin : Account
 {
-    public Admin(string name, string email, string password, string role = "Admin") : base(name, email, password, role) { }
+    public static int nextID;
+    public int Id { get; }
+    public string Name { get; set; }
+    public string Password { get; set; }
+    public string Email { get; set; }
+    public string Role { get; set; }
+    public Admin(string name, string email, string password, string role = "Admin")
+    {
+        Id = Interlocked.Increment(ref nextID);
+        Name = name;
+        Password = password;
+        Email = email;
+        Role = role;
+    }
     public static Admin CreateAdmin(string name, string email, string password)
     {
-        // Writes Admins into the json
         Admin admin = new Admin(name, email, password);
         AccountManager.Admins.Add(admin);
         string json = JsonConvert.SerializeObject(AccountManager.Admins, Formatting.Indented);
@@ -17,7 +28,6 @@ public class Admin : Account
         ControllerJson.WriteJson(Object, "Admins.json");
         return admin;
     }
-    // Accesses Admin based on their id.
     public static Admin? GetAdmin(int id)
     {
         foreach (Admin admin in AccountManager.Admins)
@@ -29,7 +39,6 @@ public class Admin : Account
         }
         return null;
     }
-    // Changes password based on name and password
     public static string? ChangePassword(string name, string password)
     {
         foreach (Admin admin in AccountManager.Admins)
@@ -46,7 +55,6 @@ public class Admin : Account
         }
         return null;
     }
-    // Logs in Admin
     public static Admin? Log_in(string name, string email, string password)
     {
         foreach (Admin admin in AccountManager.Admins)
