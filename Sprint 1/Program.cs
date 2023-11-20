@@ -26,9 +26,8 @@ public class Program
 
         /*--------------------------------------------------------------------------------------------------------------------------------*/
         Logo();
-        Console.ForegroundColor = ConsoleColor.Green;
-        RestaurantLayout.ViewLayout();
-        Console.ForegroundColor = ConsoleColor.White;
+        //Console.ForegroundColor = ConsoleColor.Green;
+        //RestaurantLayout.ViewLayout();
         Account? curr_account = null;
         string? input = null;
         while (input != "Q")
