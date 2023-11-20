@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System.Data;
 using System.Net.Quic;
 using System.Text;
-public class Admin : Account
+public class Admin : IAccount
 {
     public static int nextID = AccountManager.Admins.Count;
     public int Id { get; }
