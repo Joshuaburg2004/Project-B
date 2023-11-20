@@ -103,49 +103,41 @@ public class Program
         }
         return null;
     }
-//------------------------------------------------------------------ no account -------------------------------------------
+    //------------------------------------------------------------------ no account -------------------------------------------
     public static Account? No_Account_Menu()
     {
+        Console.Clear();
+        Logo();
         Console.WriteLine("Here are your options:");
         Console.WriteLine("(1) Log in");
         Console.WriteLine("(2) View Menu");
         Console.WriteLine("(3) View Restaurant info");
         Console.WriteLine("(4) Create account");
+        Console.WriteLine("(5) Log in - Admin");
+        Console.WriteLine("(5) Close app");
         string? input = Console.ReadLine();
         if (input == "1")
         {
-            Console.Write("Enter the role for the appropriate log in page (C)ustomer, (A)dmin, (S)uperAdmin: ");
-            string? Role = Console.ReadLine();
             Console.Write("Enter your name: ");
             string? Name = Console.ReadLine();
             Console.Write("Enter your email: ");
             string? Email = Console.ReadLine();
             Console.Write("Enter your password: ");
             string? Password = Console.ReadLine();
-            if (Role is not null)
-            {
-                if (Role.ToUpper() == "C")
-                {
-                    return Customer_log_in(Name, Email, Password);
-                }
-                if (Role.ToUpper() == "A")
-                {
-                    return Admin_log_in(Name, Email, Password);
-                }
-                if (Role.ToUpper() == "S")
-                {
-                    return SuperAdmin_log_in(Name, Email, Password);
-                }
-            }
+            return Customer_log_in(Name, Email, Password);
         }
         else if (input == "2")
         {
             Menu.view();
+            Console.WriteLine("\npress the enter key to continue");
+            Console.ReadLine();
         }
         else if (input == "3")
         {
             RestaurantInfo info = new();
             info.Info_Restaurant();
+            Console.WriteLine("\npress the enter key to continue");
+            Console.ReadLine();
         }
         else if (input == "4")
         {
@@ -155,11 +147,12 @@ public class Program
             string? name = "";
             string? email = "";
             string? password = "";
+            // Corrigeerd de naam
             while (NameCheck is false)
             {
                 Console.Write("What is your name? ");
                 name = Console.ReadLine();
-                if(name is not null)
+                if (name is not null)
                 {
                     if (!Regex.Match(name, @"[^\sa-zA-Z]").Success)
                     {
@@ -171,13 +164,15 @@ public class Program
                     }
                 }
             }
+            // corrigeerd de email
             while (EmailCheck is false)
             {
-                Console.Write("What is your email? ");
+                Console.Write("What is your email (Requires a dot and an @)? ");
                 email = Console.ReadLine();
                 if (email is not null)
                 {
-                    if (!Regex.Match(email, @"[a-zA-Z0-9,.@]").Success)
+                    // prevents likes of @. - unlike contains
+                    if (Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
                     {
                         EmailCheck = true;
                     }
@@ -187,13 +182,14 @@ public class Program
                     }
                 }
             }
+            // corrigeerd de wachtwoorden
             while (PassCheck is false)
             {
-                Console.Write("What do you want your password to be? ");
+                Console.Write("What do you want your password to be (Requires a capital letter, a number and a special character)? ");
                 password = Console.ReadLine();
                 if (password is not null)
                 {
-                    if (!Regex.Match(password, @"[^\sa-zA-Z]").Success)
+                    if (!Regex.Match(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$").Success) // => {8,15} is special character
                     {
                         PassCheck = true;
                     }
@@ -203,8 +199,35 @@ public class Program
                     }
                 }
             }
-            if(name is not null && email is not null && password is not null)
+            // maakt de account aan en logt je meteen in
+            if (name is not null && email is not null && password is not null)
                 return Customer.CreateAccount(name, email, password);
+        }
+        // logt de admins in
+        else if (input == "5")
+        {
+            Console.WriteLine("Are you an (A)dmin or (S)uperAdmin");
+            string Role = Console.ReadLine();
+            Console.Write("Enter your name: ");
+            string? Name = Console.ReadLine();
+            Console.Write("Enter your email: ");
+            string? Email = Console.ReadLine();
+            Console.Write("Enter your password: ");
+            string? Password = Console.ReadLine();
+            if (Role.ToUpper() == "A")
+            {
+                return Admin_log_in(Name, Email, Password);
+            }
+            if (Role.ToUpper() == "S")
+            {
+                return SuperAdmin_log_in(Name, Email, Password);
+            }
+        }
+        // escapes the program                                    
+        else if (input == "6")
+        {
+            Console.WriteLine("Goodbye and see you soon!");
+            System.Environment.Exit(0);
         }
         return null;
     }
@@ -309,7 +332,7 @@ public class Program
             }
         }
     }
-// ------------------------------------------------------- Superadmin --------------------------------------------------------
+    // ------------------------------------------------------- Superadmin --------------------------------------------------------
     public static void SuperAdminMenu()
     {
         while (true)
@@ -469,7 +492,7 @@ public class Program
                 System.Environment.Exit(0);
             }
         }
-    }    
+    }
     // -------------------------------------------------  menu voor de customers -------------------------------------------------
     public static void CustomerMenu(Customer customer)
     {
