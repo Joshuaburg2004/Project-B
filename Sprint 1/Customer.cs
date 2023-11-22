@@ -31,7 +31,7 @@ public class Customer : IAccount
         return customer;
     }
 
-    public static Customer? GetCustomer(int id)
+    public static Customer? GetCustomerByID(int id)
     {
         foreach (Customer customer in AccountManager.Customers)
         {
@@ -43,11 +43,11 @@ public class Customer : IAccount
         return null;
     }
 
-    public static string? ChangePassword(string name, string password)
+    public static string? ChangePassword(int ID, string password)
     {
         foreach (Customer customer in AccountManager.Customers)
         {
-            if (customer.Name == name && customer.Password == password)
+            if (customer.ID == ID && customer.Password == password)
             {
                 Console.Write("Please enter your new password: ");
                 customer.Password = Console.ReadLine() ?? password;
