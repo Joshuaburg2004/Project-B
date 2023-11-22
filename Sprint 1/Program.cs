@@ -34,11 +34,11 @@ public class Program
         {
             if (curr_account == null)
             {
-                curr_account = No_Account_Menu();
+                curr_account = NoAccountMenu();
             }
             else if (curr_account as Admin is not null && curr_account as SuperAdmin is null)
             {
-                Admin_Menu();
+                AdminMenu();
                 curr_account = null;
             }
             else if (curr_account as Customer is not null)
@@ -70,7 +70,7 @@ public class Program
             """);
     }
 
-    public static SuperAdmin? SuperAdmin_log_in(string? name, string? email, string? password)
+    public static SuperAdmin? SuperAdminLogIn(string? name, string? email, string? password)
     {
         SuperAdmin admin = AccountManager.superAdmin;
         if (admin.Name == name && admin.Email == email && admin.Password == password)
@@ -80,7 +80,7 @@ public class Program
         return null;
     }
 
-    public static Admin? Admin_log_in(string? name, string? email, string? password)
+    public static Admin? AdminLogIn(string? name, string? email, string? password)
     {
         foreach (Admin admin in AccountManager.Admins)
         {
@@ -92,7 +92,7 @@ public class Program
         return null;
     }
 
-    public static Customer? Customer_log_in(string? name, string? email, string? password)
+    public static Customer? CustomerLogIn(string? name, string? email, string? password)
     {
         foreach (Customer customer in AccountManager.Customers)
         {
@@ -104,7 +104,7 @@ public class Program
         return null;
     }
     //------------------------------------------------------------------ no account -------------------------------------------
-    public static IAccount? No_Account_Menu()
+    public static IAccount? NoAccountMenu()
     {
         Console.Clear();
         Logo();
@@ -114,7 +114,7 @@ public class Program
         Console.WriteLine("(3) View Restaurant info");
         Console.WriteLine("(4) Create account");
         Console.WriteLine("(5) Log in - Admin");
-        Console.WriteLine("(5) Close app");
+        Console.WriteLine("(6) Close app");
         string? input = Console.ReadLine();
         if (input == "1")
         {
@@ -124,7 +124,7 @@ public class Program
             string? Email = Console.ReadLine();
             Console.Write("Enter your password: ");
             string? Password = Console.ReadLine();
-            return Customer_log_in(Name, Email, Password);
+            return CustomerLogIn(Name, Email, Password);
         }
         else if (input == "2")
         {
@@ -216,11 +216,11 @@ public class Program
             string? Password = Console.ReadLine();
             if (Role.ToUpper() == "A")
             {
-                return Admin_log_in(Name, Email, Password);
+                return AdminLogIn(Name, Email, Password);
             }
             if (Role.ToUpper() == "S")
             {
-                return SuperAdmin_log_in(Name, Email, Password);
+                return SuperAdminLogIn(Name, Email, Password);
             }
         }
         // escapes the program                                    
@@ -232,7 +232,7 @@ public class Program
         return null;
     }
     // -------------------------------------------- menu voor de admins ------------------------------------------------------------------
-    public static void Admin_Menu()
+    public static void AdminMenu()
     {
         while (true)
         {
