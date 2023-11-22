@@ -1,9 +1,9 @@
-public class Table_4 : Table
+public class Table_6 : Table
 {
-    private static int _nextId = 2;
+    private static int _nextId;
     public int TableNumber;
 
-    public Table_4() : base()
+    public Table_6() : base()
     {
         _nextId++;
         TableNumber = _nextId;
