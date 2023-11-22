@@ -3,16 +3,18 @@ public abstract class Table
     public string tafel_beschikbaar = "| O |";
     public string tafel_bezet = "| O |";
     public string tafel_zelf_gereserveerd = "| O |";
-
+    
     // datum gaat in list
     public List<DateOnly> TimeSlot_1_reserved = new() { };
     public List<DateOnly> TimeSlot_2_reserved = new() { };
     public List<DateOnly> TimeSlot_3_reserved = new() { };
     public List<DateOnly> TimeSlot_4_reserved = new() { };
 
-    public Table() { }
+    public int MinGuests;
+    public int MaxGuests;
 
-    //
+    public Table() { }
+    
     public virtual void reserve(int timeslot, DateOnly date)
     {
         switch (timeslot)
@@ -30,5 +32,5 @@ public abstract class Table
                 TimeSlot_4_reserved.Add(date);
                 break;
         }
-    } 
+    }
 }
