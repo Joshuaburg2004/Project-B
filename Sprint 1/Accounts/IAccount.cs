@@ -5,7 +5,7 @@ using System.Security.Principal;
 using System.Text;
 public interface IAccount
 {
-    public int Id { get; }
+    public int ID { get; }
     public string Name { get; }
     public string Password { get; }
     public string Email { get; }

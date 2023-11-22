@@ -6,14 +6,14 @@ using System.Xml.Linq;
 public class Customer : IAccount
 {
     public static int nextID = AccountManager.Customers.Count;
-    public int Id { get; }
+    public int ID { get; }
     public string Name { get; set; }
     public string Password { get; set; }
     public string Email { get; set; }
     public string Role { get; set; }
     public Customer(string name, string email, string password, string role = "Customer")
     {
-        Id = Interlocked.Increment(ref nextID);
+        ID = Interlocked.Increment(ref nextID);
         Name = name;
         Password = password;
         Email = email;
@@ -35,7 +35,7 @@ public class Customer : IAccount
     {
         foreach (Customer customer in AccountManager.Customers)
         {
-            if (customer.Id == id)
+            if (customer.ID == id)
             {
                 return customer;
             }
@@ -62,9 +62,9 @@ public class Customer : IAccount
 
     public void Add_Reservation(int table, int guest, string date, string time)
     {
-        if (GetCustomer(Id) != null)
+        if (GetCustomerByID(ID) != null)
         {
-            My_Reservation.Add(new Reservation(Id, table, guest, date, time));
+            My_Reservation.Add(new Reservation(ID, table, guest, date, time));
             string json = JsonConvert.SerializeObject(AccountManager.Customers, Formatting.Indented);
             JArray Object = JArray.Parse(json);
             ControllerJson.WriteJson(Object, "Customers.json");
@@ -108,6 +108,6 @@ public class Customer : IAccount
 
     public static string Info(Customer customer)
     {
-        return $"ID: {customer.Id}, Name: {customer.Name}, Email: {customer.Email}, Role: {customer.Role}";
+        return $"ID: {customer.ID}, Name: {customer.Name}, Email: {customer.Email}, Role: {customer.Role}";
     }
 }

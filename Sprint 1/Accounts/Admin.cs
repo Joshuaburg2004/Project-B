@@ -6,14 +6,14 @@ using System.Text;
 public class Admin : IAccount
 {
     public static int nextID = AccountManager.Admins.Count;
-    public int Id { get; }
+    public int ID { get; }
     public string Name { get; set; }
     public string Password { get; private set; }
     public string Email { get; set; }
     public string Role { get; set; }
     public Admin(string name, string email, string password, string role = "Admin")
     {
-        Id = Interlocked.Increment(ref nextID);
+        ID = Interlocked.Increment(ref nextID);
         Name = name;
         Password = password;
         Email = email;
@@ -32,7 +32,7 @@ public class Admin : IAccount
     {
         foreach (Admin admin in AccountManager.Admins)
         {
-            if (admin.Id == id)
+            if (admin.ID == id)
             {
                 return admin;
             }

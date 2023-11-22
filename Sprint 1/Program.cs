@@ -28,7 +28,7 @@ public class Program
         Logo();
         //Console.ForegroundColor = ConsoleColor.Green;
         //RestaurantLayout.ViewLayout();
-        Account? curr_account = null;
+        IAccount? curr_account = null;
         string? input = null;
         while (input != "Q")
         {
@@ -104,7 +104,7 @@ public class Program
         return null;
     }
     //------------------------------------------------------------------ no account -------------------------------------------
-    public static Account? No_Account_Menu()
+    public static IAccount? No_Account_Menu()
     {
         Console.Clear();
         Logo();
