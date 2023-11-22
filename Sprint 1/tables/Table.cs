@@ -1,33 +1,36 @@
 public abstract class Table
 {
-    // weet niet zeker hoeveel timeslots we hebben en hoelaat ze beginnen
-    // false is beschikbaar
-    // true is gereserveerd
-    public bool Timeslot_1;
-    public bool Timeslot_2;
-    public bool Timeslot_3;
-    public bool Timeslot_4;
-
     public string tafel_beschikbaar = "| O |";
     public string tafel_bezet = "| O |";
     public string tafel_zelf_gereserveerd = "| O |";
-
+    
     // datum gaat in list
-    public List<string> TimeSlot_1_reserved = new() { };
-    public List<string> TimeSlot_2_reserved = new() { };
-    public List<string> TimeSlot_3_reserved = new() { };
-    public List<string> TimeSlot_4_reserved = new() { };
+    public List<DateOnly> TimeSlot_1_reserved = new() { };
+    public List<DateOnly> TimeSlot_2_reserved = new() { };
+    public List<DateOnly> TimeSlot_3_reserved = new() { };
+    public List<DateOnly> TimeSlot_4_reserved = new() { };
 
-
+    public int MinGuests;
+    public int MaxGuests;
 
     public Table() { }
-
-    // verandert timeslot van 
-    public virtual void reserve(int timeslot)
+    
+    public virtual void reserve(int timeslot, DateOnly date)
     {
-        if (timeslot == 1) { Timeslot_1 = true; }
-        else if (timeslot == 2) { Timeslot_2 = true; }
-        else if (timeslot == 3) { Timeslot_3 = true; }
-        else if (timeslot == 4) { Timeslot_4 = true; }
+        switch (timeslot)
+        {
+            case 1:
+                TimeSlot_1_reserved.Add(date);
+                break;
+            case 2:
+                TimeSlot_2_reserved.Add(date);
+                break;
+            case 3:
+                TimeSlot_3_reserved.Add(date);
+                break;
+            case 4:
+                TimeSlot_4_reserved.Add(date);
+                break;
+        }
     }
 }

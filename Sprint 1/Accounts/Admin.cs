@@ -5,7 +5,7 @@ using System.Net.Quic;
 using System.Text;
 public class Admin : IAccount
 {
-    public static int nextID = AccountManager.Admins.Count;
+    public static int nextID = Manager.Admins.Count;
     public int ID { get; }
     public string Name { get; set; }
     public string Password { get; private set; }
@@ -22,15 +22,15 @@ public class Admin : IAccount
     public static Admin CreateAdmin(string name, string email, string password)
     {
         Admin admin = new Admin(name, email, password);
-        AccountManager.Admins.Add(admin);
-        string json = JsonConvert.SerializeObject(AccountManager.Admins, Formatting.Indented);
+        Manager.Admins.Add(admin);
+        string json = JsonConvert.SerializeObject(Manager.Admins, Formatting.Indented);
         JArray Object = JArray.Parse(json);
         ControllerJson.WriteJson(Object, "Admins.json");
         return admin;
     }
     public static Admin? GetAdminByID(int id)
     {
-        foreach (Admin admin in AccountManager.Admins)
+        foreach (Admin admin in Manager.Admins)
         {
             if (admin.ID == id)
             {
@@ -41,13 +41,13 @@ public class Admin : IAccount
     }
     public static string? ChangePassword(int ID, string password)
     {
-        foreach (Admin admin in AccountManager.Admins)
+        foreach (Admin admin in Manager.Admins)
         {
             if (admin.ID == ID && admin.Password == password)
             {
                 Console.Write("Please enter your new password: ");
                 admin.Password = Console.ReadLine() ?? password;
-                string json = JsonConvert.SerializeObject(AccountManager.Admins, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(Manager.Admins, Formatting.Indented);
                 JArray Object = JArray.Parse(json);
                 ControllerJson.WriteJson(Object, "Admins.json");
                 return admin.Password;
@@ -57,7 +57,7 @@ public class Admin : IAccount
     }
     public static Admin? Log_in(string name, string email, string password)
     {
-        foreach (Admin admin in AccountManager.Admins)
+        foreach (Admin admin in Manager.Admins)
         {
             if (admin.Name == name && admin.Password == password && admin.Email == email)
             {

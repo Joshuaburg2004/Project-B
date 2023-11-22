@@ -5,7 +5,7 @@ using System.Net.Quic;
 using System.Text;
 public class SuperAdmin : IAccount
 {
-    public int Id { get; } = 1;
+    public int ID { get; } = 1;
     public string Name { get; } = "Gert-Jan den heijer";
     public string Password { get; } = "123";
     public string Email { get; } = "gjdenheijer@gmail.com";

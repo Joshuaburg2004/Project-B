@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 public class Customer : IAccount
 {
-    public static int nextID = AccountManager.Customers.Count;
+    public static int nextID = Manager.Customers.Count;
     public int ID { get; }
     public string Name { get; set; }
     public string Password { get; set; }
@@ -24,8 +24,8 @@ public class Customer : IAccount
     public static Customer CreateAccount(string name, string email, string password, string role = "Customer")
     {
         Customer customer = new Customer(name, email, password);
-        AccountManager.Customers.Add(customer);
-        string json = JsonConvert.SerializeObject(AccountManager.Customers, Formatting.Indented);
+        Manager.Customers.Add(customer);
+        string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
         JArray Object = JArray.Parse(json);
         ControllerJson.WriteJson(Object, "Customers.json");
         return customer;
@@ -33,7 +33,7 @@ public class Customer : IAccount
 
     public static Customer? GetCustomerByID(int id)
     {
-        foreach (Customer customer in AccountManager.Customers)
+        foreach (Customer customer in Manager.Customers)
         {
             if (customer.ID == id)
             {
@@ -45,13 +45,13 @@ public class Customer : IAccount
 
     public static string? ChangePassword(int ID, string password)
     {
-        foreach (Customer customer in AccountManager.Customers)
+        foreach (Customer customer in Manager.Customers)
         {
             if (customer.ID == ID && customer.Password == password)
             {
                 Console.Write("Please enter your new password: ");
                 customer.Password = Console.ReadLine() ?? password;
-                string json = JsonConvert.SerializeObject(AccountManager.Customers, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
                 JArray Object = JArray.Parse(json);
                 ControllerJson.WriteJson(Object, "Customers.json");
                 return customer.Password;
@@ -60,12 +60,12 @@ public class Customer : IAccount
         return null;
     }
 
-    public void Add_Reservation(int table, int guest, string date, string time)
+    public void Add_Reservation(int table, int guest, DateOnly date, string time)
     {
         if (GetCustomerByID(ID) != null)
         {
             My_Reservation.Add(new Reservation(ID, table, guest, date, time));
-            string json = JsonConvert.SerializeObject(AccountManager.Customers, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
             JArray Object = JArray.Parse(json);
             ControllerJson.WriteJson(Object, "Customers.json");
         }
@@ -82,7 +82,7 @@ public class Customer : IAccount
 
     public static Customer? Log_in(string name, string email, string password)
     {
-        foreach(Customer customer in AccountManager.Customers)
+        foreach(Customer customer in Manager.Customers)
         {
             if(customer.Name == name && customer.Email == email && customer.Password == password)
             {

@@ -5,6 +5,8 @@ public class Table_2 : Table
 
     public Table_2() : base()
     {
+        MinGuests = 1;
+        MaxGuests = 2;
         _nextId++;
         TableNumber = _nextId;
     }

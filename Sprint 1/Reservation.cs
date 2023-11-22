@@ -11,15 +11,15 @@ public class Reservation
     public int Reservation_ID;
     public int Table;
     public int Guests;
-    public string Date;
+    public DateOnly Date;
     public string Time;
     // leest reservations.json uit en zet het binnen de list
     static Reservation()
     {
-        string FileCont = ControllerJson.ReadJson("Reservation.json");
+        string? FileCont = ControllerJson.ReadJson("Reservation.json");
         if (FileCont is not null)
         { 
-            All_Reservations = JsonConvert.DeserializeObject<List<Reservation>>(FileCont);
+            All_Reservations = JsonConvert.DeserializeObject<List<Reservation>>(FileCont) ?? new();
         }
         else
         {
@@ -27,7 +27,7 @@ public class Reservation
         }   
     }
     // constructor. Schrijft het ook naar de json
-    public Reservation(int customerId, int table, int guest, string date, string time)
+    public Reservation(int customerId, int table, int guest, DateOnly date, string time)
     {
         Reservation_ID = Interlocked.Increment(ref nextID);
         CustomerId = customerId;

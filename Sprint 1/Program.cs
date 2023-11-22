@@ -5,25 +5,6 @@ public class Program
 {
     public static void Main()
     {
-        Table_6 table_1 = new Table_6();
-        Table_6 table_2 = new Table_6();
-
-        Table_4 table_3 = new Table_4();
-        Table_4 table_4 = new Table_4();
-        Table_4 table_5 = new Table_4();
-        Table_4 table_6 = new Table_4();
-        Table_4 table_7 = new Table_4();
-
-        Table_2 table_8 = new Table_2();
-        Table_2 table_9 = new Table_2();
-        Table_2 table_10 = new Table_2();
-        Table_2 table_11 = new Table_2();
-
-        Table_2 table_12 = new Table_2();
-        Table_2 table_13 = new Table_2();
-        Table_2 table_14 = new Table_2();
-        Table_2 table_15 = new Table_2();
-
         /*--------------------------------------------------------------------------------------------------------------------------------*/
         Logo();
         //Console.ForegroundColor = ConsoleColor.Green;
@@ -72,7 +53,7 @@ public class Program
 
     public static SuperAdmin? SuperAdminLogIn(string? name, string? email, string? password)
     {
-        SuperAdmin admin = AccountManager.superAdmin;
+        SuperAdmin admin = Manager.superAdmin;
         if (admin.Name == name && admin.Email == email && admin.Password == password)
         {
             return admin;
@@ -82,7 +63,7 @@ public class Program
 
     public static Admin? AdminLogIn(string? name, string? email, string? password)
     {
-        foreach (Admin admin in AccountManager.Admins)
+        foreach (Admin admin in Manager.Admins)
         {
             if (admin.Name == name && admin.Password == password && admin.Email == email)
             {
@@ -94,7 +75,7 @@ public class Program
 
     public static Customer? CustomerLogIn(string? name, string? email, string? password)
     {
-        foreach (Customer customer in AccountManager.Customers)
+        foreach (Customer customer in Manager.Customers)
         {
             if (customer.Name == name && customer.Password == password && customer.Email == email)
             {
@@ -207,18 +188,18 @@ public class Program
         else if (input == "5")
         {
             Console.WriteLine("Are you an (A)dmin or (S)uperAdmin");
-            string Role = Console.ReadLine();
+            string? Role = Console.ReadLine();
             Console.Write("Enter your name: ");
             string? Name = Console.ReadLine();
             Console.Write("Enter your email: ");
             string? Email = Console.ReadLine();
             Console.Write("Enter your password: ");
             string? Password = Console.ReadLine();
-            if (Role.ToUpper() == "A")
+            if (Role!.ToUpper() == "A")
             {
                 return AdminLogIn(Name, Email, Password);
             }
-            if (Role.ToUpper() == "S")
+            if (Role!.ToUpper() == "S")
             {
                 return SuperAdminLogIn(Name, Email, Password);
             }
@@ -520,17 +501,62 @@ public class Program
                 if (input == "2")
                 {
                     RestaurantLayout.ViewLayout();
-                    Console.Write("What table do you wish to reserve? (1-15, bar cannot be reserved) ");
-                    int? table = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("How many guests do you expect? ");
-                    int? guests = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Which date do you wish to reserve the table? (DD/MM/YYYY) ");
-                    string? date = Console.ReadLine();
+                    int? table = 0;
+                    while(!(table >= 1 && table <= 15)) 
+                    {
+                        Console.Write("What table do you wish to reserve? (1-15, bar cannot be reserved) ");
+                        table = Convert.ToInt32(Console.ReadLine());
+                    }
+                    Table? tableReserve;
+                    tableReserve = table switch
+                    {
+                        1 => Manager.table_1,
+                        2 => Manager.table_2,
+                        3 => Manager.table_3,
+                        4 => Manager.table_4,
+                        5 => Manager.table_5,
+                        6 => Manager.table_6,
+                        7 => Manager.table_7,
+                        8 => Manager.table_8,
+                        9 => Manager.table_9,
+                        10 => Manager.table_10,
+                        11 => Manager.table_11,
+                        12 => Manager.table_12,
+                        13 => Manager.table_13,
+                        14 => Manager.table_14,
+                        15 => Manager.table_15,
+                        _ => null
+                    };
+                    int? guests = 0;
+                    while (guests < tableReserve!.MinGuests || guests > tableReserve!.MaxGuests)
+                    {
+                        Console.Write("How many guests do you expect? ");
+                        guests = Convert.ToInt32(Console.ReadLine());
+                    }
+                    DateOnly date;
+                    while (true)
+                    {
+                        Console.Write("Which date do you wish to reserve the table? (DD/MM/YYYY) ");
+                        string? dateIn = Console.ReadLine();
+                        if (DateOnly.TryParseExact(dateIn, "d/MM/yyyy", out date))
+                        {
+                            break;
+                        }
+                    }
+                    /*
+                     * TODO: rough outline:
+                     * if(!tableReserve.Timeslot_1_Reserved.Contains(date)){Console.WriteLine("Timeslot 1: <placeholder>");}
+                     * if(!tableReserve.Timeslot_2_Reserved.Contains(date)){Console.WriteLine("Timeslot 2: <placeholder>");}
+                     * if(!tableReserve.Timeslot_3_Reserved.Contains(date)){Console.WriteLine("Timeslot 3: <placeholder>");}
+                     * if(!tableReserve.Timeslot_4_Reserved.Contains(date)){Console.WriteLine("Timeslot 4: <placeholder>");}
+                     */
                     Console.Write("What time do you wish to arrive? ");
                     string? time = Console.ReadLine();
-                    if (table is not null && guests is not null && date is not null && time is not null)
+                    if (table is not null && guests is not null && time is not null)
+                    {
                         customer.Add_Reservation((int)table, (int)guests, date, time);
-
+                        // TODO: tableReserve.Timeslot_x_Reserved.Add(date);
+                    }
                 }
                 // laat de reservatie zien
                 if (input == "3")
