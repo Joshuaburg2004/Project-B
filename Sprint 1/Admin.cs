@@ -8,7 +8,7 @@ public class Admin : IAccount
     public static int nextID = AccountManager.Admins.Count;
     public int Id { get; }
     public string Name { get; set; }
-    public string Password { get; set; }
+    public string Password { get; private set; }
     public string Email { get; set; }
     public string Role { get; set; }
     public Admin(string name, string email, string password, string role = "Admin")
@@ -28,7 +28,7 @@ public class Admin : IAccount
         ControllerJson.WriteJson(Object, "Admins.json");
         return admin;
     }
-    public static Admin? GetAdmin(int id)
+    public static Admin? GetAdminByID(int id)
     {
         foreach (Admin admin in AccountManager.Admins)
         {
@@ -39,11 +39,11 @@ public class Admin : IAccount
         }
         return null;
     }
-    public static string? ChangePassword(string name, string password)
+    public static string? ChangePassword(int ID, string password)
     {
         foreach (Admin admin in AccountManager.Admins)
         {
-            if (admin.Name == name && admin.Password == password)
+            if (admin.ID == ID && admin.Password == password)
             {
                 Console.Write("Please enter your new password: ");
                 admin.Password = Console.ReadLine() ?? password;
