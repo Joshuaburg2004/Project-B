@@ -2,7 +2,7 @@
 // De Super-admin kan aanpassingen brengen aan de gerechten.
 
 // category (fish/meat/vegan/vegetarian) 
-
+//Gemaakt door Alperen en Berkan
 public class Menu
 {
     // public static List<Menu> Menu_item = new(){new Menu("Lahmacun", "Meat", 6.99), new Menu("Pizza pepperoni","Meat",12.5)};
