@@ -59,6 +59,78 @@ public class Customer : IAccount
         }
         return null;
     }
+    public void Change_Reservation()
+    {
+    View_Reservation();
+
+    Console.WriteLine("Which reservation do you want to change? Enter the reservation id:");
+    int input = Convert.ToInt32(Console.ReadLine());
+
+    // Check if the reservation exists.
+    foreach (Reservation reservation in My_Reservation)
+    {
+        if (input == reservation.Reservation_ID)
+        {
+            Console.WriteLine(reservation.Reservation_Info());
+            Console.WriteLine("Is this the reservation you want to change?\n(1) Yes\n(2) No");
+            string input2 = Console.ReadLine();
+
+            if (input2 == "1")
+            {
+                Console.WriteLine("What would you like to change?\n(1) Table\n(2) Guests\n(3) Date\n(4) Time");
+                string input3 = Console.ReadLine();
+
+                switch (input3)
+                {
+                    case "1":
+                        Console.WriteLine("Enter the new table number:");
+                        int newTable = Convert.ToInt32(Console.ReadLine());
+                        reservation.Table = newTable;
+                        break;
+
+                    case "2":
+                        Console.WriteLine("Enter the new number of guests:");
+                        int newGuests = Convert.ToInt32(Console.ReadLine());
+                        reservation.Guests = newGuests;
+                        break;
+
+                    case "3":
+                        Console.WriteLine("Enter the new date (DD/MM/YYYY):");
+                        string newDate = Console.ReadLine();
+                        reservation.Date = newDate;
+                        break;
+
+                    case "4":
+                        Console.WriteLine("Enter the new time:");
+                        string newTime = Console.ReadLine();
+                        reservation.Time = newTime;
+                        break;
+
+                    default:
+                        Console.WriteLine("Unknown input, try again.");
+                        break;
+                }
+
+                // Update the JSON file after making changes
+                string json = JsonConvert.SerializeObject(My_Reservation, Formatting.Indented);
+                JArray Object = JArray.Parse(json);
+                ControllerJson.WriteJson(Object, "Reservations.json");
+
+                Console.WriteLine("Reservation updated successfully.");
+                return;
+            }
+            else
+            {
+                // User chose not to change this reservation
+                Console.WriteLine("Reservation not changed.");
+                return;
+            }
+        }
+    }
+
+    // If the loop completes, the reservation ID was not found
+    Console.WriteLine("Reservation not found.");
+    }
 
     public void Add_Reservation(int table, int guest, DateOnly date, string time)
     {
