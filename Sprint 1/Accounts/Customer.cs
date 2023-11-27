@@ -2,6 +2,8 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Data;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 public class Customer : IAccount
 {
@@ -101,9 +103,57 @@ public class Customer : IAccount
                         break;
 
                     case "4":
-                        Console.WriteLine("Enter the new time:");
-                        string newTime = Console.ReadLine();
-                        reservation.Time = newTime;
+                        Table? tableReserve;
+                        tableReserve = reservation.Table switch
+                        {
+                            1 => Manager.table_1,
+                            2 => Manager.table_2,
+                            3 => Manager.table_3,
+                            4 => Manager.table_4,
+                            5 => Manager.table_5,
+                            6 => Manager.table_6,
+                            7 => Manager.table_7,
+                            8 => Manager.table_8,
+                            9 => Manager.table_9,
+                            10 => Manager.table_10,
+                            11 => Manager.table_11,
+                            12 => Manager.table_12,
+                            13 => Manager.table_13,
+                            14 => Manager.table_14,
+                            15 => Manager.table_15,
+                            _ => null
+                        };
+                        bool t1 = false;
+                        bool t2 = false;
+                        bool t3 = false;
+                        bool t4 = false;
+                        if (!tableReserve.TimeSlot_1_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 1: 17:00-17:30"); t1 = true; }
+                        if (!tableReserve.TimeSlot_2_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 2: 17:30-18:00"); t2 = true; }
+                        if (!tableReserve.TimeSlot_3_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 3: 18:00-18:30"); t3 = true; }
+                        if (!tableReserve.TimeSlot_4_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 4: 18:30-19:00"); t4 = true; }
+                        string? time = Console.ReadLine();
+                        if (Int32.TryParse(time, out int timeslot))
+                        {
+                            switch (timeslot)
+                            {
+                                case 1:
+                                    if (t1) { tableReserve.TimeSlot_1_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 17:00 until 17:30"); reservation.Time = time; }
+                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
+                                    break;
+                                case 2:
+                                    if (t2) { tableReserve.TimeSlot_2_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 17:30 until 18:00"); reservation.Time = time; }
+                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
+                                    break;
+                                case 3:
+                                    if (t3) { tableReserve.TimeSlot_3_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 18:00 until 18:30"); reservation.Time = time; }
+                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
+                                    break;
+                                case 4:
+                                    if (t4) { tableReserve.TimeSlot_4_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 18:30 until 19:00"); reservation.Time = time; }
+                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
+                                    break;
+                            }
+                        }
                         break;
 
                     default:
@@ -115,6 +165,9 @@ public class Customer : IAccount
                 string json = JsonConvert.SerializeObject(My_Reservation, Formatting.Indented);
                 JArray Object = JArray.Parse(json);
                 ControllerJson.WriteJson(Object, "Reservations.json");
+                string json1 = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
+                JArray Object1 = JArray.Parse(json1);
+                ControllerJson.WriteJson(Object1, "Customers.json");
 
                 Console.WriteLine("Reservation updated successfully.");
                 return;
@@ -163,20 +216,6 @@ public class Customer : IAccount
         }
         return null;
     }
-
-    // later door.
-    /*    public Reservation? Change_Reservation()
-        {
-            foreach (Reservation reservation in My_Reservation)
-            {
-                if ()
-                {
-
-                }
-                return reservation;
-            }
-            return null;
-        }*/
 
     public static string Info(Customer customer)
     {
