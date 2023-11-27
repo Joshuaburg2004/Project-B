@@ -565,13 +565,20 @@ public class Program
                     Console.WriteLine("\npress the enter key to continue");
                     Console.ReadLine();
                 }
-                // logt uit
+                // verandert de reservatie
                 if (input == "4")
+                {
+                    customer.Change_Reservation();
+                    Console.WriteLine("\npress the enter key to continue");
+                    Console.ReadLine();
+                }
+                // logt uit
+                if (input == "5")
                 {
                     return;
                 }
                 // laat je het programma uit
-                if (input == "5")
+                if (input == "6")
                 {
                     Console.WriteLine("Goodbye and see you soon!");
                     System.Environment.Exit(0);
