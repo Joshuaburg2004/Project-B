@@ -560,19 +560,19 @@ public class Program
                         switch (timeslot)
                         {
                             case 1:
-                                if (t1) { tableReserve.TimeSlot_1_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 17:00 until 17:30"); customer.Add_Reservation(table, guests, date, time); }
+                                if (t1) { tableReserve.TimeSlot_1_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 17:00 until 17:30");Console.WriteLine("\npress the enter key to continue");Console.ReadLine(); customer.Add_Reservation(table, guests, date, time); }
                                 else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                 break;
                             case 2:
-                                if (t2) { tableReserve.TimeSlot_2_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 17:30 until 18:00"); customer.Add_Reservation(table, guests, date, time); }
+                                if (t2) { tableReserve.TimeSlot_2_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 17:30 until 18:00");Console.WriteLine("\npress the enter key to continue");Console.ReadLine(); customer.Add_Reservation(table, guests, date, time); }
                                 else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                 break;
                             case 3:
-                                if (t3) { tableReserve.TimeSlot_3_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 18:00 until 18:30"); customer.Add_Reservation(table, guests, date, time); }
+                                if (t3) { tableReserve.TimeSlot_3_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 18:00 until 18:30");Console.WriteLine("\npress the enter key to continue");Console.ReadLine(); customer.Add_Reservation(table, guests, date, time); }
                                 else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                 break;
                             case 4:
-                                if (t4) { tableReserve.TimeSlot_4_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 18:30 until 19:00"); customer.Add_Reservation(table, guests, date, time); }
+                                if (t4) { tableReserve.TimeSlot_4_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 18:30 until 19:00");Console.WriteLine("\npress the enter key to continue");Console.ReadLine(); customer.Add_Reservation(table, guests, date, time); }
                                 else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                 break;
                         }
