@@ -497,7 +497,7 @@ public class Program
                     Console.WriteLine("\npress the enter key to continue");
                     Console.ReadLine();
                 }
-                // reservatiecode. TODO: Maak date en time, datetime en een timeslot respectievelijk
+                // Reservatie: neemt een timeslot en een datum, samen met de table en guests, en reserveert dan die
                 if (input == "2")
                 {
                     RestaurantLayout.ViewLayout();
@@ -552,7 +552,7 @@ public class Program
                     if (!tableReserve.TimeSlot_3_reserved.Contains(date)) { Console.WriteLine("Timeslot 3: 18:00-18:30"); t3 = true; }
                     if (!tableReserve.TimeSlot_4_reserved.Contains(date)) { Console.WriteLine("Timeslot 4: 18:30-19:00"); t4 = true; }
                     string? time = Console.ReadLine();
-                    if(int.TryConvert(time, out timeslot))
+                    if(int.TryParse(time, out timeslot))
                     {
                         switch (timeslot)
                         {
