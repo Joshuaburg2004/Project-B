@@ -543,10 +543,6 @@ public class Program
                             break;
                         }
                     }
-                    /*
-                     * TODO: rough outline:
-                     * 
-                     */
                     bool t1 = false;
                     bool t2 = false;
                     bool t3 = false;
