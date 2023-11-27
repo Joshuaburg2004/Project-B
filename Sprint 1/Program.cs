@@ -552,6 +552,7 @@ public class Program
                     if (!tableReserve.TimeSlot_3_reserved.Contains(date)) { Console.WriteLine("Timeslot 3: 18:00-18:30"); t3 = true; }
                     if (!tableReserve.TimeSlot_4_reserved.Contains(date)) { Console.WriteLine("Timeslot 4: 18:30-19:00"); t4 = true; }
                     string? time = Console.ReadLine();
+                    int timeslot;
                     if(int.TryParse(time, out timeslot))
                     {
                         switch (timeslot)
