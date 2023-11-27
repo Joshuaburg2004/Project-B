@@ -81,8 +81,27 @@ public class Customer : IAccount
             {
                 Console.WriteLine("What would you like to change?\n(1) Table\n(2) Guests\n(3) Date\n(4) Time");
                 string input3 = Console.ReadLine();
-
-                switch (input3)
+                Table? tableReserve;
+                tableReserve = reservation.Table switch
+                {
+                    1 => Manager.table_1,
+                    2 => Manager.table_2,
+                    3 => Manager.table_3,
+                    4 => Manager.table_4,
+                    5 => Manager.table_5,
+                    6 => Manager.table_6,
+                    7 => Manager.table_7,
+                    8 => Manager.table_8,
+                    9 => Manager.table_9,
+                    10 => Manager.table_10,
+                    11 => Manager.table_11,
+                    12 => Manager.table_12,
+                    13 => Manager.table_13,
+                    14 => Manager.table_14,
+                    15 => Manager.table_15,
+                    _ => null
+                };
+                    switch (input3)
                 {
                     case "1":
                         Console.WriteLine("Enter the new table number:");
@@ -91,26 +110,7 @@ public class Customer : IAccount
                         break;
 
                     case "2":
-                        Table? tableReserve;
-                        tableReserve = reservation.Table switch
-                        {
-                            1 => Manager.table_1,
-                            2 => Manager.table_2,
-                            3 => Manager.table_3,
-                            4 => Manager.table_4,
-                            5 => Manager.table_5,
-                            6 => Manager.table_6,
-                            7 => Manager.table_7,
-                            8 => Manager.table_8,
-                            9 => Manager.table_9,
-                            10 => Manager.table_10,
-                            11 => Manager.table_11,
-                            12 => Manager.table_12,
-                            13 => Manager.table_13,
-                            14 => Manager.table_14,
-                            15 => Manager.table_15,
-                            _ => null
-                        };
+                        
                         int guests = 0;
                         while (guests < tableReserve!.MinGuests || guests > tableReserve!.MaxGuests)
                         {
@@ -128,26 +128,6 @@ public class Customer : IAccount
                         break;
 
                     case "4":
-                        Table? tableReserve;
-                        tableReserve = reservation.Table switch
-                        {
-                            1 => Manager.table_1,
-                            2 => Manager.table_2,
-                            3 => Manager.table_3,
-                            4 => Manager.table_4,
-                            5 => Manager.table_5,
-                            6 => Manager.table_6,
-                            7 => Manager.table_7,
-                            8 => Manager.table_8,
-                            9 => Manager.table_9,
-                            10 => Manager.table_10,
-                            11 => Manager.table_11,
-                            12 => Manager.table_12,
-                            13 => Manager.table_13,
-                            14 => Manager.table_14,
-                            15 => Manager.table_15,
-                            _ => null
-                        };
                         bool t1 = false;
                         bool t2 = false;
                         bool t3 = false;

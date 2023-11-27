@@ -20,6 +20,7 @@ public class Reservation
         if (FileCont is not null)
         { 
             All_Reservations = JsonConvert.DeserializeObject<List<Reservation>>(FileCont) ?? new();
+            nextID = All_Reservations.Count;
         }
         else
         {
