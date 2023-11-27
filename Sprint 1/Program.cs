@@ -502,11 +502,12 @@ public class Program
                 if (input == "2")
                 {
                     RestaurantLayout.ViewLayout();
-                    int? table = 0;
-                    while(!(table >= 1 && table <= 15)) 
+                    int table = 0;
+                    while (!(table >= 1 && table <= 15))
                     {
                         Console.Write("What table do you wish to reserve? (1-15, bar cannot be reserved) ");
-                        table = Convert.ToInt32(Console.ReadLine());
+                        string? tableIn = Console.ReadLine();
+                        Int32.TryParse(tableIn, out table);
                     }
                     Table? tableReserve;
                     tableReserve = table switch
@@ -528,11 +529,12 @@ public class Program
                         15 => Manager.table_15,
                         _ => null
                     };
-                    int? guests = 0;
+                    int guests = 0;
                     while (guests < tableReserve!.MinGuests || guests > tableReserve!.MaxGuests)
                     {
                         Console.Write("How many guests do you expect? ");
-                        guests = Convert.ToInt32(Console.ReadLine());
+                        string? guestsIn = Console.ReadLine();
+                        Int32.TryParse(guestsIn, out guests);
                     }
                     DateOnly date;
                     while (true)
@@ -553,7 +555,7 @@ public class Program
                     if (!tableReserve.TimeSlot_3_reserved.Contains(date)) { Console.WriteLine("Timeslot 3: 18:00-18:30"); t3 = true; }
                     if (!tableReserve.TimeSlot_4_reserved.Contains(date)) { Console.WriteLine("Timeslot 4: 18:30-19:00"); t4 = true; }
                     string? time = Console.ReadLine();
-                    if(Int32.TryParse(time, out int timeslot))
+                    if (Int32.TryParse(time, out int timeslot))
                     {
                         switch (timeslot)
                         {
@@ -573,10 +575,9 @@ public class Program
                                 if (t4) { tableReserve.TimeSlot_4_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 18:30 until 19:00"); customer.Add_Reservation(table, guests, date, time); }
                                 else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                 break;
-
                         }
                     }
-                    
+
                 }
                 // laat de reservatie zien
                 if (input == "3")
