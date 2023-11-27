@@ -1,4 +1,9 @@
-using System.Net.Sockets;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Data;
+using System.Net.Quic;
+using System.Security.Principal;
+using System.Text;
 using System.Text.RegularExpressions;
 
 public class Program
@@ -563,7 +568,7 @@ public class Program
                         if (!tableReserve.TimeSlot_4_reserved.Contains(date)) { Console.WriteLine("Timeslot 4: 18:30-19:00"); t4 = true; }
                         string? time = Console.ReadLine();
                         if (Int32.TryParse(time, out int timeslot))
-                        {
+                        { 
                             switch (timeslot)
                             {
                                 case 1:
@@ -575,19 +580,47 @@ public class Program
                                         Console.ReadLine(); 
                                         customer.Add_Reservation(table, guests, date, time);
                                         reserved = true;
+                                        tableReserve.reserve(timeslot, date);
                                     }
                                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                     break;
                                 case 2:
-                                    if (t2) { tableReserve.TimeSlot_2_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 17:30 until 18:00"); Console.WriteLine("\npress the enter key to continue"); Console.ReadLine(); customer.Add_Reservation(table, guests, date, time); reserved = true; }
+                                    if (t2) 
+                                    { 
+                                        tableReserve.TimeSlot_2_reserved.Add(date); 
+                                        Console.WriteLine($"Table {table} reserved for 17:30 until 18:00"); 
+                                        Console.WriteLine("\npress the enter key to continue"); 
+                                        Console.ReadLine(); 
+                                        customer.Add_Reservation(table, guests, date, time); 
+                                        reserved = true;
+                                        tableReserve.reserve(timeslot, date);
+                                    }
                                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                     break;
                                 case 3:
-                                    if (t3) { tableReserve.TimeSlot_3_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 18:00 until 18:30"); Console.WriteLine("\npress the enter key to continue"); Console.ReadLine(); customer.Add_Reservation(table, guests, date, time); reserved = true; }
+                                    if (t3) 
+                                    { 
+                                        tableReserve.TimeSlot_3_reserved.Add(date); 
+                                        Console.WriteLine($"Table {table} reserved for 18:00 until 18:30"); 
+                                        Console.WriteLine("\npress the enter key to continue"); 
+                                        Console.ReadLine(); 
+                                        customer.Add_Reservation(table, guests, date, time); 
+                                        reserved = true; 
+                                        tableReserve.reserve(timeslot, date);
+                                    }
                                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                     break;
                                 case 4:
-                                    if (t4) { tableReserve.TimeSlot_4_reserved.Add(date); Console.WriteLine($"Table {table} reserved for 18:30 until 19:00"); Console.WriteLine("\npress the enter key to continue"); Console.ReadLine(); customer.Add_Reservation(table, guests, date, time); reserved = true; }
+                                    if (t4) 
+                                    { 
+                                        tableReserve.TimeSlot_4_reserved.Add(date); 
+                                        Console.WriteLine($"Table {table} reserved for 18:30 until 19:00"); 
+                                        Console.WriteLine("\npress the enter key to continue"); 
+                                        Console.ReadLine(); 
+                                        customer.Add_Reservation(table, guests, date, time); 
+                                        reserved = true; 
+                                        tableReserve.reserve(timeslot, date);
+                                    }
                                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                                     break;
                                 default:
@@ -595,7 +628,12 @@ public class Program
                             }
                         }
                     }
-
+                    string json = JsonConvert.SerializeObject(customer.My_Reservation, Formatting.Indented);
+                    JArray Object = JArray.Parse(json);
+                    ControllerJson.WriteJson(Object, "Reservations.json");
+                    string json1 = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
+                    JArray Object1 = JArray.Parse(json1);
+                    ControllerJson.WriteJson(Object1, "Customers.json");
                 }
                 // laat de reservatie zien
                 if (input == "3")
