@@ -97,7 +97,7 @@ public class Customer : IAccount
                     case "3":
                         Console.WriteLine("Enter the new date (DD/MM/YYYY):");
                         string newDate = Console.ReadLine();
-                        reservation.Date = newDate;
+                        reservation.Date = DateOnly.Parse(newDate);
                         break;
 
                     case "4":
