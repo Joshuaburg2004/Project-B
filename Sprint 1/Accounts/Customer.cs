@@ -68,7 +68,7 @@ public class Customer : IAccount
     Console.WriteLine("Which reservation do you want to change? Enter the reservation id:");
     int input = Convert.ToInt32(Console.ReadLine());
 
-    // Check if the reservation exists.
+    // Check if the reservation exists. made by Alperen en Joshua
     foreach (Reservation reservation in My_Reservation)
     {
         if (input == reservation.Reservation_ID)
@@ -79,7 +79,7 @@ public class Customer : IAccount
 
             if (input2 == "1")
             {
-                Console.WriteLine("What would you like to change?\n(1) Table\n(2) Guests\n(3) Date\n(4) Time");
+                Console.WriteLine("What would you like to change?\n(1) Table\n(2) Guests\n(3) Date\n(4) Time\n(5)Delete reservation");
                 string input3 = Console.ReadLine();
                 Table? tableReserve;
                 tableReserve = reservation.Table switch
@@ -101,7 +101,7 @@ public class Customer : IAccount
                     15 => Manager.table_15,
                     _ => null
                 };
-                    switch (input3)
+                switch (input3)
                 {
                     case "1":
                         Console.WriteLine("Enter the new table number:");
@@ -110,15 +110,9 @@ public class Customer : IAccount
                         break;
 
                     case "2":
-                        
-                        int guests = 0;
-                        while (guests < tableReserve!.MinGuests || guests > tableReserve!.MaxGuests)
-                        {
-                            Console.Write("How many guests do you expect? ");
-                            string? guestsIn = Console.ReadLine();
-                            Int32.TryParse(guestsIn, out guests);
-                        }
-                        reservation.Guests = guests;
+                        Console.WriteLine("Enter the new number of guests:");
+                        int newGuests = Convert.ToInt32(Console.ReadLine());
+                        reservation.Guests = newGuests;
                         break;
 
                     case "3":
@@ -128,6 +122,7 @@ public class Customer : IAccount
                         break;
 
                     case "4":
+                        
                         bool t1 = false;
                         bool t2 = false;
                         bool t3 = false;
@@ -160,6 +155,36 @@ public class Customer : IAccount
                             }
                         }
                         break;
+                    case "5":
+                        Console.WriteLine("U sure you want to delete this reservation (1)y/(2)n");
+                        string ans = Console.ReadLine();
+                        if(ans == "1")
+                        {
+                            My_Reservation.Remove(reservation);
+                            if(tableReserve.TimeSlot_1_reserved.Contains(reservation.Date))
+                            {
+                                tableReserve.TimeSlot_1_reserved.Remove(reservation.Date);
+                            }
+                            else if(tableReserve.TimeSlot_2_reserved.Contains(reservation.Date))
+                            {
+                               tableReserve.TimeSlot_2_reserved.Remove(reservation.Date); 
+                            }
+                            else if(tableReserve.TimeSlot_3_reserved.Contains(reservation.Date))
+                            {
+                                tableReserve.TimeSlot_3_reserved.Remove(reservation.Date);
+                            }
+                            else if(tableReserve.TimeSlot_4_reserved.Contains(reservation.Date))
+                            {
+                                tableReserve.TimeSlot_4_reserved.Remove(reservation.Date);
+                            }
+                            
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nPress enter to continue");
+                            Console.ReadLine();
+                        }
+                        break;
 
                     default:
                         Console.WriteLine("Unknown input, try again.");
@@ -189,6 +214,7 @@ public class Customer : IAccount
     // If the loop completes, the reservation ID was not found
     Console.WriteLine("Reservation not found.");
     }
+
 
     public void Add_Reservation(int table, int guest, DateOnly date, string time)
     {
