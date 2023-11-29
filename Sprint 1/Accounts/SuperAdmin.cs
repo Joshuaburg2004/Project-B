@@ -6,7 +6,7 @@ using System.Text;
 public class SuperAdmin : IAccount
 {
     public int ID { get; } = 1;
-    public string Name { get; } = "Gert-Jan den heijer";
+    public string Name { get; } = "Gert-Jan den Heijer";
     public string Password { get; } = "123";
     public string Email { get; } = "gjdenheijer@gmail.com";
     public string Role { get; } = "SuperAdmin";
