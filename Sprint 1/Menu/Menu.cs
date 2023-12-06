@@ -27,9 +27,54 @@ public class Menu
     // Print alle menu_items.
     public static void view()
     {
-        foreach(Menu item in Menu_List.Menu_item)
+    Console.WriteLine("(1)Everything\n(2)Choose by Category");
+    string? ans = Console.ReadLine();
+    if(ans is not null)
+    {
+        if (ans == "1")
         {
-            Console.WriteLine($"Name: {item.Name} Category: {item.Category} Price: {item.Price}");
+            foreach(Menu item in Menu_List.Menu_item)
+            {
+                Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+            }
         }
+        else if(ans == "2")
+        {       
+            Console.WriteLine("(Fish/Meat/Vegan/Vegetarian)");
+            string? ans1 = Console.ReadLine();
+            foreach (Menu item in Menu_List.Menu_item)
+            {
+                if(ans1 == "Fish")
+                {
+                    if(item.Category == "Fish")
+                    {
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+                    }
+                }
+                else if (ans1 == "Vegan")
+                {
+                    if (item.Category == "Vegan")
+                    {
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+                    }
+                }
+                else if (ans1 == "Vegetarian")
+                {
+                    if (item.Category == "Vegetarian")
+                    {
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+                    }
+                }
+                else if (ans1 == "Meat")
+                {
+                    if (item.Category == "Meat")
+                    {
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+                    }
+                }
+
+            }
+        }
+
     } 
 }
