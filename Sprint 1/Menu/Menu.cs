@@ -25,6 +25,8 @@ public class Menu
     //     return Menu_item;
     // }
     // Print alle menu_items.
+    
+    // Gemaakt door Alperen
     public static void view()
     {
     Console.WriteLine("(1)Everything\n(2)Choose by Category");
