@@ -1,4 +1,5 @@
-﻿namespace ProjectB.Tests
+// Gemaakt door Alperen
+namespace ProjectB.Tests
 {
     [TestClass]
     public class MenuTest
