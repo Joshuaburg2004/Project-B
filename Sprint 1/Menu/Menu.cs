@@ -3,6 +3,7 @@
 
 // category (fish/meat/vegan/vegetarian) 
 //Gemaakt door Alperen en Berkan
+using System.Text.Unicode;
 public class Menu
 {
     /*public static List<Menu> Menu_item = new() { new Menu("Lahmacun", "Meat", 6.99), new Menu("Pizza pepperoni", "Meat", 12.5) };*/
@@ -27,49 +28,50 @@ public class Menu
     // Gemaakt door Alperen
     public static void view()
     {
+        
         Console.WriteLine("(1)Everything\n(2)Choose by Category");
         string? ans = Console.ReadLine();
-        if(ans is not null)
+        if (ans is not null)
         {
             if (ans == "1")
             {
-                foreach(Menu item in Menu_List.Menu_item)
-                {
-                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
-                }
-            }
-            else if(ans == "2")
-            {       
-                Console.WriteLine("(Fish/Meat/Vegan/Vegetarian)");
-                string? ans1 = Console.ReadLine();
                 foreach (Menu item in Menu_List.Menu_item)
                 {
-                    if(ans1 == "Fish")
+                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                }
+            }
+            else if (ans == "2")
+            {
+                Console.WriteLine("(Fish/Meat/Vegan/Vegetarian)");
+                string? ans1 = Console.ReadLine().ToUpper();
+                foreach (Menu item in Menu_List.Menu_item)
+                {
+                    if (ans1 == "Fish".ToUpper())
                     {
-                        if (item.Category == "Fish".ToUpper())
+                        if (item.Category == "Fish")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}€|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
                         }
                     }
                     else if (ans1 == "Vegan".ToUpper())
                     {
                         if (item.Category == "Vegan")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}€|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
                         }
                     }
                     else if (ans1 == "Vegetarian".ToUpper())
                     {
                         if (item.Category == "Vegetarian")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}€|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
                         }
                     }
                     else if (ans1 == "Meat")
                     {
                         if (item.Category == "Meat".ToUpper())
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}€|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
                         }
                     }
 
@@ -77,6 +79,6 @@ public class Menu
             }
 
         }
-        
-    } 
+
+    }
 }
