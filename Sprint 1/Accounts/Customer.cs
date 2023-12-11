@@ -80,7 +80,7 @@ public class Customer : IAccount
 
             if (input2 == "1")
             {
-                Console.WriteLine("What would you like to change?\n(1) Table\n(2) Guests\n(3) Date\n(4) Time\n(5)Delete reservation");
+                Console.WriteLine("What would you like to change?\n(1) Table\n(2) Guests\n(3) Date\n(4) Time\n(5) Delete reservation");
                 string input3 = Console.ReadLine();
                 Table? tableReserve;
                 tableReserve = reservation.Table switch
