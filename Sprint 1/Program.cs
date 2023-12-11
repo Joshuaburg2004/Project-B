@@ -729,6 +729,10 @@ public class Program
                             Console.Write("How many guests do you expect? ");
                             string? guestsIn = Console.ReadLine();
                             Int32.TryParse(guestsIn, out guests);
+                            if(guests < tableReserve!.MinGuests || guests > tableReserve!.MaxGuests)
+                            {
+                                Console.WriteLine($"Wrong guest input, for a table of {table} you need minimum {tableReserve.MinGuests} and maximum {tableReserve.MaxGuests}.");
+                            }
                         }
                         bool t1 = false;
                         bool t2 = false;
