@@ -157,7 +157,7 @@ public class Customer : IAccount
                         }
                         break;
                     case "5":
-                        Console.WriteLine("U sure you want to delete this reservation (1)y/(2)n");
+                        Console.WriteLine("Are u sure you want to delete this reservation (1)y/(2)n");
                         string ans = Console.ReadLine();
                         if(ans == "1")
                         {
