@@ -409,21 +409,51 @@ public class Program
             // laat de reservaties zien. TODO: per dag/met pagina's
             if (input == "3")
             {
-                Reservation.All_Reservations.Sort((r1, r2) =>
+                while(true)
                 {
-                    int dateComparison = r1.Date.CompareTo(r2.Date);
-                    if (dateComparison != 0)
+            
+                    Console.WriteLine("1 view all \n2 sort by custommer ID \n3 sort by date \n4 sort by timeslot");
+                    int? option = Convert.ToInt32(Console.ReadLine());
+                    /*Reservation.All_Reservations.Sort((r1, r2) =>             
                     {
-                        return dateComparison;
+                        int dateComparison = r1.Date.CompareTo(r2.Date);
+                        if (dateComparison != 0)
+                        {
+                            return dateComparison;
+                        }
+                        return string.Compare(r1.Time, r2.Time);
+                    });*/
+                    if (option == 1)
+                    {
+                        foreach (Reservation reservation in Reservation.All_Reservations)
+                        {
+                            Console.WriteLine(reservation.Reservation_Info());
+                        }
                     }
-                    return string.Compare(r1.Time, r2.Time);
-                });
-    
-                foreach (Reservation reservation in Reservation.All_Reservations)
-                {
-                    Console.WriteLine(reservation.Reservation_Info());
+                    else if (option == 2)
+                    {
+                        var newList = Reservation.All_Reservations.OrderBy(x => x.CustomerId).ToList();
+                        foreach (Reservation reservation in newList) { Console.WriteLine(reservation.Reservation_Info()); }
+                        break;
+                    }
+                    else if (option == 3)
+                    {
+                        var newList = Reservation.All_Reservations.OrderBy(x => x.Date).ToList();
+                        foreach (Reservation reservation in newList) { Console.WriteLine(reservation.Reservation_Info()); }
+                        break;
+                    }
+                    else if (option == 4)
+                    {
+                        var newList = Reservation.All_Reservations.OrderBy(x => x.Time).ToList();
+                        foreach (Reservation reservation in newList) { Console.WriteLine(reservation.Reservation_Info()); }
+                        break;
+                    }
+                    else
+                        Console.WriteLine("Please enter a valid number");
+                
                 }
-    
+                
+                
                 Console.WriteLine("\npress the enter key to continue");
                 Console.ReadLine();
             }
