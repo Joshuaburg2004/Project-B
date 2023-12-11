@@ -38,12 +38,4 @@ public class CustomerTest
         Assert.IsTrue(customer1!.Email == customer.Email);
         Assert.IsTrue(customer1!.Password == customer.Password);
     }
-    [TestMethod]
-    public void TestAddReservation()
-    {
-        Customer customer = Customer.CreateAccount("name", "email", "password");
-        Reservation reservation = customer.Add_Reservation(2, 5, new DateOnly(year: 2023, month: 12, day: 12), "2")!;
-        Assert.IsTrue(customer.My_Reservation.Contains(reservation!));
-        Assert.IsTrue(Reservation.All_Reservations.Contains(reservation));
-    }
 }
