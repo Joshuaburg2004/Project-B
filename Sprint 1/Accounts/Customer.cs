@@ -230,22 +230,22 @@ public class Customer : IAccount
 
     // Print de info van de Reservations die de customer heeft gemaakt.
     public void View_Reservation()
-{
-    My_Reservation.Sort((r1, r2) =>
     {
-        int dateComparison = r1.Date.CompareTo(r2.Date);
-        if (dateComparison != 0)
+        My_Reservation.Sort((r1, r2) =>
         {
-            return dateComparison;
+            int dateComparison = r1.Date.CompareTo(r2.Date);
+            if (dateComparison != 0)
+            {
+                return dateComparison;
+            }
+            return string.Compare(r1.Time, r2.Time);
+        });
+    
+        foreach (Reservation reservation in My_Reservation)
+        {
+            Console.WriteLine(reservation.Reservation_Info());
         }
-        return string.Compare(r1.Time, r2.Time);
-    });
-
-    foreach (Reservation reservation in My_Reservation)
-    {
-        Console.WriteLine(reservation.Reservation_Info());
     }
-}
 
     public static Customer? Log_in(string name, string email, string password)
     {
