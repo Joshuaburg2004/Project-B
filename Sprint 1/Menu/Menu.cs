@@ -48,28 +48,28 @@ public class Menu
                     {
                         if (item.Category == "Fish".ToUpper())
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}€|");
                         }
                     }
                     else if (ans1 == "Vegan".ToUpper())
                     {
                         if (item.Category == "Vegan")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}€|");
                         }
                     }
                     else if (ans1 == "Vegetarian".ToUpper())
                     {
                         if (item.Category == "Vegetarian")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}€|");
                         }
                     }
                     else if (ans1 == "Meat")
                     {
                         if (item.Category == "Meat".ToUpper())
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price}€|");
                         }
                     }
 
