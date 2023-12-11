@@ -412,7 +412,7 @@ public class Program
                 while(true)
                 {
             
-                    Console.WriteLine("1 view all \n2 sort by custommer ID \n3 sort by date \n4 sort by timeslot");
+                    Console.WriteLine("(1) view all \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot");
                     int? option = Convert.ToInt32(Console.ReadLine());
                     /*Reservation.All_Reservations.Sort((r1, r2) =>             
                     {
