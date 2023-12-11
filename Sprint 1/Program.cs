@@ -429,6 +429,7 @@ public class Program
                         {
                             Console.WriteLine(reservation.Reservation_Info());
                         }
+                        break;
                     }
                     else if (option == 2)
                     {
