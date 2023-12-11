@@ -400,26 +400,21 @@ public class Program
             // laat de reservaties zien. TODO: per dag/met pagina's
             if (input == "3")
             {
-                foreach (Reservation reservation in Reservation.All_Reservations)
-                {
                 Reservation.All_Reservations.Sort((r1, r2) =>
                 {
                     int dateComparison = r1.Date.CompareTo(r2.Date);
                     if (dateComparison != 0)
                     {
-                        Console.WriteLine(reservation.Reservation_Info());
                         return dateComparison;
                     }
-                    Console.WriteLine("\npress the enter key to continue");
-                    Console.ReadLine();
                     return string.Compare(r1.Time, r2.Time);
                 });
-        
+    
                 foreach (Reservation reservation in Reservation.All_Reservations)
                 {
                     Console.WriteLine(reservation.Reservation_Info());
                 }
-        
+    
                 Console.WriteLine("\npress the enter key to continue");
                 Console.ReadLine();
             }
