@@ -49,39 +49,12 @@ public class Menu
                 string? ans1 = Console.ReadLine().ToUpper();
                 foreach (Menu item in Menu_List.Menu_item)
                 {
-                    if (ans1 == "Fish".ToUpper())
+                    if (item.Category.ToUpper() == ans1)
                     {
-                        if (item.Category == "Fish")
-                        {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
-                        }
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
                     }
-                    else if (ans1 == "Vegan".ToUpper())
-                    {
-                        if (item.Category == "Vegan")
-                        {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
-                        }
-                    }
-                    else if (ans1 == "Vegetarian".ToUpper())
-                    {
-                        if (item.Category == "Vegetarian")
-                        {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
-                        }
-                    }
-                    else if (ans1 == "Meat")
-                    {
-                        if (item.Category == "Meat".ToUpper())
-                        {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
-                        }
-                    }
-
                 }
             }
-
         }
-
     }
 }
