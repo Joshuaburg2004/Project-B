@@ -21,7 +21,7 @@ public class CustomerTest
     {
         Customer customer = Customer.CreateAccount("a", "b", "c");
         Customer customer1 = Customer.CreateAccount("d", "e", "f");
-        Customer customer2 = Customer.CreateAccount("g", "h", "i");
+        Customer customer2 = Customer.CreateAccount("test", "unittest@hr.nl", "Unittest1");
         Assert.IsTrue(Manager.Customers.Contains(customer));
         Assert.IsTrue(Manager.Customers.Contains(customer1));
         Assert.IsTrue(Manager.Customers.Contains(customer2));
