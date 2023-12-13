@@ -21,7 +21,7 @@ public class CustomerTest
     {
         Customer customer = Customer.CreateAccount("a", "b", "c");
         Customer customer1 = Customer.CreateAccount("d", "e", "f");
-        Customer customer2 = Customer.CreateAccount("test", "unittest@hr.nl", "Unittest1");
+        Customer customer2 = Customer.CreateAccount("test", "unittest@hr.nl", "Unittest1?");
         Assert.IsTrue(Manager.Customers.Contains(customer));
         Assert.IsTrue(Manager.Customers.Contains(customer1));
         Assert.IsTrue(Manager.Customers.Contains(customer2));
@@ -32,7 +32,7 @@ public class CustomerTest
     [TestMethod]
     public void TestLogIn()
     {
-        Customer customer = Customer.CreateAccount("name", "email", "password");
+        Customer customer = Customer.CreateAccount("name", "email@hr.nl", "Password1?");
         Customer? customer1 = Customer.Log_in("name", "email", "password");
         Assert.IsTrue(customer1!.Name == customer.Name);
         Assert.IsTrue(customer1!.Email == customer.Email);
