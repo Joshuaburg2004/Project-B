@@ -40,7 +40,7 @@ public class Menu
             {
                 foreach (Menu item in Menu_List.Menu_item)
                 {
-                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
+                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
                 }
             }
             else if (ans == "2")
@@ -53,28 +53,28 @@ public class Menu
                     {
                         if (item.Category == "Fish")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
                         }
                     }
                     else if (ans1 == "Vegan".ToUpper())
                     {
                         if (item.Category == "Vegan")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
                         }
                     }
                     else if (ans1 == "Vegetarian".ToUpper())
                     {
                         if (item.Category == "Vegetarian")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
                         }
                     }
                     else if (ans1 == "Meat")
                     {
                         if (item.Category == "Meat".ToUpper())
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
                         }
                     }
 
