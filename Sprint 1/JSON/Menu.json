@@ -2,7 +2,7 @@
 
   {
 
-    "Price": 10.0,
+    "Price": 10,
 
     "Category": "Fish",
 
@@ -22,7 +22,7 @@
 
   {
 
-    "Price": 9.99,
+    "Price": 10,
 
     "Category": "Meat",
 
@@ -32,7 +32,7 @@
 
   {
 
-    "Price": 15.99,
+    "Price": 15,
 
     "Category": "Meat",
 
@@ -42,7 +42,7 @@
 
   {
 
-    "Price": 8.99,
+    "Price": 8,
 
     "Category": "Meat",
 
@@ -52,7 +52,7 @@
 
   {
 
-    "Price": 13.99,
+    "Price": 13,
 
     "Category": "Meat",
 
@@ -62,7 +62,7 @@
 
   {
 
-    "Price": 12.0,
+    "Price": 12,
 
     "Category": "Meat",
 
@@ -72,7 +72,7 @@
 
   {
 
-    "Price": 9.99,
+    "Price": 9,
 
     "Category": "Fish",
 
@@ -82,7 +82,7 @@
 
   {
 
-    "Price": 6.0,
+    "Price": 6,
 
     "Category": "Vegan",
 
@@ -92,7 +92,7 @@
 
   {
 
-    "Price": 3.25,
+    "Price": 3,
 
     "Category": "Vegetarian",
 
@@ -102,7 +102,7 @@
 
   {
 
-    "Price": 10.0,
+    "Price": 10,
 
     "Category": "Fish",
 
@@ -112,7 +112,7 @@
 
   {
 
-    "Price": 15.5,
+    "Price": 15,
 
     "Category": "Meat",
 
@@ -122,7 +122,7 @@
 
   {
 
-    "Price": 8.0,
+    "Price": 8,
 
     "Category": "Vegan",
 
@@ -132,7 +132,7 @@
 
   {
 
-    "Price": 12.0,
+    "Price": 12,
 
     "Category": "Vegetarian",
 
@@ -142,7 +142,7 @@
 
   {
 
-    "Price": 18.0,
+    "Price": 18,
 
     "Category": "Fish",
 
@@ -152,7 +152,7 @@
 
   {
 
-    "Price": 14.0,
+    "Price": 14,
 
     "Category": "Meat",
 
@@ -162,7 +162,7 @@
 
   {
 
-    "Price": 9.5,
+    "Price": 9,
 
     "Category": "Vegan",
 
@@ -172,7 +172,7 @@
 
   {
 
-    "Price": 11.0,
+    "Price": 11,
 
     "Category": "Vegetarian",
 
@@ -182,7 +182,7 @@
 
   {
 
-    "Price": 13.0,
+    "Price": 13,
 
     "Category": "Fish",
 
@@ -192,7 +192,7 @@
 
   {
 
-    "Price": 16.0,
+    "Price": 16,
 
     "Category": "Meat",
 
@@ -202,7 +202,7 @@
 
   {
 
-    "Price": 7.5,
+    "Price": 7,
 
     "Category": "Vegan",
 
@@ -212,7 +212,7 @@
 
   {
 
-    "Price": 10.5,
+    "Price": 10,
 
     "Category": "Vegetarian",
 
@@ -222,7 +222,7 @@
 
   {
 
-    "Price": 20.0,
+    "Price": 20,
 
     "Category": "Fish",
 
@@ -232,7 +232,7 @@
 
   {
 
-    "Price": 13.5,
+    "Price": 13,
 
     "Category": "Meat",
 
@@ -242,7 +242,7 @@
 
   {
 
-    "Price": 8.5,
+    "Price": 8,
 
     "Category": "Vegan",
 
@@ -252,7 +252,7 @@
 
   {
 
-    "Price": 9.0,
+    "Price": 9,
 
     "Category": "Vegetarian",
 
@@ -262,7 +262,7 @@
 
   {
 
-    "Price": 11.5,
+    "Price": 11,
 
     "Category": "Fish",
 
@@ -272,7 +272,7 @@
 
   {
 
-    "Price": 17.0,
+    "Price": 17,
 
     "Category": "Meat",
 
@@ -282,7 +282,7 @@
 
   {
 
-    "Price": 6.0,
+    "Price": 6,
 
     "Category": "Vegan",
 
@@ -292,7 +292,7 @@
 
   {
 
-    "Price": 12.5,
+    "Price": 12,
 
     "Category": "Vegetarian",
 
@@ -302,7 +302,7 @@
 
   {
 
-    "Price": 14.0,
+    "Price": 14,
 
     "Category": "Fish",
 
@@ -312,7 +312,7 @@
 
   {
 
-    "Price": 18.5,
+    "Price": 18,
 
     "Category": "Meat",
 
@@ -322,7 +322,7 @@
 
   {
 
-    "Price": 7.0,
+    "Price": 7,
 
     "Category": "Vegan",
 
@@ -332,7 +332,7 @@
 
   {
 
-    "Price": 10.0,
+    "Price": 10,
 
     "Category": "Vegetarian",
 
@@ -342,7 +342,7 @@
 
   {
 
-    "Price": 15.0,
+    "Price": 15,
 
     "Category": "Fish",
 
@@ -352,7 +352,7 @@
 
   {
 
-    "Price": 14.5,
+    "Price": 14,
 
     "Category": "Meat",
 
@@ -362,7 +362,7 @@
 
   {
 
-    "Price": 8.0,
+    "Price": 8,
 
     "Category": "Vegan",
 
@@ -372,7 +372,7 @@
 
   {
 
-    "Price": 11.0,
+    "Price": 11,
 
     "Category": "Vegetarian",
 
@@ -382,7 +382,7 @@
 
   {
 
-    "Price": 12.0,
+    "Price": 12,
 
     "Category": "Fish",
 
@@ -392,7 +392,7 @@
 
   {
 
-    "Price": 16.5,
+    "Price": 16,
 
     "Category": "Meat",
 
@@ -402,7 +402,7 @@
 
   {
 
-    "Price": 9.0,
+    "Price": 9,
 
     "Category": "Vegan",
 
@@ -412,7 +412,7 @@
 
   {
 
-    "Price": 10.5,
+    "Price": 10,
 
     "Category": "Vegetarian",
 
@@ -422,7 +422,7 @@
 
   {
 
-    "Price": 13.0,
+    "Price": 13,
 
     "Category": "Fish",
 
@@ -432,7 +432,7 @@
 
   {
 
-    "Price": 17.0,
+    "Price": 17,
 
     "Category": "Meat",
 
@@ -442,7 +442,7 @@
 
   {
 
-    "Price": 7.5,
+    "Price": 7,
 
     "Category": "Vegan",
 
@@ -452,7 +452,7 @@
 
   {
 
-    "Price": 8.5,
+    "Price": 8,
 
     "Category": "Vegetarian",
 
@@ -462,7 +462,7 @@
 
   {
 
-    "Price": 11.5,
+    "Price": 11,
 
     "Category": "Fish",
 
@@ -472,7 +472,7 @@
 
   {
 
-    "Price": 15.0,
+    "Price": 15,
 
     "Category": "Meat",
 
@@ -482,7 +482,7 @@
 
   {
 
-    "Price": 6.5,
+    "Price": 6,
 
     "Category": "Vegan",
 
@@ -492,7 +492,7 @@
 
   {
 
-    "Price": 12.0,
+    "Price": 12,
 
     "Category": "Vegetarian",
 
@@ -502,7 +502,7 @@
 
   {
 
-    "Price": 14.0,
+    "Price": 14,
 
     "Category": "Fish",
 
@@ -512,7 +512,7 @@
 
   {
 
-    "Price": 18.0,
+    "Price": 18,
 
     "Category": "Meat",
 
@@ -522,7 +522,7 @@
 
   {
 
-    "Price": 9.5,
+    "Price": 9,
 
     "Category": "Vegan",
 
@@ -532,7 +532,7 @@
 
   {
 
-    "Price": 10.0,
+    "Price": 10,
 
     "Category": "Vegetarian",
 
@@ -542,7 +542,7 @@
 
   {
 
-    "Price": 13.5,
+    "Price": 13,
 
     "Category": "Fish",
 
@@ -552,7 +552,7 @@
 
   {
 
-    "Price": 16.0,
+    "Price": 16,
 
     "Category": "Meat",
 
@@ -562,7 +562,7 @@
 
   {
 
-    "Price": 8.0,
+    "Price": 8,
 
     "Category": "Vegan",
 
@@ -572,7 +572,7 @@
 
   {
 
-    "Price": 11.0,
+    "Price": 11,
 
     "Category": "Vegetarian",
 
@@ -582,7 +582,7 @@
 
   {
 
-    "Price": 12.5,
+    "Price": 12,
 
     "Category": "Fish",
 
@@ -592,7 +592,7 @@
 
   {
 
-    "Price": 14.5,
+    "Price": 14,
 
     "Category": "Meat",
 
@@ -602,7 +602,7 @@
 
   {
 
-    "Price": 7.0,
+    "Price": 7,
 
     "Category": "Vegan",
 
@@ -612,7 +612,7 @@
 
   {
 
-    "Price": 10.0,
+    "Price": 10,
 
     "Category": "Vegetarian",
 
@@ -622,7 +622,7 @@
 
   {
 
-    "Price": 15.0,
+    "Price": 15,
 
     "Category": "Fish",
 
@@ -632,7 +632,7 @@
 
   {
 
-    "Price": 14.0,
+    "Price": 14,
 
     "Category": "Meat",
 
@@ -642,7 +642,7 @@
 
   {
 
-    "Price": 9.0,
+    "Price": 9,
 
     "Category": "Vegan",
 
@@ -652,7 +652,7 @@
 
   {
 
-    "Price": 10.5,
+    "Price": 10,
 
     "Category": "Vegetarian",
 
@@ -662,7 +662,7 @@
 
   {
 
-    "Price": 13.0,
+    "Price": 13,
 
     "Category": "Fish",
 
@@ -672,7 +672,7 @@
 
   {
 
-    "Price": 17.0,
+    "Price": 17,
 
     "Category": "Meat",
 
@@ -682,7 +682,7 @@
 
   {
 
-    "Price": 6.5,
+    "Price": 6,
 
     "Category": "Vegan",
 
@@ -692,7 +692,7 @@
 
   {
 
-    "Price": 12.0,
+    "Price": 12,
 
     "Category": "Vegetarian",
 
@@ -702,7 +702,7 @@
 
   {
 
-    "Price": 14.0,
+    "Price": 14,
 
     "Category": "Fish",
 
@@ -712,7 +712,7 @@
 
   {
 
-    "Price": 18.0,
+    "Price": 18,
 
     "Category": "Meat",
 
@@ -722,7 +722,7 @@
 
   {
 
-    "Price": 9.5,
+    "Price": 9,
 
     "Category": "Vegan",
 
@@ -732,7 +732,7 @@
 
   {
 
-    "Price": 10.0,
+    "Price": 10,
 
     "Category": "Vegetarian",
 
@@ -742,7 +742,7 @@
 
   {
 
-    "Price": 13.5,
+    "Price": 13,
 
     "Category": "Fish",
 
@@ -752,7 +752,7 @@
 
   {
 
-    "Price": 16.0,
+    "Price": 16,
 
     "Category": "Meat",
 
@@ -762,7 +762,7 @@
 
   {
 
-    "Price": 8.0,
+    "Price": 8,
 
     "Category": "Vegan",
 
@@ -772,7 +772,7 @@
 
   {
 
-    "Price": 11.0,
+    "Price": 11,
 
     "Category": "Vegetarian",
 
