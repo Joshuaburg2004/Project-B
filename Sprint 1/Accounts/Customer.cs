@@ -259,6 +259,18 @@ public class Customer : IAccount
         return null;
     }
 
+    public static Customer? Log_in(string email, string password)
+    {
+        foreach (Customer customer in Manager.Customers)
+        {
+            if (customer.Email == email && customer.Password == password)
+            {
+                return customer;
+            }
+        }
+        return null;
+    }
+
     public static string Info(Customer customer)
     {
         return $"ID: {customer.ID}, Name: {customer.Name}, Email: {customer.Email}, Role: {customer.Role}";
