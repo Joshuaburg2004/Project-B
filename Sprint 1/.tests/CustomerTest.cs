@@ -33,7 +33,7 @@ public class CustomerTest
     public void TestLogIn()
     {
         Customer customer = Customer.CreateAccount("name", "email@hr.nl", "Password1?");
-        Customer? customer1 = Customer.Log_in("name", "email", "password");
+        Customer? customer1 = Customer.Log_in("name", "email@hr.nl", "Password1?");
         Assert.IsTrue(customer1!.Name == customer.Name);
         Assert.IsTrue(customer1!.Email == customer.Email);
         Assert.IsTrue(customer1!.Password == customer.Password);
