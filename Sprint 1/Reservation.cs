@@ -43,7 +43,7 @@ public class Reservation
     }
 
     // returned de informatie van de reservatie
-    public string Reservation_Info() => $"CustomerID: {CustomerId}, Reservation_ID: {Reservation_ID}, Table {Table}, number of guests: {Guests}, Date: {Date}, Time: {Time}";
+    public string Reservation_Info() => $"CustomerID: {CustomerId}, Customer Name: {Customer.GetCustomerByID(CustomerId)!.Name}, Reservation_ID: {Reservation_ID}, Table {Table}, number of guests: {Guests}, Date: {Date}, Time: {Time}";
     // print de info van de reserevatie en de customer
     public static string Info(Reservation reservation, Customer customer) => $"{Customer.Info(customer)}, Table: {reservation.Table}, Guests: {reservation.Guests}, Date: {reservation.Date}, Time: {reservation.Time}";
 }
