@@ -26,13 +26,13 @@ public class Menu
         Menu_item.Add(item2);
         return Menu_item;
     }*/
-    // Gemaakt door Alperen
+    // Gemaakt door Alperen, verbeterd door Aymane
 
     public static void view()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        Console.WriteLine("(1)Everything\n(2)Choose by Category");
+        Console.WriteLine("(1) Everything\n(2) Choose by Category");
         string? ans = Console.ReadLine();
         if (ans is not null)
         {
@@ -40,7 +40,7 @@ public class Menu
             {
                 foreach (Menu item in Menu_List.Menu_item)
                 {
-                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
+                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
                 }
             }
             else if (ans == "2")
@@ -51,7 +51,7 @@ public class Menu
                 {
                     if (item.Category.ToUpper() == ans1)
                     {
-                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price}|");
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
                     }
                 }
             }
