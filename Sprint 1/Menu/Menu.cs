@@ -16,6 +16,7 @@ public class Menu
         this.Price = price;
         this.Category = category;
         this.Name = name;
+
     }
     /*public static List<Menu> view_menu()
     {
@@ -26,9 +27,11 @@ public class Menu
         return Menu_item;
     }*/
     // Gemaakt door Alperen
+
     public static void view()
     {
-        
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
         Console.WriteLine("(1)Everything\n(2)Choose by Category");
         string? ans = Console.ReadLine();
         if (ans is not null)
@@ -37,7 +40,7 @@ public class Menu
             {
                 foreach (Menu item in Menu_List.Menu_item)
                 {
-                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
                 }
             }
             else if (ans == "2")
@@ -50,28 +53,28 @@ public class Menu
                     {
                         if (item.Category == "Fish")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
                         }
                     }
                     else if (ans1 == "Vegan".ToUpper())
                     {
                         if (item.Category == "Vegan")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
                         }
                     }
                     else if (ans1 == "Vegetarian".ToUpper())
                     {
                         if (item.Category == "Vegetarian")
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
                         }
                     }
                     else if (ans1 == "Meat")
                     {
                         if (item.Category == "Meat".ToUpper())
                         {
-                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
                         }
                     }
 
