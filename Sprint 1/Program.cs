@@ -412,7 +412,7 @@ public class Program
                 while(true)
                 {
             
-                    Console.WriteLine("(1) view all \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot");
+                    Console.WriteLine("(1) view all \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot\n(5) view by timeslot");
                     int? option = Convert.ToInt32(Console.ReadLine());
                     /*Reservation.All_Reservations.Sort((r1, r2) =>             
                     {
@@ -447,6 +447,19 @@ public class Program
                     {
                         var newList = Reservation.All_Reservations.OrderBy(x => x.Time).ToList();
                         foreach (Reservation reservation in newList) { Console.WriteLine(reservation.Reservation_Info()); }
+                        break;
+                    }
+                    else if (option == 5)
+                    {
+                        Console.Write("Enter timeslot: ");
+                        string timeslotInput = Console.ReadLine();
+
+                        var list_timeslot = Reservation.All_Reservations.Where(x => x.Time == timeslotInput).ToList();
+
+                        foreach (Reservation reservation in list_timeslot)
+                        {
+                            Console.WriteLine(reservation.Reservation_Info());
+                        }
                         break;
                     }
                     else
