@@ -542,7 +542,7 @@ public class Program
             Console.WriteLine("(1) View Menu");
             Console.WriteLine("(2) Reserve a table");
             Console.WriteLine("(3) View reservations");
-            Console.WriteLine("(4) Change reservation");
+            Console.WriteLine("(4) Change or cancel reservation");
             Console.WriteLine("(5) Log out");
             Console.WriteLine("(6) Close app");
             string? input = Console.ReadLine();
