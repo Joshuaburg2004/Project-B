@@ -38,20 +38,45 @@ public class Menu
         {
             if (ans == "1")
             {
-                foreach (Menu item in Menu_List.Menu_item)
+                IEnumerable<Menu[]> menu = Menu_List.Menu_item.Chunk(14);
+                int Index = 0;
+                while (true)
                 {
-                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                    foreach (Menu item in menu.ElementAt(Index))
+                    {
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                    }
+                    Console.WriteLine("Enter a page, or (Q) to exit");
+                    string Page = Console.ReadLine()!;
+                    bool Convert = int.TryParse(Page, out int page);
+                    if (Page == "Q") { break; }
+                    if (Convert)
+                    {
+                        if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
+                        else { Index = page - 1; }
+                    }
                 }
             }
             else if (ans == "2")
             {
                 Console.WriteLine("(Fish/Meat/Vegan/Vegetarian)");
                 string? ans1 = Console.ReadLine().ToUpper();
-                foreach (Menu item in Menu_List.Menu_item)
+                IEnumerable<Menu[]> menu = Menu_List.Menu_item.Where(x => x.Category.ToUpper() == ans1).ToList().Chunk(14);
+                int Index = 0;
+                while (true)
                 {
-                    if (item.Category.ToUpper() == ans1)
+                    foreach (Menu item in menu.ElementAt(Index))
                     {
                         Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                    }
+                    Console.WriteLine("Enter a page, or (Q) to exit");
+                    string Page = Console.ReadLine()!;
+                    bool Convert = int.TryParse(Page, out int page);
+                    if (Page == "Q") { break; }
+                    if (Convert)
+                    {
+                        if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
+                        else { Index = page - 1; }
                     }
                 }
             }
