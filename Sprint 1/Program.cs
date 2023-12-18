@@ -412,7 +412,7 @@ public class Program
                 while(true)
                 {
             
-                    Console.WriteLine("(1) view all \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot");
+                    Console.WriteLine("(1) view all - 10 per page \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot");
                     int? option = Convert.ToInt32(Console.ReadLine());
                     /*Reservation.All_Reservations.Sort((r1, r2) =>             
                     {
@@ -425,9 +425,23 @@ public class Program
                     });*/
                     if (option == 1)
                     {
-                        foreach (Reservation reservation in Reservation.All_Reservations)
+                        IEnumerable<Reservation[]> reservations = Reservation.All_Reservations.Chunk(10);
+                        int Index = 0;
+                        while (true)
                         {
-                            Console.WriteLine(reservation.Reservation_Info());
+                            foreach(Reservation reservation in reservations.ElementAt(Index))
+                            {
+                                Console.WriteLine(reservation.Reservation_Info());
+                            }
+                            Console.WriteLine("Enter a page, or (Q) to exit");
+                            string Page = Console.ReadLine()!;
+                            bool Convert = int.TryParse(Page, out int page);
+                            if (Page == "Q") { break; }
+                            if (Convert) 
+                            {
+                                if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                else { Index = page - 1; } 
+                            }
                         }
                         break;
                     }
