@@ -420,12 +420,13 @@ public class Program
                         int Index = 0;
                         while (true)
                         {
+                            Console.WriteLine($"Page number {Index + 1}");
                             foreach (Reservation reservation in reservations.ElementAt(Index))
                             {
                                 Console.WriteLine(reservation.Reservation_Info());
                             }
                             Console.WriteLine("Enter a page, or (Q) to exit");
-                            string Page = Console.ReadLine()!;
+                            string Page = Console.ReadLine()!.ToUpper();
                             bool Convert = int.TryParse(Page, out int page);
                             if (Page == "Q") { break; }
                             if (Convert)
