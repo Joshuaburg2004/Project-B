@@ -16,7 +16,6 @@ public class Menu
         this.Price = price;
         this.Category = category;
         this.Name = name;
-
     }
     /*public static List<Menu> view_menu()
     {
@@ -26,60 +25,60 @@ public class Menu
         Menu_item.Add(item2);
         return Menu_item;
     }*/
-    // Gemaakt door Alperen, verbeterd door Aymane
-
+    // Gemaakt door Alperen
     public static void view()
     {
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
-
-        Console.WriteLine("(1) Everything\n(2) Choose by Category");
+        
+        Console.WriteLine("(1)Everything\n(2)Choose by Category");
         string? ans = Console.ReadLine();
         if (ans is not null)
         {
             if (ans == "1")
             {
-                IEnumerable<Menu[]> menu = Menu_List.Menu_item.Chunk(14);
-                int Index = 0;
-                while (true)
+                foreach (Menu item in Menu_List.Menu_item)
                 {
-                    foreach (Menu item in menu.ElementAt(Index))
-                    {
-                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
-                    }
-                    Console.WriteLine("Enter a page, or (Q) to exit");
-                    string Page = Console.ReadLine()!;
-                    bool Convert = int.TryParse(Page, out int page);
-                    if (Page == "Q") { break; }
-                    if (Convert)
-                    {
-                        if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
-                        else { Index = page - 1; }
-                    }
+                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
                 }
             }
             else if (ans == "2")
             {
                 Console.WriteLine("(Fish/Meat/Vegan/Vegetarian)");
                 string? ans1 = Console.ReadLine().ToUpper();
-                IEnumerable<Menu[]> menu = Menu_List.Menu_item.Where(x => x.Category.ToUpper() == ans1).ToList().Chunk(14);
-                int Index = 0;
-                while (true)
+                foreach (Menu item in Menu_List.Menu_item)
                 {
-                    foreach (Menu item in menu.ElementAt(Index))
+                    if (ans1 == "Fish".ToUpper())
                     {
-                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                        if (item.Category == "Fish")
+                        {
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                        }
                     }
-                    Console.WriteLine("Enter a page, or (Q) to exit");
-                    string Page = Console.ReadLine()!;
-                    bool Convert = int.TryParse(Page, out int page);
-                    if (Page == "Q") { break; }
-                    if (Convert)
+                    else if (ans1 == "Vegan".ToUpper())
                     {
-                        if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
-                        else { Index = page - 1; }
+                        if (item.Category == "Vegan")
+                        {
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                        }
                     }
+                    else if (ans1 == "Vegetarian".ToUpper())
+                    {
+                        if (item.Category == "Vegetarian")
+                        {
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                        }
+                    }
+                    else if (ans1 == "Meat".ToUpper())
+                    {
+                        if (item.Category == "Meat")
+                        {
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} $|");
+                        }
+                    }
+
                 }
             }
+
         }
+
     }
 }
