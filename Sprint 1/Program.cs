@@ -180,7 +180,7 @@ public class Program
             // corrigeerd de wachtwoorden
             while (PassCheck is false)
             {
-                Console.Write("What do you want your password to be (Requires a capital letter, a number and a special character)? ");
+                Console.Write("What do you want your password to be (Requires a capital letter, a lowercase, a number and a special character, 8 to 15 characters)? ");
                 password = Console.ReadLine();
                 if (password is not null)
                 {
