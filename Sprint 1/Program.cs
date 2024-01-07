@@ -857,7 +857,7 @@ public class Program
                             // de error fix is gemaakt door Alperen
                             if (guests < tableReserve!.MinGuests || guests > tableReserve!.MaxGuests)
                             {
-                                Console.WriteLine($"Wrong guest input, for a table of {table} you need minimum {tableReserve.MinGuests} and maximum {tableReserve.MaxGuests}. Please call the restaurant if you are coming in a big group");
+                                Console.WriteLine($"Wrong guest input, for table {table} you need a minimum of {tableReserve.MinGuests} and a maximum of {tableReserve.MaxGuests} people. Please contact the restaurant if you are planning to bring a larger group.");
                             }
 
                         }
