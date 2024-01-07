@@ -428,7 +428,7 @@ public class Program
                 while (true)
                 {
 
-                    Console.WriteLine("(1) view all - 10 per page \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot\n(5) view by timeslot");
+                    Console.WriteLine("(1) view all - 10 per page \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot");
                     int? option = Convert.ToInt32(Console.ReadLine());
                     if (option == 1)
                     {
