@@ -153,6 +153,10 @@ public class Program
                     {
                         NameCheck = true;
                     }
+                    else if (Regex.Match(name, @"\d").Success)
+                    {
+                        Console.WriteLine("Name cannot be a number. Please try again.");
+                    }
                     else
                     {
                         Console.WriteLine("Name was invalid, please try again");
@@ -170,6 +174,10 @@ public class Program
                     if (Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
                     {
                         EmailCheck = true;
+                    }
+                    else if (email.EndsWith("."))
+                    {
+                        Console.WriteLine("Email cannot end with a dot.");
                     }
                     else
                     {
@@ -843,6 +851,7 @@ public class Program
                             {
                                 Console.WriteLine($"Wrong guest input, for a table of {table} you need minimum {tableReserve.MinGuests} and maximum {tableReserve.MaxGuests}. Please call the restaurant if you are coming in a big group");
                             }
+
                         }
                         bool t1 = false;
                         bool t2 = false;
