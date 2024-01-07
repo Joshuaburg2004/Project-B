@@ -196,6 +196,14 @@ public class Program
                     {
                         PassCheck = true;
                     }
+                    else if(password.Length < 8)
+                    {
+                        Console.WriteLine("Password is too short, minimum of 8 characters needed.");
+                    }
+                    else if(password.Length > 15)
+                    {
+                        Console.WriteLine("Password is too long, maximum of 15 characters.");
+                    }
                     else
                     {
                         Console.WriteLine("Password was invalid, please try again");
