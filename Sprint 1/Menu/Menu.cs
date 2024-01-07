@@ -46,6 +46,7 @@ public class Menu
                     {
                         Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
                     }
+                    Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
                     Console.WriteLine("Enter a page, or (Q) to exit");
                     string Page = Console.ReadLine()!.ToUpper();
                     bool Convert = int.TryParse(Page, out int page);
@@ -69,6 +70,7 @@ public class Menu
                     {
                         Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
                     }
+                    Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
                     Console.WriteLine("Enter a page, or (Q) to exit");
                     string Page = Console.ReadLine()!.ToUpper();
                     bool Convert = int.TryParse(Page, out int page);
