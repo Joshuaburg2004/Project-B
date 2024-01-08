@@ -26,62 +26,40 @@ public class Menu
         Menu_item.Add(item2);
         return Menu_item;
     }*/
-    // Gemaakt door Alperen, verbeterd door Aymane
+    // Gemaakt door Alperen
 
+    //Gemaakt door Alperen
     public static void view()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        Console.WriteLine("(1) Everything\n(2) Choose by Category");
+        Console.WriteLine("(1)Everything\n(2)Choose by Category");
         string? ans = Console.ReadLine();
+
         if (ans is not null)
         {
             if (ans == "1")
             {
-                IEnumerable<Menu[]> menu = Menu_List.Menu_item.Chunk(14);
-                int Index = 0;
-                while (true)
+                foreach (Menu item in Menu_List.Menu_item)
                 {
-                    foreach (Menu item in menu.ElementAt(Index))
-                    {
-                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
-                    }
-                    Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
-                    Console.WriteLine("Enter a page, or (Q) to exit");
-                    string Page = Console.ReadLine()!.ToUpper();
-                    bool Convert = int.TryParse(Page, out int page);
-                    if (Page == "Q") { break; }
-                    if (Convert)
-                    {
-                        if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
-                        else { Index = page - 1; }
-                    }
+                    Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
                 }
             }
             else if (ans == "2")
             {
                 Console.WriteLine("(Fish/Meat/Vegan/Vegetarian)");
-                string? ans1 = Console.ReadLine()!.ToUpper();
-                IEnumerable<Menu[]> menu = Menu_List.Menu_item.Where(x => x.Category.ToUpper() == ans1).ToList().Chunk(14);
-                int Index = 0;
-                while (true)
+                string? categoryFilter = Console.ReadLine()?.ToUpper();
+
+                var filteredItems = Menu_List.Menu_item
+                    .Where(item => item.Category.ToUpper() == categoryFilter)
+                    .Select(item => $"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
+
+                foreach (var result in filteredItems)
                 {
-                    foreach (Menu item in menu.ElementAt(Index))
-                    {
-                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
-                    }
-                    Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
-                    Console.WriteLine("Enter a page, or (Q) to exit");
-                    string Page = Console.ReadLine()!.ToUpper();
-                    bool Convert = int.TryParse(Page, out int page);
-                    if (Page == "Q") { break; }
-                    if (Convert)
-                    {
-                        if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
-                        else { Index = page - 1; }
-                    }
+                    Console.WriteLine(result);
                 }
             }
         }
     }
+
 }
