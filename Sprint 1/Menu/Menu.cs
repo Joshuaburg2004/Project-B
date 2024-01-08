@@ -32,7 +32,7 @@ public class Menu
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        Console.WriteLine("(1) Everything\n(2) Choose by Category");
+        Console.WriteLine("(1) Everything\n(2) Choose by Category\n(3) Search");
         string? ans = Console.ReadLine();
         if (ans is not null)
         {
@@ -44,7 +44,7 @@ public class Menu
                 {
                     foreach (Menu item in menu.ElementAt(Index))
                     {
-                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: {item.Price} \u20AC|");
                     }
                     Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
                     Console.WriteLine("Enter a page, or (Q) to exit");
@@ -82,6 +82,35 @@ public class Menu
                     }
                 }
             }
+            else if (ans == "3")
+            {
+                Console.WriteLine("Enter what you are looking for: ");
+                string searchWord = Console.ReadLine()?.ToLower();
+
+                IEnumerable<Menu> matchingItems = Menu_List.Menu_item
+                    .Where(item => item.Name.ToLower().Contains(searchWord))
+                    .ToList();
+
+                while (true)
+                {
+                    foreach (Menu item in matchingItems)
+                    {
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                    }
+
+                    Console.WriteLine("Q to exit");
+                    string choice = Console.ReadLine()?.ToUpper();
+                    if (choice == "Q") { break; }
+                }
+            }
+
+
+
+
+
+
+
+
+            }
         }
     }
-}
