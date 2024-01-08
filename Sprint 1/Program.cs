@@ -325,7 +325,7 @@ public class Program
             {
                 foreach (Reservation reservation in Reservation.All_Reservations)
                 {
-                    Console.WriteLine(reservation.Reservation_Info());
+                    Console.WriteLine(reservation.Reservation_Info_Admin());
                 }
                 Console.WriteLine("\npress the enter key to continue");
                 Console.ReadLine();
@@ -439,7 +439,7 @@ public class Program
                             Console.WriteLine($"Page number {Index + 1}");
                             foreach (Reservation reservation in reservations.ElementAt(Index))
                             {
-                                Console.WriteLine(reservation.Reservation_Info());
+                                Console.WriteLine(reservation.Reservation_Info_Admin());
                             }
                             Console.WriteLine("Enter a page, or (Q) to exit");
                             string Page = Console.ReadLine()!.ToUpper();
