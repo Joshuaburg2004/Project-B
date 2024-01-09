@@ -317,4 +317,34 @@ public class Customer : IAccount
     {
         return $"ID: {customer.ID}, Name: {customer.Name}, Email: {customer.Email}, Role: {customer.Role}";
     }
+
+public void LeaveReview()
+//gemaakt door sami
+{
+    Console.WriteLine("Enter your review text:");
+    string reviewText = Console.ReadLine();
+
+    Console.WriteLine("Enter the number of stars (1-5):");
+    if (int.TryParse(Console.ReadLine(), out int stars) && stars >= 1 && stars <= 5)
+    {
+        DateTime currentDate = DateTime.Now;
+
+        Review review = new Review(Review.AllReviews.Count + 1, ID, reviewText, stars, currentDate);
+        Review.AllReviews.Add(review);
+
+        string jsonReviews = JsonConvert.SerializeObject(Review.AllReviews, Formatting.Indented, new JsonSerializerSettings
+        {
+            DateFormatString = "yyyy-MM-dd"
+        });
+
+        JArray reviewsObject = JArray.Parse(jsonReviews);
+        ControllerJson.WriteJson(reviewsObject, "Reviews.json");
+
+        Console.WriteLine("Review submitted successfully.");
+    }
+    else
+    {
+        Console.WriteLine("Invalid input for stars. Review not submitted.");
+    }
+}
 }
