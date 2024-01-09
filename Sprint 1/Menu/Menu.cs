@@ -35,21 +35,19 @@ public class Menu : IComparable<Menu>
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        Console.WriteLine("(1) Everything\n(2) Choose by Category\n(3) Search");
+        Console.WriteLine("(1) Everything\n(2) Choose by Category");
         string? ans = Console.ReadLine();
         if (ans is not null)
         {
             if (ans == "1")
             {
                 Menu_List.Menu_item.Sort();
-                IEnumerable<Menu[]> menu = Menu_List.Menu_item.Chunk(14);
+                List<Menu[]> menu = Menu_List.Menu_item.Chunk(14).ToList();
                 int Index = 0;
                 while (true)
                 {
-
-                    foreach (Menu item in menu.ElementAt(Index))
+                    foreach (Menu item in menu[Index])
                     {
-
                         Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
                     }
                     Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
@@ -70,14 +68,12 @@ public class Menu : IComparable<Menu>
                 Console.WriteLine("(Fish/Meat/Vegan/Vegetarian)");
                 string? ans1 = Console.ReadLine()!.ToUpper();
                 Menu_List.Menu_item.Sort();
-                IEnumerable<Menu[]> menu = Menu_List.Menu_item.Where(x => x.Category.ToUpper() == ans1).ToList().Chunk(14);
+                List<Menu[]> menu = Menu_List.Menu_item.Where(x => x.Category.ToUpper() == ans1).ToList().Chunk(14).ToList();
                 int Index = 0;
                 while (true)
                 {
-
-                    foreach (Menu item in menu.ElementAt(Index))
+                    foreach (Menu item in menu[Index])
                     {
-
                         Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
                     }
                     Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
@@ -97,23 +93,29 @@ public class Menu : IComparable<Menu>
             {
                 Console.WriteLine("Enter what you are looking for: ");
                 string searchWord = Console.ReadLine()?.ToLower();
-
-                List<Menu> matchingItems = Menu_List.Menu_item
-                    .Where(item => item.Name.ToLower().Contains(searchWord))
+                Menu_List.Menu_item.Sort();
+                List<Menu[]> menu = Menu_List.Menu_item
+                    .Where(item => item.Name.ToLower().Contains(searchWord)).ToList().Chunk(14)
                     .ToList();
 
-                matchingItems.Sort();
 
+                int Index = 0;
                 while (true)
                 {
-                    foreach (Menu item in matchingItems)
+                    foreach (Menu item in menu[Index])
                     {
                         Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
                     }
-
-                    Console.WriteLine("Q to exit");
-                    string choice = Console.ReadLine()?.ToUpper();
-                    if (choice == "Q") { break; }
+                    Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
+                    Console.WriteLine("Enter a page, or (Q) to exit");
+                    string Page = Console.ReadLine()!.ToUpper();
+                    bool Convert = int.TryParse(Page, out int page);
+                    if (Page == "Q") { break; }
+                    if (Convert)
+                    {
+                        if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
+                        else { Index = page - 1; }
+                    }
                 }
             }
         }
