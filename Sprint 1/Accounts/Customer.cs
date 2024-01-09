@@ -27,9 +27,7 @@ public class Customer : IAccount
     {
         Customer customer = new Customer(name, email, password);
         Manager.Customers.Add(customer);
-        string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
-        JArray Object = JArray.Parse(json);
-        ControllerJson.WriteJson(Object, "Customers.json");
+        ControllerJson.WriteJson(Manager.Customers, "Customers.json");
         return customer;
     }
 
@@ -53,9 +51,7 @@ public class Customer : IAccount
             {
                 Console.Write("Please enter your new password: ");
                 customer.Password = Console.ReadLine() ?? password;
-                string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
-                JArray Object = JArray.Parse(json);
-                ControllerJson.WriteJson(Object, "Customers.json");
+                ControllerJson.WriteJson(Manager.Customers, "Customers.json");
                 return customer.Password;
             }
         }
