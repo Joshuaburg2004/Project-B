@@ -24,6 +24,24 @@ public static class Manager
     public static Table_2 table_13 = new Table_2();
     public static Table_2 table_14 = new Table_2();
     public static Table_2 table_15 = new Table_2();
+    
+    public static List<Table> table_list = new() { 
+        table_1,
+        table_2,
+        table_3,
+        table_4,
+        table_5,
+        table_6,
+        table_7,
+        table_8,
+        table_9,
+        table_10,
+        table_11,
+        table_12,
+        table_13,
+        table_14,
+        table_15,
+    };
 
     public static List<Customer> Customers = new();
     public static List<Admin> Admins = new();
