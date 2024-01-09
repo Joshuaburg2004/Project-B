@@ -92,6 +92,28 @@ public class Menu : IComparable<Menu>
                     }
                 }
             }
+            //gemaakt door sami(search functie)
+            else if (ans == "3")
+            {
+                Console.WriteLine("Enter what you are looking for: ");
+                string searchWord = Console.ReadLine()?.ToLower();
+
+                IEnumerable<Menu> matchingItems = Menu_List.Menu_item
+                    .Where(item => item.Name.ToLower().Contains(searchWord))
+                    .ToList();
+
+                while (true)
+                {
+                    foreach (Menu item in matchingItems)
+                    {
+                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                    }
+
+                    Console.WriteLine("Q to exit");
+                    string choice = Console.ReadLine()?.ToUpper();
+                    if (choice == "Q") { break; }
+                }
+            }
         }
     }
 }
