@@ -528,7 +528,26 @@ public class Program
                         double stars = stars_temp / totalreviews;
                         double stars_rounded = Math.Round(stars,1);
                         //Console.WriteLine($"All stars {stars_temp}");
-                        Console.WriteLine($"Average star rating: {stars_rounded}");
+                        if (stars_rounded >= 1 && stars_rounded < 2)
+                        {
+                            Console.WriteLine($"Average star rating: {stars_rounded} *");
+                        }
+                        if (stars_rounded >= 2 && stars_rounded < 3)
+                        {
+                            Console.WriteLine($"Average star rating: {stars_rounded} * *");
+                        }
+                        if (stars_rounded >= 3 && stars_rounded < 4)
+                        {
+                            Console.WriteLine($"Average star rating: {stars_rounded} * * *");
+                        }
+                        if (stars_rounded >= 4 && stars_rounded < 5)
+                        {
+                            Console.WriteLine($"Average star rating: {stars_rounded} * * * *");
+                        }
+                        if (stars_rounded >= 5)
+                        {
+                            Console.WriteLine($"Average star rating: {stars_rounded} * * * * *");
+                        }
 
                     }
                     else
