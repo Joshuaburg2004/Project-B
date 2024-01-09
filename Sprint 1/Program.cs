@@ -909,6 +909,7 @@ public class Program
                                 {
                                     if (date >= DateOnly.FromDateTime(DateTime.Now))
                                         break;
+                                    Console.WriteLine("Incorrect date, please try again.");
                                 }
                                 else if (dateIn == "Q") { end = true; go_back_to_date = false; break; }
                             }
