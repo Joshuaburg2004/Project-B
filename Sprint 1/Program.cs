@@ -325,7 +325,7 @@ public class Program
             {
                 foreach (Reservation reservation in Reservation.All_Reservations)
                 {
-                    Console.WriteLine(reservation.Reservation_Info_Admin());
+                    Console.WriteLine(reservation.Reservation_Info());
                 }
                 Console.WriteLine("\npress the enter key to continue");
                 Console.ReadLine();
@@ -354,9 +354,10 @@ public class Program
             Console.WriteLine("(1) View Menu");
             Console.WriteLine("(2) Change Menu");
             Console.WriteLine("(3) View all reservations");
-            Console.WriteLine("(4) Add Admin");
-            Console.WriteLine("(5) Log out");
-            Console.WriteLine("(6) Close app");
+            Console.WriteLine("(4) View reviews");
+            Console.WriteLine("(5) Add Admin");
+            Console.WriteLine("(6) Log out");
+            Console.WriteLine("(7) Close app");
             string? input = Console.ReadLine();
             // laat het menu zien
             if (input == "1")
@@ -428,7 +429,7 @@ public class Program
                 while (true)
                 {
 
-                    Console.WriteLine("(1) view all - 10 per page \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot");
+                    Console.WriteLine("(1) view all - 10 per page \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot\n(5) show specific timeslot");
                     int? option = Convert.ToInt32(Console.ReadLine());
                     if (option == 1)
                     {
@@ -439,7 +440,7 @@ public class Program
                             Console.WriteLine($"Page number {Index + 1}");
                             foreach (Reservation reservation in reservations.ElementAt(Index))
                             {
-                                Console.WriteLine(reservation.Reservation_Info_Admin());
+                                Console.WriteLine(reservation.Reservation_Info());
                             }
                             Console.WriteLine("Enter a page, or (Q) to exit");
                             string Page = Console.ReadLine()!.ToUpper();
@@ -493,8 +494,36 @@ public class Program
                 Console.WriteLine("\npress the enter key to continue");
                 Console.ReadLine();
             }
-
             if (input == "4")
+            {
+                Console.WriteLine("(1) show all reviews");
+                Console.WriteLine("(2) Show average rating");
+
+                string choiceReview = Console.ReadLine();
+
+                if (choiceReview == "1")
+                {
+                    Console.WriteLine($"All Reviews Count: {Review.AllReviews.Count}");
+
+                    Console.WriteLine("All Reviews:");
+                    foreach (Review review in Review.AllReviews)
+                    {
+                        Console.WriteLine($"ReviewID: {review.ReviewID}, CustomerID: {review.CustomerID}, Review: {review.Text}, Stars: {review.Stars}, Date: {review.Date.ToShortDateString()}");
+                    }
+                }
+                if (choiceReview == "2")
+                {
+                    Console.WriteLine($"Total amounts of reviews: {Review.AllReviews.Count()}");
+                    int stars = 0;
+
+                }
+                
+
+                Console.WriteLine("\npress the enter key to continue");
+                Console.ReadLine();
+            }
+
+            if (input == "5")
             {
                 bool NameCheck = false;
                 bool EmailCheck = false;
@@ -554,12 +583,12 @@ public class Program
                     Admin.CreateAdmin(name, email, password);
             }
             // logt uit
-            if (input == "5")
+            if (input == "6")
             {
                 return;
             }
             // exit het programma
-            if (input == "6")
+            if (input == "7")
             {
                 Console.WriteLine("Goodbye and see you soon!");
                 System.Environment.Exit(0);
@@ -578,8 +607,9 @@ public class Program
             Console.WriteLine("(2) Reserve a table");
             Console.WriteLine("(3) View reservations");
             Console.WriteLine("(4) Change or cancel reservation");
-            Console.WriteLine("(5) Log out");
-            Console.WriteLine("(6) Close app");
+            Console.WriteLine("(5) Leave a review");
+            Console.WriteLine("(6) Log out");
+            Console.WriteLine("(7) Close app");
             string? input = Console.ReadLine();
             if (input is not null)
             {
@@ -1043,13 +1073,60 @@ public class Program
                     Console.WriteLine("\npress the enter key to continue");
                     Console.ReadLine();
                 }
-                // logt uit
                 if (input == "5")
+                //gemaakt door sami
+                {
+                    int customerID = customer.ID;
+
+                    Console.WriteLine("Enter your review text (type 'Q' to exit):");
+                    string reviewText = Console.ReadLine();
+
+                    if (reviewText.ToUpper() == "Q")
+                    {
+                        Console.WriteLine("Review submission canceled.");
+                        break;
+                    }
+
+                    Console.WriteLine("Enter the number of stars (1-5):");
+                    string starsInput = Console.ReadLine();
+
+                    if (starsInput.ToUpper() == "Q")
+                    {
+                        Console.WriteLine("Review submission canceled.");
+                        break;
+                    }
+
+                    if (int.TryParse(starsInput, out int stars) && stars >= 1 && stars <= 5)
+                    {
+                        DateTime currentDate = DateTime.Now;
+
+                        Review review = new Review(Review.AllReviews.Count + 1, customerID, reviewText, stars, currentDate);
+                        Review.AllReviews.Add(review);
+
+                        Console.WriteLine("All Reviews:");
+                        foreach (Review each_review in Review.AllReviews)
+                        {
+                            Console.WriteLine($"ReviewID: {each_review.ReviewID}, CustomerID: {each_review.CustomerID}, Text: {each_review.Text}, Stars: {each_review.Stars}, Date: {each_review.Date}");
+                        }
+
+                        string jsonReviews = JsonConvert.SerializeObject(Review.AllReviews, Formatting.Indented);
+                        JArray reviewsObject = JArray.Parse(jsonReviews);
+                        ControllerJson.WriteJson(reviewsObject, "Reviews.json");
+
+                        Console.WriteLine("Review submitted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input for stars. Review not submitted.");
+                    }
+                }
+                // logt uit
+                if (input == "6")
                 {
                     return;
                 }
                 // laat je het programma uit
-                if (input == "6")
+                if (input == "7")
                 {
                     Console.WriteLine("Goodbye and see you soon!");
                     System.Environment.Exit(0);
@@ -1057,4 +1134,5 @@ public class Program
             }
         }
     }
+
 }
