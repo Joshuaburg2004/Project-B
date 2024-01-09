@@ -252,12 +252,8 @@ public class Customer : IAccount
                 }
 
                 // Update the JSON file after making changes
-                string json = JsonConvert.SerializeObject(My_Reservation, Formatting.Indented);
-                JArray Object = JArray.Parse(json);
-                ControllerJson.WriteJson(Object, "Reservations.json");
-                string json1 = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
-                JArray Object1 = JArray.Parse(json1);
-                ControllerJson.WriteJson(Object1, "Customers.json");
+                ControllerJson.WriteJson(My_Reservation, "Reservations.json");
+                ControllerJson.WriteJson(Manager.Customers, "Customers.json");
 
                 Console.WriteLine("Reservation updated successfully.");
                 return;
@@ -282,9 +278,7 @@ public class Customer : IAccount
         if (GetCustomerByID(ID) != null)
         {
             My_Reservation.Add(new Reservation(ID, table, guest, date, time));
-            string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
-            JArray Object = JArray.Parse(json);
-            ControllerJson.WriteJson(Object, "Customers.json");
+            ControllerJson.WriteJson(Manager.Customers, "Customers.json");
         }
     }
 
@@ -323,7 +317,4 @@ public class Customer : IAccount
     {
         return $"ID: {customer.ID}, Name: {customer.Name}, Email: {customer.Email}, Role: {customer.Role}";
     }
-
 }
-
-
