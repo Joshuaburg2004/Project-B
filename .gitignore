@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs
+/Sprint 1/JSON/Admins.json
+/Sprint 1/JSON/Menu.json
+/Sprint 1/JSON/Customers.json
+/Sprint 1/JSON/Reservations.json
+/Sprint 1/JSON/Reviews.json
+/Sprint 1/JSON/Tables.json
