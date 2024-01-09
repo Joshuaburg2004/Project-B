@@ -49,9 +49,7 @@ public static class Menu_List
                 if(menu.Name == name && menu.Category == category && menu.Price == price1)
                 {
                     Menu_item.Remove(menu);
-                    string json = JsonConvert.SerializeObject(Menu_item, Formatting.Indented);
-                    JArray Object = JArray.Parse(json);
-                    ControllerJson.WriteJson(Object, "Menu.json");
+                    ControllerJson.WriteJson(Menu_item, "Menu.json");
                     return true;
                 }
             }
