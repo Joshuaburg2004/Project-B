@@ -674,10 +674,11 @@ public class Program
                     bool go_back_to_guests = true;
                     bool go_back_to_table = true;
                     bool go_back_to_date = true;
+                    bool bad_table_and_guests_combo = false;
                     //wat nieuws proberen
                     while (true)
                     {
-
+                        bad_table_and_guests_combo = false;
 
                         // guest loop
                         while (go_back_to_guests is true)
@@ -727,13 +728,13 @@ public class Program
                                 case 1:
                                 case 2:
                                     {
-                                        Console.Write("What table do you wish to reserve? (due to the number of guests you can only reserve tables 8 to 15) \n(16) to go back to date selection \n(17) to quit ");
+                                        Console.WriteLine("What table do you wish to reserve? (due to the number of guests you can only reserve tables 8 to 15) \n(16) to go back to guest selection \n(17) to quit ");
                                         string? tableIn = Console.ReadLine();
                                         Int32.TryParse(tableIn, out table);
                                         if (table <= 0 || table >= 18)
                                         {
                                             Console.WriteLine("Please enter a valid table number");
-                                            Console.ReadLine();
+                                            continue;
                                         }
                                         else if (table == 16)
                                         {
@@ -766,6 +767,7 @@ public class Program
                                         else if (table > 0 && table < 8)
                                         {
                                             Console.WriteLine("Due to the number of guests this table is not available");
+                                            bad_table_and_guests_combo = true;
                                             break;
                                         }
                                         break;
@@ -773,26 +775,27 @@ public class Program
                                 case 3:
                                 case 4:
                                     {
-                                        Console.Write("What table do you wish to reserve? (due to the number of guests you can only reserve tables 3 to 7) (16) to go back to date selection, (17) to quit ");
+                                        Console.WriteLine("What table do you wish to reserve? (due to the number of guests you can only reserve tables 3 to 7) (16) to go back to guest selection, (17) to quit ");
                                         string? tableIn = Console.ReadLine();
                                         Int32.TryParse(tableIn, out table);
                                         if (table <= 0 || table >= 18)
                                         {
                                             Console.WriteLine("Please enter a valid table number");
-                                            Console.ReadLine();
+                                            continue;
                                         }
                                         else if (table > 0 && table < 3 && table > 7)
                                         {
                                             Console.WriteLine("Due to the number of guests this table is not available");
+                                            bad_table_and_guests_combo = true;
                                             break;
                                         }
                                         else if (table == 16)
                                         {
-                                            Console.WriteLine("Are you sure you want to go back to date selection? (1) yes (2) no ");
+                                            Console.WriteLine("Are you sure you want to go back to guest selection? (1) yes (2) no ");
                                             int confirmation = Convert.ToInt32(Console.ReadLine());
                                             if (confirmation == 1)
                                             {
-                                                go_back_to_date = true;
+                                                go_back_to_guests = true;
                                                 break;
                                             }
                                             else if (confirmation == 2)
@@ -819,21 +822,21 @@ public class Program
                                 case 5:
                                 case 6:
                                     {
-                                        Console.Write("What table do you wish to reserve? (due to the number of guests you can only reserve tables 1 or 2) \n(16) to go back to date selection \n(17) to quit");
+                                        Console.WriteLine("What table do you wish to reserve? (due to the number of guests you can only reserve tables 1 or 2) \n(16) to go back to guest selection \n(17) to quit");
                                         string? tableIn = Console.ReadLine();
                                         Int32.TryParse(tableIn, out table);
                                         if (table <= 0 || table >= 18)
                                         {
                                             Console.WriteLine("Please enter a valid table number");
-                                            Console.ReadLine();
+                                            continue;
                                         }
-                                        else if (table == 16)
+                                        if (table == 16)
                                         {
-                                            Console.WriteLine("Are you sure you want to go back to date selection? (1) yes (2) no ");
+                                            Console.WriteLine("Are you sure you want to go back to guest selection? (1) yes (2) no ");
                                             int confirmation = Convert.ToInt32(Console.ReadLine());
                                             if (confirmation == 1)
                                             {
-                                                go_back_to_date = true;
+                                                go_back_to_guests = true;
                                                 break;
                                             }
                                             else if (confirmation == 2)
@@ -841,7 +844,7 @@ public class Program
                                                 continue;
                                             }
                                         }
-                                        else if (table == 17)
+                                        if (table == 17)
                                         {
                                             Console.WriteLine("Are you sure you want to go quit? (1) yes (2) no ");
                                             int confirmation = Convert.ToInt32(Console.ReadLine());
@@ -855,9 +858,10 @@ public class Program
                                                 continue;
                                             }
                                         }
-                                        else if (table > 3)
+                                        if (table > 3)
                                         {
                                             Console.WriteLine("Due to the number of guests this table is not available");
+                                            bad_table_and_guests_combo = true;
                                             break;
                                         }
                                         break;
@@ -872,6 +876,8 @@ public class Program
                                 end = true;
                                 break;
                             }
+                            if (bad_table_and_guests_combo)
+                                break;
 
                             Console.WriteLine($"You chose table {table}, are you sure? (1) yes (2) no ");
                             int confirmation1 = Convert.ToInt32(Console.ReadLine());
@@ -885,7 +891,11 @@ public class Program
                                 continue;
                             }
                         }
-                        if (end is true)
+                        if (bad_table_and_guests_combo)
+                            continue;
+                        if (go_back_to_guests)
+                            continue;
+                        if (end)
                             break;
                         
                         // date loop
