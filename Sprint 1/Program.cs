@@ -513,8 +513,30 @@ public class Program
                 }
                 if (choiceReview == "2")
                 {
-                    Console.WriteLine($"Total amounts of reviews: {Review.AllReviews.Count()}");
-                    int stars = 0;
+                    int totalreviews = Review.AllReviews.Count();
+                    if(totalreviews > 0)
+                    {
+                        Console.WriteLine($"Total amounts of reviews: {Review.AllReviews.Count()}");
+                        double stars_temp = 0;
+                        
+
+                        foreach( Review review in Review.AllReviews)
+                        {
+                            stars_temp += review.Stars;
+
+                        }
+                        double stars = stars_temp / totalreviews;
+                        double stars_rounded = Math.Round(stars,1);
+                        //Console.WriteLine($"All stars {stars_temp}");
+                        Console.WriteLine($"Average star rating: {stars_rounded}");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("There are no reviews");
+
+                    }
+
 
                 }
                 
