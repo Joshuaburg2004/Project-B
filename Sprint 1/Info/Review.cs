@@ -20,7 +20,6 @@ public class Review
     public static List<Review> AllReviews { get; }
     static Review()
     {
-        string? FileCont = ControllerJson.ReadJson("Reviews.json");
-        AllReviews = JsonConvert.DeserializeObject<List<Review>>(FileCont) ?? new List<Review>{};
+        AllReviews = ControllerJson.ReadJson<Review>("Reviews.json") ?? new List<Review> { };
     }
 }
