@@ -901,131 +901,132 @@ public class Program
                         // date loop
                         while (go_back_to_date)
                         {
-
-                            Console.Write("Which date do you wish to reserve the table? (DD/MM/YYYY) ");
-                            string? dateIn = Console.ReadLine();
-
-                            if (DateOnly.TryParseExact(dateIn, "d/MM/yyyy", out date))
+                            while (true)
                             {
-                                if (date <= DateOnly.FromDateTime(DateTime.Now))
-                                    continue;
-                            }
-
-                            Console.WriteLine($"You chose {date}, Are you sure? (1) yes (2) no ");
-                            int confirmation1 = Convert.ToInt32(Console.ReadLine());
-                            if (confirmation1 == 1)
-                            {
-                                go_back_to_date = false;
-                            }
-                            else if (confirmation1 == 2)
-                            {
-                                continue;
-                            }
-                            Console.WriteLine(date);
-
-
-                            for (int i = 1;  i < Manager.table_list.Count; i++) 
-                            {
-                                if (i == table)
+                                Console.Write("Which date do you wish to reserve the table? (DD/MM/YYYY) or press Q to quit: ");
+                                string? dateIn = Console.ReadLine()!.ToUpper();
+                                if (DateOnly.TryParseExact(dateIn, "dd/MM/yyyy", out date))
                                 {
-                                    if (!Manager.table_list[i].TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_list[i].TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_list[i].TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_list[i].TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_list[i].TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_list[i].TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_list[i].TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_list[i].TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_list[i].TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_list[i].TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
+                                    if (date >= DateOnly.FromDateTime(DateTime.Now))
+                                        break;
                                 }
+                                else if (dateIn == "Q") { end = true; go_back_to_date = false; break; }
                             }
-                            Console.WriteLine("Enter the number of the timeslot you wish to reserve (11) quit (12) return to table selection (13) re-enter date and time");
-                            string? time = Console.ReadLine();
-                            Int32.TryParse(time, out int timeslot);
-                            if (timeslot == 11)
+                            if (!end)
                             {
-                                end = true;
-                                break;
-                            }
-                            if (timeslot == 12)
-                            {
-                                go_back_to_table = true;
-                                break;
-                            }
-                            if (timeslot == 13)
-                            {
-                                continue;
-                            }
-
-                            Console.WriteLine($"{guests}, {table}, {date}");
-
-                            switch (timeslot)
-                            {
-                                case 1: 
-                                    Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    break;
-                                case 2:
-                                    Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    break;
-                                case 3:
-                                    Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    break;
-                                case 4:
-                                    Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    break;
-                                case 5:
-                                    Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    break;
-                                case 6:
-                                    Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    break;
-                                case 7:
-                                    Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    break;
-                                case 8:
-                                    Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    break;
-                                case 9:
-                                    Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    break;
-                                case 10:
-                                    Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                            }
-
-                            Console.WriteLine("Are you sure you want this guests, table, date and time (1) yes (2) no");
-                            int confirmation = Convert.ToInt32(Console.ReadLine());
-                            if (confirmation == 1)
-                            {
-                                customer.Add_Reservation(table, guests, date, time);
-                                go_back_to_date = false;
-                                end = true;
-                                break;
-                            }
-                            else if (confirmation == 2)
-                            {
-                                Console.WriteLine("Do you want to change (1) guests (2) table (3 or higher) date and time");
-                                int confirmation2 = Convert.ToInt32(Console.ReadLine());
-                                if (confirmation2 == 1)
+                                Console.WriteLine($"You chose {date}, Are you sure? (1) yes (2) no ");
+                                int confirmation1 = Convert.ToInt32(Console.ReadLine());
+                                if (confirmation1 == 1)
                                 {
-                                    go_back_to_guests = true;
+                                    go_back_to_date = false;
+                                }
+                                else if (confirmation1 == 2)
+                                {
                                     continue;
                                 }
-                                else if (confirmation2 == 2) 
+                                Console.WriteLine(date);
+
+                                for (int i = 1; i < Manager.table_list.Count; i++)
+                                {
+                                    if (i == table)
+                                    {
+                                        if (!Manager.table_list[i].TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
+                                        if (!Manager.table_list[i].TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
+                                        if (!Manager.table_list[i].TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
+                                        if (!Manager.table_list[i].TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
+                                        if (!Manager.table_list[i].TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
+                                        if (!Manager.table_list[i].TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
+                                        if (!Manager.table_list[i].TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
+                                        if (!Manager.table_list[i].TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
+                                        if (!Manager.table_list[i].TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
+                                        if (!Manager.table_list[i].TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
+                                        break;
+                                    }
+                                }
+                                Console.WriteLine("Enter the number of the timeslot you wish to reserve (11) quit (12) return to table selection (13) re-enter date and time");
+                                string? time = Console.ReadLine();
+                                Int32.TryParse(time, out int timeslot);
+                                if (timeslot == 11)
+                                {
+                                    end = true;
+                                    break;
+                                }
+                                if (timeslot == 12)
                                 {
                                     go_back_to_table = true;
-                                    continue;
+                                    break;
                                 }
-                                else if (confirmation2 >= 3)
+                                if (timeslot == 13)
                                 {
-                                    go_back_to_date = true;
                                     continue;
                                 }
 
-                            }
+                                Console.WriteLine($"{guests}, {table}, {date}");
 
+                                switch (timeslot)
+                                {
+                                    case 1:
+                                        Console.WriteLine("Timeslot 1: 10:00-11:00");
+                                        break;
+                                    case 2:
+                                        Console.WriteLine("Timeslot 2: 11:00-12:00");
+                                        break;
+                                    case 3:
+                                        Console.WriteLine("Timeslot 3: 12:00-13:00");
+                                        break;
+                                    case 4:
+                                        Console.WriteLine("Timeslot 4: 13:00-14:00");
+                                        break;
+                                    case 5:
+                                        Console.WriteLine("Timeslot 5: 14:00-15:00");
+                                        break;
+                                    case 6:
+                                        Console.WriteLine("Timeslot 6: 15:00-16:00");
+                                        break;
+                                    case 7:
+                                        Console.WriteLine("Timeslot 7: 16:00-17:00");
+                                        break;
+                                    case 8:
+                                        Console.WriteLine("Timeslot 8: 17:00-18:00");
+                                        break;
+                                    case 9:
+                                        Console.WriteLine("Timeslot 9: 18:00-20:00");
+                                        break;
+                                    case 10:
+                                        Console.WriteLine("Timeslot 10: 20:00-22:00");
+                                        break;
+                                }
+
+                                Console.WriteLine("Are you sure you want this guests, table, date and time (1) yes (2) no");
+                                int confirmation = Convert.ToInt32(Console.ReadLine());
+                                if (confirmation == 1)
+                                {
+                                    customer.Add_Reservation(table, guests, date, time);
+                                    go_back_to_date = false;
+                                    end = true;
+                                    break;
+                                }
+                                else if (confirmation == 2)
+                                {
+                                    Console.WriteLine("Do you want to change (1) guests (2) table (3 or higher) date and time");
+                                    int confirmation2 = Convert.ToInt32(Console.ReadLine());
+                                    if (confirmation2 == 1)
+                                    {
+                                        go_back_to_guests = true;
+                                        continue;
+                                    }
+                                    else if (confirmation2 == 2)
+                                    {
+                                        go_back_to_table = true;
+                                        continue;
+                                    }
+                                    else if (confirmation2 >= 3)
+                                    {
+                                        go_back_to_date = true;
+                                        continue;
+                                    }
+                                }
+                            }
                         }
                         if (end)
                             break;
@@ -1109,5 +1110,4 @@ public class Program
             }
         }
     }
-
 }
