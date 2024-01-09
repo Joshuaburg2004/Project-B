@@ -1056,8 +1056,12 @@ public class Program
                             }
                         }
                     }
-                    ControllerJson.WriteJson(customer.My_Reservation, "Reservations.json");
-                    ControllerJson.WriteJson(Manager.Customers, "Customers.json");
+                    string json = JsonConvert.SerializeObject(customer.My_Reservation, Formatting.Indented);
+                    JArray Object = JArray.Parse(json);
+                    ControllerJson.WriteJson(Object, "Reservations.json");
+                    string json1 = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
+                    JArray Object1 = JArray.Parse(json1);
+                    ControllerJson.WriteJson(Object1, "Customers.json");
                 }
                 // laat de reservatie zien
                 if (input == "3")

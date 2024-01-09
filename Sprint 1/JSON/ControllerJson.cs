@@ -5,12 +5,13 @@ using System.Text;
 public class ControllerJson
 {
     // Schrijft een object naar de json
-    public static bool WriteJson<T>(T ObjectToJson, string FileName)
+    // Gebruik de volgende code (waarbij ObjectToJson je list is) om het naar de Json te sturen:
+    // string json = JsonConvert.SerializeObject(ObjectToJson, Formatting.Indented);
+    // JArray Object = JArray.Parse(json);
+    public static bool WriteJson(JArray Object, string FileName)
     {
         try
         {
-            string json = JsonConvert.SerializeObject(ObjectToJson);
-            JArray Object = JArray.Parse(json);
             using (StreamWriter file = File.CreateText(@FileName))
             using (JsonTextWriter writer = new JsonTextWriter(file))
             {
@@ -32,13 +33,15 @@ public class ControllerJson
         }
     }
     // Leest een json uit
-    public static List<T>? ReadJson<T>(string FileName)
+    // gebruik volgende 2 lijnen om te benutten (verander Type naar het type wat je nodig hebt en verander ListName naar wat je wil):
+    // string FileCont = ReadJson("file.json");
+    // List<Type> ListName = JsonConvert.DeserializeObject<List<Type>>(FileCont);
+    public static string? ReadJson(string FileName)
     {
         try
         {
             string FileContent = File.ReadAllText(@FileName);
-            List<T>? output = JsonConvert.DeserializeObject<List<T>>(FileContent);
-            return output;
+            return FileContent;
         }
         catch (FileNotFoundException ex)
         {

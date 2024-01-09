@@ -23,7 +23,9 @@ public class Admin : IAccount
     {
         Admin admin = new Admin(name, email, password);
         Manager.Admins.Add(admin);
-        ControllerJson.WriteJson(Manager.Admins, "Admins.json");
+        string json = JsonConvert.SerializeObject(Manager.Admins, Formatting.Indented);
+        JArray Object = JArray.Parse(json);
+        ControllerJson.WriteJson(Object, "Admins.json");
         return admin;
     }
     public static Admin? GetAdminByID(int id)
@@ -45,7 +47,9 @@ public class Admin : IAccount
             {
                 Console.Write("Please enter your new password: ");
                 admin.Password = Console.ReadLine() ?? password;
-                ControllerJson.WriteJson(Manager.Admins, "Admins.json");
+                string json = JsonConvert.SerializeObject(Manager.Admins, Formatting.Indented);
+                JArray Object = JArray.Parse(json);
+                ControllerJson.WriteJson(Object, "Admins.json");
                 return admin.Password;
             }
         }

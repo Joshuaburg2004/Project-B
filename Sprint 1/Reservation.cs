@@ -16,7 +16,16 @@ public class Reservation
     // leest reservations.json uit en zet het binnen de list
     static Reservation()
     {
-        All_Reservations = ControllerJson.ReadJson<Reservation>("Reservations.json") ?? new List<Reservation> { }; 
+        string? FileCont = ControllerJson.ReadJson("Reservations.json");
+        if (FileCont is not null)
+        { 
+            All_Reservations = JsonConvert.DeserializeObject<List<Reservation>>(FileCont) ?? new();
+            nextID = All_Reservations.Count;
+        }
+        else
+        {
+            All_Reservations = new();
+        }   
     }
     // constructor. Schrijft het ook naar de json
     public Reservation(int customerId, int table, int guest, DateOnly date, string time)
@@ -28,7 +37,9 @@ public class Reservation
         Date = date;
         Time = time;
         All_Reservations.Add(this);
-        ControllerJson.WriteJson(All_Reservations, "Reservations.json");
+        string json = JsonConvert.SerializeObject(All_Reservations, Formatting.Indented);
+        JArray Object = JArray.Parse(json);
+        ControllerJson.WriteJson(Object, "Reservations.json");
     }
 
     // returned de informatie van de reservatie

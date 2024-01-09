@@ -31,15 +31,24 @@ public static class Manager
 
     static Manager()
     {
-        List<Table>? Tables = new();
-        Customers = ControllerJson.ReadJson<Customer>("Customers.json") ?? new List<Customer> { };
-        Admins = ControllerJson.ReadJson<Admin>("Admins.json") ?? new List<Admin> { };
-        Tables = ControllerJson.ReadJson<Table>("Tables.json");
-        if(Tables is null || Tables.Count != 15) 
+        List<Table> Tables = new();
+        string? FileCont1 = ControllerJson.ReadJson("Customers.json");
+        if(FileCont1 is not null)
         {
-            Tables = new List<Table>() { table_1, table_2, table_3, table_4, table_5, table_6, table_7, table_8, table_9, table_10, table_11, table_12, table_13, table_14, table_15 };
+            Customers = JsonConvert.DeserializeObject<List<Customer>>(FileCont1) ?? new List<Customer> { };
         }
-        else
+        string? FileCont2 = ControllerJson.ReadJson("Admins.json");
+        if(FileCont2 is not null)
+        {
+            Admins = JsonConvert.DeserializeObject<List<Admin>>(FileCont2) ?? new List<Admin> { };
+        }
+        string? FileCont3 = ControllerJson.ReadJson("Tables.json");
+        if (FileCont3 is not null)
+        {
+            Tables = JsonConvert.DeserializeObject<List<Table>>(FileCont3) ?? new List<Table> { };
+
+        }
+        if (Tables.Count == 15)
         {
             table_1 = (Table_6)Tables[0];
             table_2 = (Table_6)Tables[1];
@@ -56,6 +65,10 @@ public static class Manager
             table_13 = (Table_2)Tables[12];
             table_14 = (Table_2)Tables[13];
             table_15 = (Table_2)Tables[14];
-        }       
+        }
+        else
+        {
+            Tables = new List<Table>() { table_1, table_2, table_3, table_4, table_5, table_6, table_7, table_8, table_9, table_10, table_11, table_12, table_13, table_14, table_15 };
+        }
     }
 }

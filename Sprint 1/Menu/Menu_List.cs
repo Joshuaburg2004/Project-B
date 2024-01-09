@@ -10,7 +10,15 @@ public static class Menu_List
     static Menu_List()
     {
         // leest het menu uit de json
-        Menu_item = ControllerJson.ReadJson<Menu>("Menu.json") ?? new List<Menu> { };
+        string? FileCont = ControllerJson.ReadJson("Menu.json");
+        if (FileCont is not null)
+        { 
+            Menu_item = JsonConvert.DeserializeObject<List<Menu>>(FileCont) ?? new List<Menu> { }; 
+        }
+        else
+        {
+            Menu_item = new List<Menu> { };
+        }
     }
     // Print alle items.
     public static void view()
@@ -33,7 +41,9 @@ public static class Menu_List
         if(name1 is not null && category1 is not null && price1 is not null)
         {
             Menu_item.Add(new Menu(name1, category1, Convert.ToDouble(price1)));
-            ControllerJson.WriteJson(Menu_item, "Menu.json");
+            string json = JsonConvert.SerializeObject(Menu_item, Formatting.Indented);
+            JArray Object = JArray.Parse(json);
+            ControllerJson.WriteJson(Object, "Menu.json");
             return true;
         }
         return false;
@@ -49,7 +59,9 @@ public static class Menu_List
                 if(menu.Name == name && menu.Category == category && menu.Price == price1)
                 {
                     Menu_item.Remove(menu);
-                    ControllerJson.WriteJson(Menu_item, "Menu.json");
+                    string json = JsonConvert.SerializeObject(Menu_item, Formatting.Indented);
+                    JArray Object = JArray.Parse(json);
+                    ControllerJson.WriteJson(Object, "Menu.json");
                     return true;
                 }
             }

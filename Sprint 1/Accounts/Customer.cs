@@ -27,7 +27,9 @@ public class Customer : IAccount
     {
         Customer customer = new Customer(name, email, password);
         Manager.Customers.Add(customer);
-        ControllerJson.WriteJson(Manager.Customers, "Customers.json");
+        string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
+        JArray Object = JArray.Parse(json);
+        ControllerJson.WriteJson(Object, "Customers.json");
         return customer;
     }
 
@@ -51,7 +53,9 @@ public class Customer : IAccount
             {
                 Console.Write("Please enter your new password: ");
                 customer.Password = Console.ReadLine() ?? password;
-                ControllerJson.WriteJson(Manager.Customers, "Customers.json");
+                string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
+                JArray Object = JArray.Parse(json);
+                ControllerJson.WriteJson(Object, "Customers.json");
                 return customer.Password;
             }
         }
@@ -252,8 +256,12 @@ public class Customer : IAccount
                 }
 
                 // Update the JSON file after making changes
-                ControllerJson.WriteJson(My_Reservation, "Reservations.json");
-                ControllerJson.WriteJson(Manager.Customers, "Customers.json");
+                string json = JsonConvert.SerializeObject(My_Reservation, Formatting.Indented);
+                JArray Object = JArray.Parse(json);
+                ControllerJson.WriteJson(Object, "Reservations.json");
+                string json1 = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
+                JArray Object1 = JArray.Parse(json1);
+                ControllerJson.WriteJson(Object1, "Customers.json");
 
                 Console.WriteLine("Reservation updated successfully.");
                 return;
@@ -278,7 +286,9 @@ public class Customer : IAccount
         if (GetCustomerByID(ID) != null)
         {
             My_Reservation.Add(new Reservation(ID, table, guest, date, time));
-            ControllerJson.WriteJson(Manager.Customers, "Customers.json");
+            string json = JsonConvert.SerializeObject(Manager.Customers, Formatting.Indented);
+            JArray Object = JArray.Parse(json);
+            ControllerJson.WriteJson(Object, "Customers.json");
         }
     }
 
