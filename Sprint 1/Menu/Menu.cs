@@ -35,7 +35,7 @@ public class Menu : IComparable<Menu>
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        Console.WriteLine("(1) Everything\n(2) Choose by Category");
+        Console.WriteLine("(1) Everything\n(2) Choose by Category\n(3) Search");
         string? ans = Console.ReadLine();
         if (ans is not null)
         {
@@ -98,9 +98,11 @@ public class Menu : IComparable<Menu>
                 Console.WriteLine("Enter what you are looking for: ");
                 string searchWord = Console.ReadLine()?.ToLower();
 
-                IEnumerable<Menu> matchingItems = Menu_List.Menu_item
+                List<Menu> matchingItems = Menu_List.Menu_item
                     .Where(item => item.Name.ToLower().Contains(searchWord))
                     .ToList();
+
+                matchingItems.Sort();
 
                 while (true)
                 {
@@ -114,6 +116,9 @@ public class Menu : IComparable<Menu>
                     if (choice == "Q") { break; }
                 }
             }
+        }
+    }
+}
         }
     }
 }
