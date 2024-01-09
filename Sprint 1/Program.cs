@@ -665,442 +665,366 @@ public class Program
                 if (input == "2")
                 {
                     RestaurantLayout.ViewLayout();
+                    // prototype reserveren
                     DateOnly date;
-                    while (true)
-                    {
-                        Console.Write("Which date do you wish to reserve the table? (DD/MM/YYYY) ");
-                        string? dateIn = Console.ReadLine();
-
-                        if (DateOnly.TryParseExact(dateIn, "d/MM/yyyy", out date))
-                        {
-                            if (date <= DateOnly.FromDateTime(DateTime.Now))
-                                continue;
-                            else
-                                break;
-                        }
-                    }
-
+                    int guests = 0;
                     int table = 0;
+
+                    bool end = false;
+                    bool go_back_to_guests = true;
+                    bool go_back_to_table = true;
+                    bool go_back_to_date = true;
+                    //wat nieuws proberen
                     while (true)
                     {
-                        Console.Write("What table do you wish to reserve? (1-15, bar cannot be reserved) ");
-                        string? tableIn = Console.ReadLine();
-                        Int32.TryParse(tableIn, out table);
-                        if (table == 0)
+
+
+                        // guest loop
+                        while (go_back_to_guests is true)
                         {
-                            Console.WriteLine("Please enter a valid table number");
-                            Console.ReadLine();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Available times:");
-                            switch (table)
-                            {
-                                case 1:
-                                    if (!Manager.table_1.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_1.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_1.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_1.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_1.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_1.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_1.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_1.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_1.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_1.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 2:
-                                    if (!Manager.table_2.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_2.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_2.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_2.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_2.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_2.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_2.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_2.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_2.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_2.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 3:
-                                    if (!Manager.table_3.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_3.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_3.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_3.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_3.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_3.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_3.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_3.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_3.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_3.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 4:
-                                    if (!Manager.table_4.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_4.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_4.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_4.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_4.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_4.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_4.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_4.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_4.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_4.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 5:
-                                    if (!Manager.table_5.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_5.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_5.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_5.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_5.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_5.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_5.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_5.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_5.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_5.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 6:
-                                    if (!Manager.table_6.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_6.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_6.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_6.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_6.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_6.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_6.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_6.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_6.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_6.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 7:
-                                    if (!Manager.table_7.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_7.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_7.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_7.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_7.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_7.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_7.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_7.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_7.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_7.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 8:
-                                    if (!Manager.table_8.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_8.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_8.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_8.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_8.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_8.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_8.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_8.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_8.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_8.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 9:
-                                    if (!Manager.table_9.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_9.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_9.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_9.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_9.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_9.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_9.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_9.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_9.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_9.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 10:
-                                    if (!Manager.table_10.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_10.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_10.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_10.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_10.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_10.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_10.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_10.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_10.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_10.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 11:
-                                    if (!Manager.table_11.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_11.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_11.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_11.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_11.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_11.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_11.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_11.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_11.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_11.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 12:
-                                    if (!Manager.table_12.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_12.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_12.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_12.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_12.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_12.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_12.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_12.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_12.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_12.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 13:
-                                    if (!Manager.table_13.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_13.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_13.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_13.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_13.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_13.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_13.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_13.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_13.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_13.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 14:
-                                    if (!Manager.table_14.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_14.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_14.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_14.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_14.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_14.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_14.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_14.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_14.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_14.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                case 15:
-                                    if (!Manager.table_15.TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                    if (!Manager.table_15.TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                    if (!Manager.table_15.TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                    if (!Manager.table_15.TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                    if (!Manager.table_15.TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                    if (!Manager.table_15.TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                    if (!Manager.table_15.TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                    if (!Manager.table_15.TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                    if (!Manager.table_15.TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                    if (!Manager.table_15.TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                    break;
-                                default:
-                                    Console.WriteLine("Please enter a valid table number");
-                                    break;
-
-                            }
-                            Console.WriteLine("Is this the table you want to reserve (1 yes, 2 no)");
-                            string? confirmation = Console.ReadLine();
-                            if (confirmation == "1")
-                            {
-                                break;
-                            }
-                            else if (confirmation == "2")
-                            {
-                                continue;
-                            }
-                            else { Console.WriteLine("Please enter a valid number"); }
-                        }
-
-
-                    }
-
-                    Table? tableReserve;
-                    tableReserve = table switch
-                    {
-                        1 => Manager.table_1,
-                        2 => Manager.table_2,
-                        3 => Manager.table_3,
-                        4 => Manager.table_4,
-                        5 => Manager.table_5,
-                        6 => Manager.table_6,
-                        7 => Manager.table_7,
-                        8 => Manager.table_8,
-                        9 => Manager.table_9,
-                        10 => Manager.table_10,
-                        11 => Manager.table_11,
-                        12 => Manager.table_12,
-                        13 => Manager.table_13,
-                        14 => Manager.table_14,
-                        15 => Manager.table_15,
-                        _ => null
-                    };
-                    if (tableReserve != null)
-                    {
-                        int guests = 0;
-                        while (guests < tableReserve!.MinGuests || guests > tableReserve!.MaxGuests)
-                        {
-                            Console.Write("How many guests do you expect? ");
+                            Console.Write("How many guests do you expect? \n(0) to quit");
+                            Console.WriteLine("");
                             string? guestsIn = Console.ReadLine();
                             Int32.TryParse(guestsIn, out guests);
-                            // de error fix is gemaakt door Alperen
-                            if (guests < tableReserve!.MinGuests || guests > tableReserve!.MaxGuests)
+                            if (guests == 0)
                             {
-                                Console.WriteLine($"Wrong guest input, for table {table} you need a minimum of {tableReserve.MinGuests} and a maximum of {tableReserve.MaxGuests} people. Please contact the restaurant if you are planning to bring a larger group.");
+                                end = true;
+                                break;
+                            }
+                            else if (guests < 0)
+                            {
+                                Console.WriteLine("Please enter a valid number");
+                                continue;
+                            }
+                            else if (guests > 6)
+                            {
+                                RestaurantInfo info = new();
+                                Console.WriteLine($"If you wish to reserve a table for more than 6 guests you will need to call us at: {info.Telefoonnummer})");
+                                continue;
                             }
 
-                        }
-                        bool t1 = false;
-                        bool t2 = false;
-                        bool t3 = false;
-                        bool t4 = false;
-                        bool t5 = false;
-                        bool t6 = false;
-                        bool t7 = false;
-                        bool t8 = false;
-                        bool t9 = false;
-                        bool t10 = false;
-                        bool reserved = false;
-                        while (reserved == false)
-                        {
-                            if (!tableReserve.TimeSlot_1_reserved.Contains(date)) { Console.WriteLine("Timeslot 1: 10:00-11:00"); t1 = true; }
-                            if (!tableReserve.TimeSlot_2_reserved.Contains(date)) { Console.WriteLine("Timeslot 2: 11:00-12:00"); t2 = true; }
-                            if (!tableReserve.TimeSlot_3_reserved.Contains(date)) { Console.WriteLine("Timeslot 3: 12:00-13:00"); t3 = true; }
-                            if (!tableReserve.TimeSlot_4_reserved.Contains(date)) { Console.WriteLine("Timeslot 4: 13:00-14:00"); t4 = true; }
-                            if (!tableReserve.TimeSlot_5_reserved.Contains(date)) { Console.WriteLine("Timeslot 5: 14:00-15:00"); t5 = true; }
-                            if (!tableReserve.TimeSlot_6_reserved.Contains(date)) { Console.WriteLine("Timeslot 6: 15:00-16:00"); t6 = true; }
-                            if (!tableReserve.TimeSlot_7_reserved.Contains(date)) { Console.WriteLine("Timeslot 7: 16:00-17:00"); t7 = true; }
-                            if (!tableReserve.TimeSlot_8_reserved.Contains(date)) { Console.WriteLine("Timeslot 8: 17:00-18:00"); t8 = true; }
-                            if (!tableReserve.TimeSlot_9_reserved.Contains(date)) { Console.WriteLine("Timeslot 9: 18:00-20:00"); t9 = true; }
-                            if (!tableReserve.TimeSlot_10_reserved.Contains(date)) { Console.WriteLine("Timeslot 10: 20:00-22:00"); t10 = true; }
-
-                            string? time = Console.ReadLine();
-                            if (Int32.TryParse(time, out int timeslot))
+                            Console.WriteLine("Are you sure? \n(1) yes \n(2) no ");
+                            int confirmation1 = Convert.ToInt32(Console.ReadLine());
+                            if (confirmation1 == 1)
                             {
-                                switch (timeslot)
+                                go_back_to_guests = false;
+                                break;
+                            }
+                            else if (confirmation1 == 2)
+                            {
+                                continue;
+                            }
+                        }
+                        if (end is true)
+                            break;
+                        // ------------------- date loop voor table door code!!!!
+                        // table loop
+                        while (go_back_to_table)
+                        {
+
+                            switch (guests)
+                            {
+                                case 1:
+                                case 2:
+                                    {
+                                        Console.Write("What table do you wish to reserve? (due to the number of guests you can only reserve tables 8 to 15) \n(16) to go back to date selection \n(17) to quit ");
+                                        string? tableIn = Console.ReadLine();
+                                        Int32.TryParse(tableIn, out table);
+                                        if (table <= 0 || table >= 18)
+                                        {
+                                            Console.WriteLine("Please enter a valid table number");
+                                            Console.ReadLine();
+                                        }
+                                        else if (table == 16)
+                                        {
+                                            Console.WriteLine("Are you sure you want to go back to guests selection? (1) yes (2) no ");
+                                            int confirmation = Convert.ToInt32(Console.ReadLine());
+                                            if (confirmation == 1)
+                                            {
+                                                go_back_to_guests = true;
+                                                break;
+                                            }
+                                            else if (confirmation == 2)
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        else if (table == 17)
+                                        {
+                                            Console.WriteLine("Are you sure you want to go quit? (1) yes (2) no ");
+                                            int confirmation = Convert.ToInt32(Console.ReadLine());
+                                            if (confirmation == 1)
+                                            {
+                                                end = true;
+                                                break;
+                                            }
+                                            else if (confirmation == 2)
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        else if (table > 0 && table < 8)
+                                        {
+                                            Console.WriteLine("Due to the number of guests this table is not available");
+                                            break;
+                                        }
+                                        break;
+                                    }
+                                case 3:
+                                case 4:
+                                    {
+                                        Console.Write("What table do you wish to reserve? (due to the number of guests you can only reserve tables 3 to 7) (16) to go back to date selection, (17) to quit ");
+                                        string? tableIn = Console.ReadLine();
+                                        Int32.TryParse(tableIn, out table);
+                                        if (table <= 0 || table >= 18)
+                                        {
+                                            Console.WriteLine("Please enter a valid table number");
+                                            Console.ReadLine();
+                                        }
+                                        else if (table > 0 && table < 3 && table > 7)
+                                        {
+                                            Console.WriteLine("Due to the number of guests this table is not available");
+                                            break;
+                                        }
+                                        else if (table == 16)
+                                        {
+                                            Console.WriteLine("Are you sure you want to go back to date selection? (1) yes (2) no ");
+                                            int confirmation = Convert.ToInt32(Console.ReadLine());
+                                            if (confirmation == 1)
+                                            {
+                                                go_back_to_date = true;
+                                                break;
+                                            }
+                                            else if (confirmation == 2)
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        else if (table == 17)
+                                        {
+                                            Console.WriteLine("Are you sure you want to go quit? (1) yes (2) no ");
+                                            int confirmation = Convert.ToInt32(Console.ReadLine());
+                                            if (confirmation == 1)
+                                            {
+                                                end = true;
+                                                break;
+                                            }
+                                            else if (confirmation == 2)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    }
+                                case 5:
+                                case 6:
+                                    {
+                                        Console.Write("What table do you wish to reserve? (due to the number of guests you can only reserve tables 1 or 2) \n(16) to go back to date selection \n(17) to quit");
+                                        string? tableIn = Console.ReadLine();
+                                        Int32.TryParse(tableIn, out table);
+                                        if (table <= 0 || table >= 18)
+                                        {
+                                            Console.WriteLine("Please enter a valid table number");
+                                            Console.ReadLine();
+                                        }
+                                        else if (table == 16)
+                                        {
+                                            Console.WriteLine("Are you sure you want to go back to date selection? (1) yes (2) no ");
+                                            int confirmation = Convert.ToInt32(Console.ReadLine());
+                                            if (confirmation == 1)
+                                            {
+                                                go_back_to_date = true;
+                                                break;
+                                            }
+                                            else if (confirmation == 2)
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        else if (table == 17)
+                                        {
+                                            Console.WriteLine("Are you sure you want to go quit? (1) yes (2) no ");
+                                            int confirmation = Convert.ToInt32(Console.ReadLine());
+                                            if (confirmation == 1)
+                                            {
+                                                end = true;
+                                                break;
+                                            }
+                                            else if (confirmation == 2)
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        else if (table > 3)
+                                        {
+                                            Console.WriteLine("Due to the number of guests this table is not available");
+                                            break;
+                                        }
+                                        break;
+                                    }
+                            }
+                            if (table == 16)
+                            {
+                                break;
+                            }
+                            if (table == 17)
+                            {
+                                end = true;
+                                break;
+                            }
+
+                            Console.WriteLine($"You chose table {table}, are you sure? (1) yes (2) no ");
+                            int confirmation1 = Convert.ToInt32(Console.ReadLine());
+                            if (confirmation1 == 1)
+                            {
+                                go_back_to_table = false;
+                                break;
+                            }
+                            else if (confirmation1 == 2)
+                            {
+                                continue;
+                            }
+                        }
+                        if (end is true)
+                            break;
+                        
+                        // date loop
+                        while (go_back_to_date)
+                        {
+
+                            Console.Write("Which date do you wish to reserve the table? (DD/MM/YYYY) ");
+                            string? dateIn = Console.ReadLine();
+
+                            if (DateOnly.TryParseExact(dateIn, "d/MM/yyyy", out date))
+                            {
+                                if (date <= DateOnly.FromDateTime(DateTime.Now))
+                                    continue;
+                            }
+
+                            Console.WriteLine($"You chose {date}, Are you sure? (1) yes (2) no ");
+                            int confirmation1 = Convert.ToInt32(Console.ReadLine());
+                            if (confirmation1 == 1)
+                            {
+                                go_back_to_date = false;
+                            }
+                            else if (confirmation1 == 2)
+                            {
+                                continue;
+                            }
+                            Console.WriteLine(date);
+
+
+                            for (int i = 1;  i < Manager.table_list.Count; i++) 
+                            {
+                                if (i == table)
                                 {
-                                    case 1:
-                                        if (t1)
-                                        {
-                                            tableReserve.TimeSlot_1_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 10:00 until 11:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 2:
-                                        if (t2)
-                                        {
-                                            tableReserve.TimeSlot_2_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 11:00 until 12:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 3:
-                                        if (t3)
-                                        {
-                                            tableReserve.TimeSlot_3_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 12:00 until 13:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 4:
-                                        if (t4)
-                                        {
-                                            tableReserve.TimeSlot_4_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 13:00 until 14:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 5:
-                                        if (t5)
-                                        {
-                                            tableReserve.TimeSlot_5_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 14:00 until 15:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 6:
-                                        if (t6)
-                                        {
-                                            tableReserve.TimeSlot_6_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 15:00 until 16:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 7:
-                                        if (t7)
-                                        {
-                                            tableReserve.TimeSlot_7_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 16:00 until 17:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 8:
-                                        if (t8)
-                                        {
-                                            tableReserve.TimeSlot_8_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 17:00 until 18:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 9:
-                                        if (t9)
-                                        {
-                                            tableReserve.TimeSlot_1_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 18:00 until 20:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    case 10:
-                                        if (t10)
-                                        {
-                                            tableReserve.TimeSlot_10_reserved.Add(date);
-                                            Console.WriteLine($"Table {table} reserved for 20:00 until 22:00");
-                                            Console.WriteLine("\npress the enter key to continue");
-                                            Console.ReadLine();
-                                            customer.Add_Reservation(table, guests, date, time);
-                                            reserved = true;
-                                            tableReserve.reserve(timeslot, date);
-                                        }
-                                        else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                        break;
-                                    default:
-                                        break;
+                                    if (!Manager.table_list[i].TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
+                                    if (!Manager.table_list[i].TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
+                                    if (!Manager.table_list[i].TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
+                                    if (!Manager.table_list[i].TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
+                                    if (!Manager.table_list[i].TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
+                                    if (!Manager.table_list[i].TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
+                                    if (!Manager.table_list[i].TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
+                                    if (!Manager.table_list[i].TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
+                                    if (!Manager.table_list[i].TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
+                                    if (!Manager.table_list[i].TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
+                                    break;
                                 }
                             }
+                            Console.WriteLine("Enter the number of the timeslot you wish to reserve (11) quit (12) return to table selection (13) re-enter date and time");
+                            string? time = Console.ReadLine();
+                            Int32.TryParse(time, out int timeslot);
+                            if (timeslot == 11)
+                            {
+                                end = true;
+                                break;
+                            }
+                            if (timeslot == 12)
+                            {
+                                go_back_to_table = true;
+                                break;
+                            }
+                            if (timeslot == 13)
+                            {
+                                continue;
+                            }
+
+                            Console.WriteLine($"{guests}, {table}, {date}");
+
+                            switch (timeslot)
+                            {
+                                case 1: 
+                                    Console.WriteLine("Timeslot 1: 10:00-11:00");
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Timeslot 2: 11:00-12:00");
+                                    break;
+                                case 3:
+                                    Console.WriteLine("Timeslot 3: 12:00-13:00");
+                                    break;
+                                case 4:
+                                    Console.WriteLine("Timeslot 4: 13:00-14:00");
+                                    break;
+                                case 5:
+                                    Console.WriteLine("Timeslot 5: 14:00-15:00");
+                                    break;
+                                case 6:
+                                    Console.WriteLine("Timeslot 6: 15:00-16:00");
+                                    break;
+                                case 7:
+                                    Console.WriteLine("Timeslot 7: 16:00-17:00");
+                                    break;
+                                case 8:
+                                    Console.WriteLine("Timeslot 8: 17:00-18:00");
+                                    break;
+                                case 9:
+                                    Console.WriteLine("Timeslot 9: 18:00-20:00");
+                                    break;
+                                case 10:
+                                    Console.WriteLine("Timeslot 10: 20:00-22:00");
+                                    break;
+                            }
+
+                            Console.WriteLine("Are you sure you want this guests, table, date and time (1) yes (2) no");
+                            int confirmation = Convert.ToInt32(Console.ReadLine());
+                            if (confirmation == 1)
+                            {
+                                customer.Add_Reservation(table, guests, date, time);
+                                go_back_to_date = false;
+                                end = true;
+                                break;
+                            }
+                            else if (confirmation == 2)
+                            {
+                                Console.WriteLine("Do you want to change (1) guests (2) table (3 or higher) date and time");
+                                int confirmation2 = Convert.ToInt32(Console.ReadLine());
+                                if (confirmation2 == 1)
+                                {
+                                    go_back_to_guests = true;
+                                    continue;
+                                }
+                                else if (confirmation2 == 2) 
+                                {
+                                    go_back_to_table = true;
+                                    continue;
+                                }
+                                else if (confirmation2 >= 3)
+                                {
+                                    go_back_to_date = true;
+                                    continue;
+                                }
+
+                            }
+
                         }
+                        if (end)
+                            break;
+                        if (go_back_to_guests)
+                            continue;
                     }
-                    ControllerJson.WriteJson(customer.My_Reservation, "Reservations.json");
-                    ControllerJson.WriteJson(Manager.Customers, "Customers.json");
+                    
                 }
-                // laat de reservatie zien
+
                 if (input == "3")
                 {
                     customer.View_Reservation();
