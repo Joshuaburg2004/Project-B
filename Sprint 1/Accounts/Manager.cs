@@ -55,7 +55,7 @@ public static class Manager
         Tables = ControllerJson.ReadJson<Table>("Tables.json");
         if(Tables is null || Tables.Count != 15)
         {
-            Tables = new List<Table>() { table_1, table_2, table_3, table_4, table_5, table_6, table_7, table_8, table_9, table_10, table_11, table_12, table_13, table_14, table_15 };        {
+            Tables = new List<Table>() { table_1, table_2, table_3, table_4, table_5, table_6, table_7, table_8, table_9, table_10, table_11, table_12, table_13, table_14, table_15 };
         }
         else
         {
