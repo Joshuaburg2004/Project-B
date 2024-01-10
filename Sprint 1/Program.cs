@@ -683,26 +683,34 @@ public class Program
                         // guest loop
                         while (go_back_to_guests is true)
                         {
-                            Console.Write("How many guests do you expect? \n(0) to quit");
+                            Console.Write("How many guests do you expect? \n(0) to quit\n");
                             Console.WriteLine("");
                             string? guestsIn = Console.ReadLine();
-                            Int32.TryParse(guestsIn, out guests);
-                            if (guests == 0)
+                            if (Int32.TryParse(guestsIn, out guests))
                             {
-                                end = true;
-                                break;
+                                if (guests == 0)
+                                {
+                                    end = true;
+                                    break;
+                                }
+                                else if (guests < 0)
+                                {
+                                    Console.WriteLine("Please enter a valid number");
+                                    continue;
+                                }
+                                else if (guests > 6)
+                                {
+                                    RestaurantInfo info = new();
+                                    Console.WriteLine($"If you wish to reserve a table for more than 6 guests you will need to call us at: {info.Telefoonnummer})");
+                                    continue;
+                                }
                             }
-                            else if (guests < 0)
+                            else
                             {
                                 Console.WriteLine("Please enter a valid number");
                                 continue;
                             }
-                            else if (guests > 6)
-                            {
-                                RestaurantInfo info = new();
-                                Console.WriteLine($"If you wish to reserve a table for more than 6 guests you will need to call us at: {info.Telefoonnummer})");
-                                continue;
-                            }
+                            
 
                             Console.WriteLine("Are you sure? \n(1) yes \n(2) no ");
                             string? confirmationString = Console.ReadLine();
