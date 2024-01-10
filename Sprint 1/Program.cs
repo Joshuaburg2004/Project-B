@@ -785,8 +785,13 @@ public class Program
                                                 {
                                                     continue;
                                                 }
-
                                                 Console.WriteLine("Please enter 1 or 2");
+                                                continue;
+
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Please enter 1 or 2");  
                                                 continue;
                                             }
                                         }
@@ -813,6 +818,7 @@ public class Program
                                         {
                                             Console.WriteLine("Due to the number of guests this table is not available");
                                             bad_table_and_guests_combo = true;
+                                            continue;
                                             break;
                                         }
                                         else if (table == 16)
@@ -833,6 +839,11 @@ public class Program
                                                 Console.WriteLine("Please enter 1 or 2");
                                                 continue;
                                             }
+                                            else
+                                            {
+                                                Console.WriteLine("Please enter 1 or 2");
+                                                continue;
+                                            }
                                         }
                                         else if (table == 17)
                                         {
@@ -849,6 +860,13 @@ public class Program
                                                 {
                                                     break;
                                                 }
+                                                Console.WriteLine("Please enter 1 or 2");
+                                                continue;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Please enter 1 or 2");
+                                                continue;
                                             }
                                         }
                                         break;
@@ -917,8 +935,9 @@ public class Program
                                 break;
                             }
                             if (bad_table_and_guests_combo)
+                            { 
                                 break;
-
+                            }
                             Console.WriteLine($"You chose table {table}, are you sure? (1) yes (2) no ");
                             string? confirmationString1 = Console.ReadLine();
                             if (int.TryParse(confirmationString1, out int confirmation1))
@@ -935,11 +954,18 @@ public class Program
                             }
                         }
                         if (bad_table_and_guests_combo)
+                        {
+                            go_back_to_guests = true;
                             continue;
+                        }
                         if (go_back_to_guests)
+                        {
                             continue;
+                        }
                         if (end)
+                        {
                             break;
+                        }
                         
                         // date loop
                         while (go_back_to_date)
@@ -996,21 +1022,30 @@ public class Program
                                 }
                                 Console.WriteLine("Enter the number of the timeslot you wish to reserve (11) quit (12) return to table selection (13) re-enter date and time");
                                 string? time = Console.ReadLine();
-                                Int32.TryParse(time, out int timeslot);
-                                if (timeslot == 11)
+                                if (Int32.TryParse(time, out int timeslot))
                                 {
-                                    end = true;
-                                    break;
+                                    if (timeslot == 11)
+                                    {
+                                        end = true;
+                                        break;
+                                    }
+                                    if (timeslot == 12)
+                                    {
+                                        go_back_to_table = true;
+                                        break;
+                                    }
+                                    if (timeslot == 13)
+                                    {
+                                        continue;
+                                    }
+
                                 }
-                                if (timeslot == 12)
+                                else
                                 {
-                                    go_back_to_table = true;
-                                    break;
-                                }
-                                if (timeslot == 13)
-                                {
+                                    Console.WriteLine("Please enter a valid number");
                                     continue;
                                 }
+
 
                                 Console.WriteLine($"{guests}, {table}, {date}");
 
@@ -1081,8 +1116,18 @@ public class Program
                                                 continue;
                                             }
                                         }
+                                        else
+                                        {
+                                            Console.WriteLine("Please enter 1 or 2");
+                                            continue;
+                                        }
                                     }
-                                } 
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Please enter 1 or 2");
+                                    continue;
+                                }
                             }
                         }
                         if (end)
