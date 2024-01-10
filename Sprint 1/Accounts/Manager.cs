@@ -51,7 +51,7 @@ public static class Manager
     {
         Customers = ControllerJson.ReadJson<Customer>("Customers.json") ?? new List<Customer> { };
         Admins = ControllerJson.ReadJson<Admin>("Admins.json") ?? new List<Admin> { };
-        table_list = ControllerJson.ReadJson<Table>("table_list.json") ?? new();
+        table_list = ControllerJson.ReadJson<Table>("Tables.json") ?? new();
         if(table_list is null || table_list.Count != 15)
         {
             table_list = new List<Table>() { table_1, table_2, table_3, table_4, table_5, table_6, table_7, table_8, table_9, table_10, table_11, table_12, table_13, table_14, table_15 };
