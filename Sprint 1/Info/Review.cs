@@ -43,7 +43,7 @@ public class Review
     public static void LeaveReview(int customerID)
     {
         Console.WriteLine("Enter your review text (type 'Q' to exit):");
-        string reviewText = Console.ReadLine();
+        string reviewText = Console.ReadLine()!;
 
         if (reviewText.ToUpper() == "Q")
         {
@@ -52,7 +52,7 @@ public class Review
         }
 
         Console.WriteLine("Enter the number of stars (1-5):");
-        string starsInput = Console.ReadLine();
+        string starsInput = Console.ReadLine()!;
 
         if (starsInput.ToUpper() == "Q")
         {
