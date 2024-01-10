@@ -67,12 +67,6 @@ public class Review
             Review review = new Review(AllReviews.Count + 1, customerID, reviewText, stars, currentDate);
             AllReviews.Add(review);
 
-            Console.WriteLine("All Reviews:");
-            foreach (Review each_review in AllReviews)
-            {
-                Console.WriteLine($"ReviewID: {each_review.ReviewID}, CustomerID: {each_review.CustomerID}, Text: {each_review.Text}, Stars: {each_review.Stars}, Date: {each_review.Date}");
-            }
-
             string jsonReviews = JsonConvert.SerializeObject(AllReviews, Formatting.Indented);
             JArray reviewsObject = JArray.Parse(jsonReviews);
             ControllerJson.WriteJson(reviewsObject, "Reviews.json");
