@@ -15,5 +15,8 @@ public class RestaurantInfo
         Console.WriteLine($"Telefoonnummer: {Telefoonnummer}");
         Console.WriteLine($"E-mail: {Email}");
         Console.WriteLine($"Geschiedenis: {Geschiedenis}");
+        Console.WriteLine();
+        double average_stars = Review.Get_Total_Stars();
+        Console.WriteLine($"Restaurant stars: {average_stars}");
     }
 }
