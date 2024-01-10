@@ -33,11 +33,11 @@ public class ReservationTest
 
         Reservation reservation = new Reservation(customerId, table, guests, date, time);
 
-        string expectedInfo = $"CustomerID: {customerId}, Reservation_ID: {reservation.Reservation_ID}, Table {table}, number of guests: {guests}, Date: {date}, Time: {time}";
+        string expectedInfo = $"Reservation_ID: {reservation.Reservation_ID}, Table {table}, number of guests: {guests}, Date: {date}, TimeSlot: {time}";
 
         Assert.AreEqual(expectedInfo, reservation.Reservation_Info());
     }
-
+    
     [TestMethod]
     public void TestReservationInfoWithCustomer()
     {
