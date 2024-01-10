@@ -684,7 +684,6 @@ public class Program
                         while (go_back_to_guests is true)
                         {
                             Console.Write("How many guests do you expect? \n(0) to quit\n");
-                            Console.WriteLine("");
                             string? guestsIn = Console.ReadLine();
                             if (Int32.TryParse(guestsIn, out guests))
                             {
