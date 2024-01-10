@@ -720,6 +720,7 @@ public class Program
                             }
                             else
                             {
+                                Console.WriteLine("Please enter 1 or 2");
                                 continue;
                             }
                         }
@@ -759,6 +760,8 @@ public class Program
                                                     continue;
                                                 }
                                             }
+                                            Console.WriteLine("Please enter 1 or 2");
+                                            continue;
                                         }
                                         else if (table == 17)
                                         {
@@ -775,6 +778,9 @@ public class Program
                                                 {
                                                     continue;
                                                 }
+
+                                                Console.WriteLine("Please enter 1 or 2");
+                                                continue;
                                             }
                                         }
                                         else if (table > 0 && table < 8)
@@ -788,7 +794,7 @@ public class Program
                                 case 3:
                                 case 4:
                                     {
-                                        Console.WriteLine("What table do you wish to reserve? (due to the number of guests you can only reserve tables 3 to 7) (16) to go back to guest selection, (17) to quit ");
+                                        Console.WriteLine("What table do you wish to reserve? (due to the number of guests you can only reserve tables 3 to 7) \n(16) to go back to guest selection \n(17) to quit ");
                                         string? tableIn = Console.ReadLine();
                                         Int32.TryParse(tableIn, out table);
                                         if (table <= 0 || table >= 18)
@@ -817,6 +823,8 @@ public class Program
                                                 {
                                                     continue;
                                                 }
+                                                Console.WriteLine("Please enter 1 or 2");
+                                                continue;
                                             }
                                         }
                                         else if (table == 17)
