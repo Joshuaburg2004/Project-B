@@ -1094,49 +1094,7 @@ public class Program
                 if (input == "5")
                 //gemaakt door sami
                 {
-                    int customerID = customer.ID;
-
-                    Console.WriteLine("Enter your review text (type 'Q' to exit):");
-                    string reviewText = Console.ReadLine();
-
-                    if (reviewText.ToUpper() == "Q")
-                    {
-                        Console.WriteLine("Review submission canceled.");
-                        break;
-                    }
-
-                    Console.WriteLine("Enter the number of stars (1-5):");
-                    string starsInput = Console.ReadLine();
-
-                    if (starsInput.ToUpper() == "Q")
-                    {
-                        Console.WriteLine("Review submission canceled.");
-                        break;
-                    }
-
-                    if (int.TryParse(starsInput, out int stars) && stars >= 1 && stars <= 5)
-                    {
-                        DateTime currentDate = DateTime.Now;
-
-                        Review review = new Review(Review.AllReviews.Count + 1, customerID, reviewText, stars, currentDate);
-                        Review.AllReviews.Add(review);
-
-                        Console.WriteLine("All Reviews:");
-                        foreach (Review each_review in Review.AllReviews)
-                        {
-                            Console.WriteLine($"ReviewID: {each_review.ReviewID}, CustomerID: {each_review.CustomerID}, Text: {each_review.Text}, Stars: {each_review.Stars}, Date: {each_review.Date}");
-                        }
-
-                        string jsonReviews = JsonConvert.SerializeObject(Review.AllReviews, Formatting.Indented);
-                        JArray reviewsObject = JArray.Parse(jsonReviews);
-                        ControllerJson.WriteJson(reviewsObject, "Reviews.json");
-
-                        Console.WriteLine("Review submitted successfully.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid input for stars. Review not submitted.");
-                    }
+                    Review.LeaveReview(customer.ID);
                 }
                 // logt uit
                 if (input == "6")
