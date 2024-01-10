@@ -705,13 +705,20 @@ public class Program
                             }
 
                             Console.WriteLine("Are you sure? \n(1) yes \n(2) no ");
-                            int confirmation1 = Convert.ToInt32(Console.ReadLine());
-                            if (confirmation1 == 1)
+                            string? confirmationString = Console.ReadLine();
+                            if (int.TryParse(confirmationString, out int confirmation1))
                             {
-                                go_back_to_guests = false;
-                                break;
+                                if (confirmation1 == 1)
+                                {
+                                    go_back_to_guests = false;
+                                    break;
+                                }
+                                else if (confirmation1 == 2)
+                                {
+                                    continue;
+                                }
                             }
-                            else if (confirmation1 == 2)
+                            else
                             {
                                 continue;
                             }
@@ -739,29 +746,35 @@ public class Program
                                         else if (table == 16)
                                         {
                                             Console.WriteLine("Are you sure you want to go back to guests selection? (1) yes (2) no ");
-                                            int confirmation = Convert.ToInt32(Console.ReadLine());
-                                            if (confirmation == 1)
+                                            string? confirmationString = Console.ReadLine();
+                                            if (int.TryParse(confirmationString, out int confirmation))
                                             {
-                                                go_back_to_guests = true;
-                                                break;
-                                            }
-                                            else if (confirmation == 2)
-                                            {
-                                                continue;
+                                                if (confirmation == 1)
+                                                {
+                                                    go_back_to_guests = true;
+                                                    break;
+                                                }
+                                                else if (confirmation == 2)
+                                                {
+                                                    continue;
+                                                }
                                             }
                                         }
                                         else if (table == 17)
                                         {
                                             Console.WriteLine("Are you sure you want to go quit? (1) yes (2) no ");
-                                            int confirmation = Convert.ToInt32(Console.ReadLine());
-                                            if (confirmation == 1)
+                                            string? confirmationString = Console.ReadLine();
+                                            if (int.TryParse(confirmationString, out int confirmation))
                                             {
-                                                end = true;
-                                                break;
-                                            }
-                                            else if (confirmation == 2)
-                                            {
-                                                continue;
+                                                if (confirmation == 1)
+                                                {
+                                                    end = true;
+                                                    break;
+                                                }
+                                                else if (confirmation == 2)
+                                                {
+                                                    continue;
+                                                }
                                             }
                                         }
                                         else if (table > 0 && table < 8)
@@ -792,29 +805,35 @@ public class Program
                                         else if (table == 16)
                                         {
                                             Console.WriteLine("Are you sure you want to go back to guest selection? (1) yes (2) no ");
-                                            int confirmation = Convert.ToInt32(Console.ReadLine());
-                                            if (confirmation == 1)
+                                            string? confirmationString = Console.ReadLine();
+                                            if (int.TryParse(confirmationString, out int confirmation))
                                             {
-                                                go_back_to_guests = true;
-                                                break;
-                                            }
-                                            else if (confirmation == 2)
-                                            {
-                                                continue;
+                                                if (confirmation == 1)
+                                                {
+                                                    go_back_to_guests = true;
+                                                    break;
+                                                }
+                                                else if (confirmation == 2)
+                                                {
+                                                    continue;
+                                                }
                                             }
                                         }
                                         else if (table == 17)
                                         {
                                             Console.WriteLine("Are you sure you want to go quit? (1) yes (2) no ");
-                                            int confirmation = Convert.ToInt32(Console.ReadLine());
-                                            if (confirmation == 1)
+                                            string? confirmationString = Console.ReadLine();
+                                            if (int.TryParse(confirmationString, out int confirmation))
                                             {
-                                                end = true;
-                                                break;
-                                            }
-                                            else if (confirmation == 2)
-                                            {
-                                                break;
+                                                if (confirmation == 1)
+                                                {
+                                                    end = true;
+                                                    break;
+                                                }
+                                                else if (confirmation == 2)
+                                                {
+                                                    break;
+                                                }
                                             }
                                         }
                                         break;
@@ -833,29 +852,35 @@ public class Program
                                         if (table == 16)
                                         {
                                             Console.WriteLine("Are you sure you want to go back to guest selection? (1) yes (2) no ");
-                                            int confirmation = Convert.ToInt32(Console.ReadLine());
-                                            if (confirmation == 1)
+                                            string? confirmationString = Console.ReadLine();
+                                            if (int.TryParse(confirmationString, out int confirmation))
                                             {
-                                                go_back_to_guests = true;
-                                                break;
-                                            }
-                                            else if (confirmation == 2)
-                                            {
-                                                continue;
+                                                if (confirmation == 1)
+                                                {
+                                                    go_back_to_guests = true;
+                                                    break;
+                                                }
+                                                else if (confirmation == 2)
+                                                {
+                                                    continue;
+                                                }
                                             }
                                         }
                                         if (table == 17)
                                         {
                                             Console.WriteLine("Are you sure you want to go quit? (1) yes (2) no ");
-                                            int confirmation = Convert.ToInt32(Console.ReadLine());
-                                            if (confirmation == 1)
+                                            string? confirmationString = Console.ReadLine();
+                                            if (int.TryParse(confirmationString, out int confirmation))
                                             {
-                                                end = true;
-                                                break;
-                                            }
-                                            else if (confirmation == 2)
-                                            {
-                                                continue;
+                                                if (confirmation == 1)
+                                                {
+                                                    end = true;
+                                                    break;
+                                                }
+                                                else if (confirmation == 2)
+                                                {
+                                                    continue;
+                                                }
                                             }
                                         }
                                         if (table > 3)
@@ -880,15 +905,18 @@ public class Program
                                 break;
 
                             Console.WriteLine($"You chose table {table}, are you sure? (1) yes (2) no ");
-                            int confirmation1 = Convert.ToInt32(Console.ReadLine());
-                            if (confirmation1 == 1)
+                            string? confirmationString1 = Console.ReadLine();
+                            if (int.TryParse(confirmationString1, out int confirmation1))
                             {
-                                go_back_to_table = false;
-                                break;
-                            }
-                            else if (confirmation1 == 2)
-                            {
-                                continue;
+                                if (confirmation1 == 1)
+                                {
+                                    go_back_to_table = false;
+                                    break;
+                                }
+                                else if (confirmation1 == 2)
+                                {
+                                    continue;
+                                }
                             }
                         }
                         if (bad_table_and_guests_combo)
@@ -916,12 +944,19 @@ public class Program
                             if (!end)
                             {
                                 Console.WriteLine($"You chose {date}, Are you sure? (1) yes (2) no ");
-                                int confirmation1 = Convert.ToInt32(Console.ReadLine());
-                                if (confirmation1 == 1)
+                                string? confirmationString = Console.ReadLine();
+                                if (int.TryParse(confirmationString, out int confirmation1))
                                 {
-                                    go_back_to_date = false;
+                                    if (confirmation1 == 1)
+                                    {
+                                        go_back_to_date = false;
+                                    }
+                                    else if (confirmation1 == 2)
+                                    {
+                                        continue;
+                                    }
                                 }
-                                else if (confirmation1 == 2)
+                                else
                                 {
                                     continue;
                                 }
@@ -999,34 +1034,40 @@ public class Program
                                 }
 
                                 Console.WriteLine("Are you sure you want this guests, table, date and time (1) yes (2) no");
-                                int confirmation = Convert.ToInt32(Console.ReadLine());
-                                if (confirmation == 1)
+                                string? confirmationString1 = Console.ReadLine();
+                                if (int.TryParse(confirmationString1, out int confirmation))
                                 {
-                                    customer.Add_Reservation(table, guests, date, time);
-                                    go_back_to_date = false;
-                                    end = true;
-                                    break;
-                                }
-                                else if (confirmation == 2)
-                                {
-                                    Console.WriteLine("Do you want to change (1) guests (2) table (3 or higher) date and time");
-                                    int confirmation2 = Convert.ToInt32(Console.ReadLine());
-                                    if (confirmation2 == 1)
+                                    if (confirmation == 1)
                                     {
-                                        go_back_to_guests = true;
-                                        continue;
+                                        customer.Add_Reservation(table, guests, date, time);
+                                        go_back_to_date = false;
+                                        end = true;
+                                        break;
                                     }
-                                    else if (confirmation2 == 2)
+                                    else if (confirmation == 2)
                                     {
-                                        go_back_to_table = true;
-                                        continue;
+                                        Console.WriteLine("Do you want to change (1) guests (2) table (3 or higher) date and time");
+                                        string? confirmationString2 = Console.ReadLine();
+                                        if (int.TryParse(confirmationString2, out int confirmation2))
+                                        {
+                                            if (confirmation2 == 1)
+                                            {
+                                                go_back_to_guests = true;
+                                                continue;
+                                            }
+                                            else if (confirmation2 == 2)
+                                            {
+                                                go_back_to_table = true;
+                                                continue;
+                                            }
+                                            else if (confirmation2 >= 3)
+                                            {
+                                                go_back_to_date = true;
+                                                continue;
+                                            }
+                                        }
                                     }
-                                    else if (confirmation2 >= 3)
-                                    {
-                                        go_back_to_date = true;
-                                        continue;
-                                    }
-                                }
+                                } 
                             }
                         }
                         if (end)
