@@ -475,7 +475,7 @@ public class Program
                     else if (option == 5)
                     {
                         Console.Write("Enter timeslot: ");
-                        string timeslotInput = Console.ReadLine();
+                        string timeslotInput = Console.ReadLine()!;
 
                         var list_timeslot = Reservation.All_Reservations.Where(x => x.Time == timeslotInput).ToList();
 
@@ -499,7 +499,7 @@ public class Program
                 Console.WriteLine("(1) show all reviews");
                 Console.WriteLine("(2) Show average rating");
 
-                string choiceReview = Console.ReadLine();
+                string choiceReview = Console.ReadLine()!;
 
                 if (choiceReview == "1")
                 {
@@ -1054,7 +1054,7 @@ public class Program
                                 {
                                     if (confirmation == 1)
                                     {
-                                        customer.Add_Reservation(table, guests, date, time);
+                                        customer.Add_Reservation(table, guests, date, time!);
                                         go_back_to_date = false;
                                         end = true;
                                         break;
