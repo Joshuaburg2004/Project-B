@@ -724,6 +724,11 @@ public class Program
                                 {
                                     continue;
                                 }
+                                else
+                                {
+                                    Console.WriteLine("Please enter 1 or 2");
+                                    continue;
+                                }
                             }
                             else
                             {
@@ -799,6 +804,7 @@ public class Program
                                         {
                                             Console.WriteLine("Due to the number of guests this table is not available");
                                             bad_table_and_guests_combo = true;
+                                            continue;
                                             break;
                                         }
                                         break;
