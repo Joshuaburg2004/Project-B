@@ -1,3 +1,4 @@
+using System.Configuration.Assemblies;
 using Newtonsoft.Json;
 public class Review
 {
@@ -21,5 +22,20 @@ public class Review
     static Review()
     {
         AllReviews = ControllerJson.ReadJson<Review>("Reviews.json") ?? new List<Review> { };
+    }
+
+    public static double Get_Total_Stars()
+    {
+        int totalreviews = Review.AllReviews.Count();
+        double stars_temp = 0;
+
+        foreach (var review in AllReviews)
+        {
+            stars_temp +=review.Stars;
+
+        }
+        double stars = stars_temp / totalreviews;
+        double stars_rounded = Math.Round(stars,1);
+        return stars_rounded;
     }
 }
