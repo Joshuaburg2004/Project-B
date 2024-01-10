@@ -78,6 +78,8 @@ public class Review
             ControllerJson.WriteJson(reviewsObject, "Reviews.json");
 
             Console.WriteLine("Review submitted successfully.");
+            Console.WriteLine("Press enter to continue");
+            Console.ReadLine();
         }
         else
         {
