@@ -60,7 +60,8 @@ public class Customer : IAccount
     // Made by Alperen, Checked en waar nodig fixed by Joshua en Berkan
     public void Change_Reservation()
     {
-    View_Reservation();
+        Console.WriteLine("Please exit the pages when you are ready to make your choice");
+        View_Reservation();
 
     Console.WriteLine("Which reservation do you want to delete? Enter the reservation id:");
     int input = Convert.ToInt32(Console.ReadLine());
