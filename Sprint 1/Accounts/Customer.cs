@@ -63,100 +63,100 @@ public class Customer : IAccount
         Console.WriteLine("Please exit the pages when you are ready to make your choice");
         View_Reservation();
 
-    Console.WriteLine("Which reservation do you want to delete? Enter the reservation id:");
-    int input = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Which reservation do you want to delete? Enter the reservation id:");
+        int input = Convert.ToInt32(Console.ReadLine());
 
-    // Check if the reservation exists. made by Alperen en Joshua
-    foreach (Reservation reservation in My_Reservation)
-    {
-        if (input == reservation.Reservation_ID)
+        // Check if the reservation exists. made by Alperen en Joshua
+        foreach (Reservation reservation in My_Reservation)
         {
-            Console.WriteLine(reservation.Reservation_Info());
-            Console.WriteLine("Is this the reservation you want to delete?\n(1) Yes\n(2) No");
-            string input2 = Console.ReadLine();
-
-            if (input2 == "1")
+            if (input == reservation.Reservation_ID)
             {
-                Table? tableReserve;
-                tableReserve = reservation.Table switch
-                {
-                    1 => Manager.table_1,
-                    2 => Manager.table_2,
-                    3 => Manager.table_3,
-                    4 => Manager.table_4,
-                    5 => Manager.table_5,
-                    6 => Manager.table_6,
-                    7 => Manager.table_7,
-                    8 => Manager.table_8,
-                    9 => Manager.table_9,
-                    10 => Manager.table_10,
-                    11 => Manager.table_11,
-                    12 => Manager.table_12,
-                    13 => Manager.table_13,
-                    14 => Manager.table_14,
-                    15 => Manager.table_15,
-                    _ => null
-                };
-                My_Reservation.Remove(reservation);
-                if(tableReserve.TimeSlot_1_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_1_reserved.Remove(reservation.Date);
-                }
-                else if(tableReserve.TimeSlot_2_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_2_reserved.Remove(reservation.Date); 
-                }
-                else if(tableReserve.TimeSlot_3_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_3_reserved.Remove(reservation.Date);
-                }
-                else if(tableReserve.TimeSlot_4_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_4_reserved.Remove(reservation.Date);
-                }
-                else if(tableReserve.TimeSlot_5_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_5_reserved.Remove(reservation.Date);
-                }
-                else if(tableReserve.TimeSlot_6_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_6_reserved.Remove(reservation.Date);
-                }
-                else if(tableReserve.TimeSlot_7_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_7_reserved.Remove(reservation.Date);
-                }
-                else if(tableReserve.TimeSlot_8_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_8_reserved.Remove(reservation.Date);
-                }
-                else if(tableReserve.TimeSlot_9_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_9_reserved.Remove(reservation.Date);
-                }
-                else if(tableReserve.TimeSlot_10_reserved.Contains(reservation.Date))
-                {
-                    tableReserve.TimeSlot_10_reserved.Remove(reservation.Date);
-                }
+                Console.WriteLine(reservation.Reservation_Info());
+                Console.WriteLine("Is this the reservation you want to delete?\n(1) Yes\n(2) No");
+                string input2 = Console.ReadLine();
 
-                // Update the JSON file after making changes
-                ControllerJson.WriteJson(My_Reservation, "Reservations.json");
-                ControllerJson.WriteJson(Manager.Customers, "Customers.json");
+                if (input2 == "1")
+                {
+                    Table? tableReserve;
+                    tableReserve = reservation.Table switch
+                    {
+                        1 => Manager.table_1,
+                        2 => Manager.table_2,
+                        3 => Manager.table_3,
+                        4 => Manager.table_4,
+                        5 => Manager.table_5,
+                        6 => Manager.table_6,
+                        7 => Manager.table_7,
+                        8 => Manager.table_8,
+                        9 => Manager.table_9,
+                        10 => Manager.table_10,
+                        11 => Manager.table_11,
+                        12 => Manager.table_12,
+                        13 => Manager.table_13,
+                        14 => Manager.table_14,
+                        15 => Manager.table_15,
+                        _ => null
+                    };
+                    My_Reservation.Remove(reservation);
+                    if(tableReserve.TimeSlot_1_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_1_reserved.Remove(reservation.Date);
+                    }
+                    else if(tableReserve.TimeSlot_2_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_2_reserved.Remove(reservation.Date); 
+                    }
+                    else if(tableReserve.TimeSlot_3_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_3_reserved.Remove(reservation.Date);
+                    }
+                    else if(tableReserve.TimeSlot_4_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_4_reserved.Remove(reservation.Date);
+                    }
+                    else if(tableReserve.TimeSlot_5_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_5_reserved.Remove(reservation.Date);
+                    }
+                    else if(tableReserve.TimeSlot_6_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_6_reserved.Remove(reservation.Date);
+                    }
+                    else if(tableReserve.TimeSlot_7_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_7_reserved.Remove(reservation.Date);
+                    }
+                    else if(tableReserve.TimeSlot_8_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_8_reserved.Remove(reservation.Date);
+                    }
+                    else if(tableReserve.TimeSlot_9_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_9_reserved.Remove(reservation.Date);
+                    }
+                    else if(tableReserve.TimeSlot_10_reserved.Contains(reservation.Date))
+                    {
+                        tableReserve.TimeSlot_10_reserved.Remove(reservation.Date);
+                    }
 
-                Console.WriteLine("Reservation updated successfully.");
-                return;
-            }
-            else
-            {
-                // User chose not to change this reservation
-                Console.WriteLine("Reservation not deleted.");
-                return;
+                    // Update the JSON file after making changes
+                    ControllerJson.WriteJson(My_Reservation, "Reservations.json");
+                    ControllerJson.WriteJson(Manager.Customers, "Customers.json");
+
+                    Console.WriteLine("Reservation updated successfully.");
+                    return;
+                }
+                else
+                {
+                    // User chose not to change this reservation
+                    Console.WriteLine("Reservation not deleted.");
+                    return;
+                }
             }
         }
-    }
 
-    // If the loop completes, the reservation ID was not found
-    Console.WriteLine("Reservation not found.");
+        // If the loop completes, the reservation ID was not found
+        Console.WriteLine("Reservation not found.");
     }
 
 
