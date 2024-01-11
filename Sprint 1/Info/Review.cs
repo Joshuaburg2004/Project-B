@@ -80,4 +80,25 @@ public class Review
             Console.WriteLine("Invalid input for stars. Review not submitted.");
         }
     }
+
+    public static void LeaveReview(int customerID,string reviewText,int stars)
+    {
+        if (stars >= 1 && stars <= 5 )
+        {
+            DateTime currentDate = DateTime.Now;
+            Review review = new Review(AllReviews.Count + 1,customerID,reviewText,stars, currentDate);
+
+            string JsonReviews = JsonConvert.SerializeObject(AllReviews, Formatting.Indented);
+            JArray reviewsObject = JArray.Parse(JsonReviews);
+            ControllerJson.WriteJson(reviewsObject,"Reviews.json");
+            
+            Console.WriteLine("Review submitted succesfully. ");
+            Console.WriteLine("Press enter to continue");
+            Console.ReadLine();
+        }
+        else
+        {
+            Console.WriteLine("Invalid input for stars. Review not submitted.");
+        }
+    }
 }
