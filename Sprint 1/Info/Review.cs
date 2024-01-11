@@ -62,9 +62,9 @@ public class Review
 
         if (int.TryParse(starsInput, out int stars) && stars >= 1 && stars <= 5)
         {
-            DateTime currentDate = DateTime.Now;
+            DateTime now = DateTime.Now;
 
-            Review review = new Review(AllReviews.Count + 1, customerID, reviewText, stars, currentDate);
+            Review review = new Review(AllReviews.Count + 1, customerID, reviewText, stars, now);
             AllReviews.Add(review);
 
             string jsonReviews = JsonConvert.SerializeObject(AllReviews, Formatting.Indented);
@@ -85,8 +85,8 @@ public class Review
     {
         if (stars >= 1 && stars <= 5 )
         {
-            DateTime currentDate = DateTime.Now;
-            Review review = new Review(AllReviews.Count + 1,customerID,reviewText,stars, currentDate);
+            DateTime now = DateTime.Now;
+            Review review = new Review(AllReviews.Count + 1,customerID,reviewText,stars, now);
 
             string JsonReviews = JsonConvert.SerializeObject(AllReviews, Formatting.Indented);
             JArray reviewsObject = JArray.Parse(JsonReviews);
