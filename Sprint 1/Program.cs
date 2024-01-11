@@ -1185,6 +1185,7 @@ public class Program
                                     if (confirmation == 1)
                                     {
                                         customer.Add_Reservation(table, guests, date, time!);
+                                        ControllerJson.WriteJson(Manager.table_list, "Tables.json");
                                         go_back_to_date = false;
                                         end = true;
                                         break;
