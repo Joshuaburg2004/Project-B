@@ -181,10 +181,24 @@ public class Customer : IAccount
             }
             return string.Compare(r1.Time, r2.Time);
         });
-    
-        foreach (Reservation reservation in My_Reservation)
+        List<Reservation[]> reservations = My_Reservation.Chunk(14).ToList();
+        int Index = 0;
+        while (true)
         {
-            Console.WriteLine(reservation.Reservation_Info());
+            foreach (Reservation reservation in reservations[Index])
+            {
+                Console.WriteLine(reservation.Reservation_Info());
+            }
+            Console.WriteLine($"You are now at page {Index + 1}/{reservations.Count()}");
+            Console.WriteLine("Enter a page, or (Q) to exit");
+            string Page = Console.ReadLine()!.ToUpper();
+            bool Convert = int.TryParse(Page, out int page);
+            if (Page == "Q") { break; }
+            if (Convert)
+            {
+                if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                else { Index = page - 1; }
+            }
         }
     }
 

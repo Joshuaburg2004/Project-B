@@ -805,7 +805,6 @@ public class Program
                                             Console.WriteLine("Due to the number of guests this table is not available");
                                             bad_table_and_guests_combo = true;
                                             continue;
-                                            break;
                                         }
                                         break;
                                     }
