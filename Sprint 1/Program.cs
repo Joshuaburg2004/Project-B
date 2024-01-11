@@ -713,7 +713,7 @@ public class Program
             Console.WriteLine("(1) View Menu");
             Console.WriteLine("(2) Reserve a table");
             Console.WriteLine("(3) View reservations");
-            Console.WriteLine("(4) Delete reservation");
+            Console.WriteLine("(4) Change or Delete reservation");
             Console.WriteLine("(5) Leave a review");
             Console.WriteLine("(6) Log out");
             Console.WriteLine("(7) Close app");
