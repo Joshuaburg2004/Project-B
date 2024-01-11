@@ -800,11 +800,11 @@ public class Program
                                                 continue;
                                             }
                                         }
-                                        else if (table > 0 && table < 8)
+                                        else if (table < 8)
                                         {
                                             Console.WriteLine("Due to the number of guests this table is not available");
                                             bad_table_and_guests_combo = true;
-                                            continue;
+                                            break;
                                         }
                                         break;
                                     }
@@ -819,11 +819,11 @@ public class Program
                                             Console.WriteLine("Please enter a valid table number");
                                             continue;
                                         }
-                                        else if (table > 0 && table < 3 && table > 7)
+                                        else if (table < 3 || table > 7)
                                         {
                                             Console.WriteLine("Due to the number of guests this table is not available");
                                             bad_table_and_guests_combo = true;
-                                            continue;
+                                            break;
                                         }
                                         else if (table == 16)
                                         {
