@@ -902,6 +902,11 @@ public class Program
                                                     continue;
                                                 }
                                             }
+                                            else
+                                            {
+                                                Console.WriteLine("Please enter 1 or 2");
+                                                continue;
+                                            }
                                         }
                                         if (table == 17)
                                         {
@@ -955,6 +960,11 @@ public class Program
                                 {
                                     continue;
                                 }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please enter 1 or 2");
+                                continue;
                             }
                         }
                         if (bad_table_and_guests_combo)
@@ -1040,7 +1050,12 @@ public class Program
                                     }
                                     if (timeslot == 13)
                                     {
+                                        go_back_to_date = true;
                                         continue;
+                                    }
+                                    if (timeslot >= 14) 
+                                    {
+                                        Console.WriteLine("Please enter a valid number");
                                     }
 
                                 }
@@ -1051,7 +1066,7 @@ public class Program
                                 }
 
 
-                                Console.WriteLine($"{guests}, {table}, {date}");
+                                Console.WriteLine($"Guests: {guests}, Table: {table}, Date: {date}");
 
                                 switch (timeslot)
                                 {
