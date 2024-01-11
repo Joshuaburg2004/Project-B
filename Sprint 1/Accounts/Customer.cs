@@ -62,7 +62,7 @@ public class Customer : IAccount
     {
     View_Reservation();
 
-    Console.WriteLine("Which reservation do you want to change? Enter the reservation id:");
+    Console.WriteLine("Which reservation do you want to delete? Enter the reservation id:");
     int input = Convert.ToInt32(Console.ReadLine());
 
     // Check if the reservation exists. made by Alperen en Joshua
@@ -71,13 +71,11 @@ public class Customer : IAccount
         if (input == reservation.Reservation_ID)
         {
             Console.WriteLine(reservation.Reservation_Info());
-            Console.WriteLine("Is this the reservation you want to change?\n(1) Yes\n(2) No");
+            Console.WriteLine("Is this the reservation you want to delete?\n(1) Yes\n(2) No");
             string input2 = Console.ReadLine();
 
             if (input2 == "1")
             {
-                Console.WriteLine("What would you like to change?\n(1) Table\n(2) Guests\n(3) Date\n(4) Time\n(5) Delete reservation");
-                string input3 = Console.ReadLine();
                 Table? tableReserve;
                 tableReserve = reservation.Table switch
                 {
@@ -98,157 +96,46 @@ public class Customer : IAccount
                     15 => Manager.table_15,
                     _ => null
                 };
-                switch (input3)
+                My_Reservation.Remove(reservation);
+                if(tableReserve.TimeSlot_1_reserved.Contains(reservation.Date))
                 {
-                    case "1":
-                        Console.WriteLine("Enter the new table number:");
-                        int newTable = Convert.ToInt32(Console.ReadLine());
-                        reservation.Table = newTable;
-                        break;
-
-                    case "2":
-                        Console.WriteLine("Enter the new number of guests:");
-                        int newGuests = Convert.ToInt32(Console.ReadLine());
-                        reservation.Guests = newGuests;
-                        break;
-
-                    case "3":
-                        Console.WriteLine("Enter the new date (DD/MM/YYYY):");
-                        string newDate = Console.ReadLine();
-                        reservation.Date = DateOnly.Parse(newDate);
-                        break;
-
-                    case "4":
-                        
-                        bool t1 = false;
-                        bool t2 = false;
-                        bool t3 = false;
-                        bool t4 = false;
-                        bool t5 = false;
-                        bool t6 = false;
-                        bool t7 = false;
-                        bool t8 = false;
-                        bool t9 = false;
-                        bool t10 = false;
-                        
-                        if (!tableReserve.TimeSlot_1_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 1: 10:00-11:00"); t1 = true; }
-                        if (!tableReserve.TimeSlot_2_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 2: 11:00-12:00"); t2 = true; }
-                        if (!tableReserve.TimeSlot_3_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 3: 12:00-13:00"); t3 = true; }
-                        if (!tableReserve.TimeSlot_4_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 4: 13:00-14:00"); t4 = true; }
-                        if (!tableReserve.TimeSlot_5_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 5: 14:00-15:00"); t5 = true; }
-                        if (!tableReserve.TimeSlot_6_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 6: 15:00-16:00"); t6 = true; }
-                        if (!tableReserve.TimeSlot_7_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 7: 16:00-17:00"); t7 = true; }
-                        if (!tableReserve.TimeSlot_8_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 8: 17:00-18:00"); t8 = true; }
-                        if (!tableReserve.TimeSlot_9_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 9: 18:00-20:00"); t9 = true; }
-                        if (!tableReserve.TimeSlot_10_reserved.Contains(reservation.Date)) { Console.WriteLine("Timeslot 10:20:00-22:00"); t10 = true; }
-                        string? time = Console.ReadLine();
-                        if (Int32.TryParse(time, out int timeslot))
-                        {
-                            switch (timeslot)
-                            {
-                                case 1:
-                                    if (t1) { tableReserve.TimeSlot_1_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 10:00 until 11:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 2:
-                                    if (t2) { tableReserve.TimeSlot_2_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 11:00 until 12:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 3:
-                                    if (t3) { tableReserve.TimeSlot_3_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 12:00 until 13:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 4:
-                                    if (t4) { tableReserve.TimeSlot_4_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 13:00 until 14:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 5:
-                                    if (t5) { tableReserve.TimeSlot_5_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 14:00 until 15:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 6:
-                                    if (t6) { tableReserve.TimeSlot_6_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 15:00 until 16:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 7:
-                                    if (t7) { tableReserve.TimeSlot_7_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 16:00 until 17:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 8:
-                                    if (t8) { tableReserve.TimeSlot_8_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 17:00 until 18:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 9:
-                                    if (t9) { tableReserve.TimeSlot_9_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 18:00 until 20:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-                                case 10:
-                                    if (t10) { tableReserve.TimeSlot_10_reserved.Add(reservation.Date); Console.WriteLine($"Table {reservation.Table} reserved for 20:00 until 22:00"); reservation.Time = time; }
-                                    else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
-                                    break;
-
-                                
-                            }
-                        }
-                        break;
-                    case "5":
-                        Console.WriteLine("Are you sure you want to delete this reservation (1)y/(2)n");
-                        string ans = Console.ReadLine();
-                        if(ans == "1")
-                        {
-                            My_Reservation.Remove(reservation);
-                            if(tableReserve.TimeSlot_1_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_1_reserved.Remove(reservation.Date);
-                            }
-                            else if(tableReserve.TimeSlot_2_reserved.Contains(reservation.Date))
-                            {
-                               tableReserve.TimeSlot_2_reserved.Remove(reservation.Date); 
-                            }
-                            else if(tableReserve.TimeSlot_3_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_3_reserved.Remove(reservation.Date);
-                            }
-                            else if(tableReserve.TimeSlot_4_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_4_reserved.Remove(reservation.Date);
-                            }
-                            else if(tableReserve.TimeSlot_5_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_5_reserved.Remove(reservation.Date);
-                            }
-                            else if(tableReserve.TimeSlot_6_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_6_reserved.Remove(reservation.Date);
-                            }
-                            else if(tableReserve.TimeSlot_7_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_7_reserved.Remove(reservation.Date);
-                            }
-                            else if(tableReserve.TimeSlot_8_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_8_reserved.Remove(reservation.Date);
-                            }
-                            else if(tableReserve.TimeSlot_9_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_9_reserved.Remove(reservation.Date);
-                            }
-                            else if(tableReserve.TimeSlot_10_reserved.Contains(reservation.Date))
-                            {
-                                tableReserve.TimeSlot_10_reserved.Remove(reservation.Date);
-                            }
-                            
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nPress enter to continue");
-                            Console.ReadLine();
-                        }
-                        break;
-
-                    default:
-                        Console.WriteLine("Unknown input, try again.");
-                        break;
+                    tableReserve.TimeSlot_1_reserved.Remove(reservation.Date);
+                }
+                else if(tableReserve.TimeSlot_2_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_2_reserved.Remove(reservation.Date); 
+                }
+                else if(tableReserve.TimeSlot_3_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_3_reserved.Remove(reservation.Date);
+                }
+                else if(tableReserve.TimeSlot_4_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_4_reserved.Remove(reservation.Date);
+                }
+                else if(tableReserve.TimeSlot_5_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_5_reserved.Remove(reservation.Date);
+                }
+                else if(tableReserve.TimeSlot_6_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_6_reserved.Remove(reservation.Date);
+                }
+                else if(tableReserve.TimeSlot_7_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_7_reserved.Remove(reservation.Date);
+                }
+                else if(tableReserve.TimeSlot_8_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_8_reserved.Remove(reservation.Date);
+                }
+                else if(tableReserve.TimeSlot_9_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_9_reserved.Remove(reservation.Date);
+                }
+                else if(tableReserve.TimeSlot_10_reserved.Contains(reservation.Date))
+                {
+                    tableReserve.TimeSlot_10_reserved.Remove(reservation.Date);
                 }
 
                 // Update the JSON file after making changes
@@ -261,7 +148,7 @@ public class Customer : IAccount
             else
             {
                 // User chose not to change this reservation
-                Console.WriteLine("Reservation not changed.");
+                Console.WriteLine("Reservation not deleted.");
                 return;
             }
         }
