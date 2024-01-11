@@ -7,6 +7,7 @@ public class ReviewTests
       [TestMethod]
       public void TestLeaveReview()
       {
+          //kijken of correcte data wordt opgeslagen
           int customerID = 1;
           string reviewText = "nice restaurant";
           int stars = 5;
@@ -24,6 +25,7 @@ public class ReviewTests
       [TestMethod]
       public void TestGetTotalStarsEmptyReviews()
       {
+          //even kijken of de list empty is zodat het wel werkt
           Review.AllReviews.Clear();
           double totalStars = Review.Get_Total_Stars();
           Assert.AreEqual(0, totalStars);
@@ -32,6 +34,7 @@ public class ReviewTests
       [TestMethod]
       public void TestLeaveReviewInvalidStars()
       {
+          //kijken of je niet meer dan 5 sterren kan geven
           Review.AllReviews.Clear();
           Review.LeaveReview(1, "test review bla bla", 6);
           Assert.AreEqual(0, Review.AllReviews.Count);
