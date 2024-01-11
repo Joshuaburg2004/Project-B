@@ -25,6 +25,7 @@ public class ReviewTests
 
         [TestMethod]
         public void TestGetTotalStarsEmptyReviews()
+        //bekijken of het ook echt leeg is
         {
             Review.AllReviews.Clear();
             double totalStars = Review.Get_Total_Stars();
@@ -33,6 +34,7 @@ public class ReviewTests
 
         [TestMethod]
         public void TestLeaveReviewInvalidStars()
+        //ster check fout
         {
             Review.AllReviews.Clear();
             Review.LeaveReview(1, "test review bla bla", 6);
