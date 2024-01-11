@@ -1,3 +1,4 @@
+namespace ProjectB.Tests;
 
 [TestClass]
 public class ReviewTests
