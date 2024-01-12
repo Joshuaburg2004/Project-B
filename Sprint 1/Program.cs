@@ -64,11 +64,8 @@ public class Program
         {
             return admin;
         }
-        else
-        {
-            Console.WriteLine("\nAccount not found \npress the enter key to continue");
-            Console.ReadLine();
-        }
+        Console.WriteLine("\nAccount not found \npress the enter key to continue");
+        Console.ReadLine();
         return null;
     }
 
@@ -81,13 +78,9 @@ public class Program
             {
                 return admin;
             }
-            if (counter == Manager.Admins.Count)
-            {
-                Console.WriteLine("\nAccount not found \npress the enter key to continue");
-                Console.ReadLine();
-            }
-            counter++;
         }
+        Console.WriteLine("\nAccount not found \npress the enter key to continue");
+        Console.ReadLine();
         return null;
     }
 
@@ -111,13 +104,9 @@ public class Program
             {
                 return customer;
             }
-            if (counter == Manager.Customers.Count)
-            {
-                Console.WriteLine("\nAccount not found \npress the enter key to continue");
-                Console.ReadLine();
-            }
-            counter++;
         }
+        Console.WriteLine("\nAccount not found \npress the enter key to continue");
+        Console.ReadLine();
         return null;
     }
     //------------------------------------------------------------------ no account -------------------------------------------
