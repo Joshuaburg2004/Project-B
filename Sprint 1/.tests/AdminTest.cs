@@ -22,6 +22,7 @@ public class AdminTests
         Assert.AreEqual(password,Manager.Admins[0].Password);
 
     }
+    [TestMethod]
     public void check_if_password_restriction()
     {
         string name = "Bob";
