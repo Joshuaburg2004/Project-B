@@ -323,9 +323,177 @@ public class Program
             // laat de reservaties zien. TODO: per dag/met pagina's
             if (input == "3")
             {
-                foreach (Reservation reservation in Reservation.All_Reservations)
+                while (true)
                 {
-                    Console.WriteLine(reservation.Reservation_Info());
+                    Console.WriteLine("(1) view all - 10 per page \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot\n(5) show specific timeslot");
+                    int? option = Convert.ToInt32(Console.ReadLine());
+                    Reservation.All_Reservations.Sort();
+                    if (option == 1)
+                    {
+                        IEnumerable<Reservation[]> reservations = Reservation.All_Reservations.Chunk(10);
+                        int Index = 0;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
+                            }
+                        }
+                        break;
+                    }
+                    else if (option == 2)
+                    {
+                        List<Reservation[]> reservations = Reservation.All_Reservations.OrderBy(x => x.CustomerId).Chunk(10).ToList();
+                        int Index = 0;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
+                            }
+                            break;
+                        }
+                    }
+                    else if (option == 3)
+                    {
+                        DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+                        List<Reservation[]> reservations = Reservation.All_Reservations.Where(x => x.Date == today).OrderBy(x => x.Date).Chunk(10).ToList();
+                        int Index = 0;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                    else if (option == 4)
+                    {
+                        List<Reservation[]> reservations = Reservation.All_Reservations.OrderBy(x => x.Time).Where(x => x.Date == DateOnly.FromDateTime(DateTime.Now)).Chunk(10).ToList();
+                        int Index = 0;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                    else if (option == 5)
+                    {
+                        Console.Write("Enter timeslot: ");
+                        string timeslotInput = Console.ReadLine()!;
+
+                        List<Reservation[]> reservations = Reservation.All_Reservations.Where(x => x.Time == timeslotInput).Where(x => x.Date == DateOnly.FromDateTime(DateTime.Now)).Chunk(10).ToList();
+
+                        int Index = 0;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                    else
+                        Console.WriteLine("Please enter a valid number");
                 }
                 Console.WriteLine("\npress the enter key to continue");
                 Console.ReadLine();
@@ -431,26 +599,34 @@ public class Program
 
                     Console.WriteLine("(1) view all - 10 per page \n(2) sort by custommer ID \n(3) sort by date \n(4) sort by timeslot\n(5) show specific timeslot");
                     int? option = Convert.ToInt32(Console.ReadLine());
-                    
+                    Reservation.All_Reservations.Sort();
                     if (option == 1)
                     {
                         IEnumerable<Reservation[]> reservations = Reservation.All_Reservations.Chunk(10);
                         int Index = 0;
                         while (true)
                         {
-                            Console.WriteLine($"Page number {Index + 1}");
-                            foreach (Reservation reservation in reservations.ElementAt(Index))
+                            try
                             {
-                                Console.WriteLine(reservation.Reservation_Info());
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
                             }
-                            Console.WriteLine("Enter a page, or (Q) to exit");
-                            string Page = Console.ReadLine()!.ToUpper();
-                            bool Convert = int.TryParse(Page, out int page);
-                            if (Page == "Q") { break; }
-                            if (Convert)
+                            catch (ArgumentOutOfRangeException)
                             {
-                                if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
-                                else { Index = page - 1; }
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
                             }
                         }
                         break;
@@ -461,19 +637,27 @@ public class Program
                         int Index = 0;
                         while (true)
                         {
-                            Console.WriteLine($"Page number {Index + 1}");
-                            foreach (Reservation reservation in reservations.ElementAt(Index))
+                            try
                             {
-                                Console.WriteLine(reservation.Reservation_Info());
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
                             }
-                            Console.WriteLine("Enter a page, or (Q) to exit");
-                            string Page = Console.ReadLine()!.ToUpper();
-                            bool Convert = int.TryParse(Page, out int page);
-                            if (Page == "Q") { break; }
-                            if (Convert)
+                            catch (ArgumentOutOfRangeException)
                             {
-                                if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
-                                else { Index = page - 1; }
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
                             }
                             break;
                         }
@@ -486,19 +670,27 @@ public class Program
                         int Index = 0;
                         while (true)
                         {
-                            Console.WriteLine($"Page number {Index + 1}");
-                            foreach (Reservation reservation in reservations.ElementAt(Index))
+                            try
                             {
-                                Console.WriteLine(reservation.Reservation_Info());
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
                             }
-                            Console.WriteLine("Enter a page, or (Q) to exit");
-                            string Page = Console.ReadLine()!.ToUpper();
-                            bool Convert = int.TryParse(Page, out int page);
-                            if (Page == "Q") { break; }
-                            if (Convert)
+                            catch (ArgumentOutOfRangeException)
                             {
-                                if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
-                                else { Index = page - 1; }
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
                             }
                             break;
                         }
@@ -510,19 +702,27 @@ public class Program
                         int Index = 0;
                         while (true)
                         {
-                            Console.WriteLine($"Page number {Index + 1}");
-                            foreach (Reservation reservation in reservations.ElementAt(Index))
+                            try
                             {
-                                Console.WriteLine(reservation.Reservation_Info());
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
                             }
-                            Console.WriteLine("Enter a page, or (Q) to exit");
-                            string Page = Console.ReadLine()!.ToUpper();
-                            bool Convert = int.TryParse(Page, out int page);
-                            if (Page == "Q") { break; }
-                            if (Convert)
+                            catch (ArgumentOutOfRangeException)
                             {
-                                if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
-                                else { Index = page - 1; }
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
                             }
                             break;
                         }
@@ -538,19 +738,27 @@ public class Program
                         int Index = 0;
                         while (true)
                         {
-                            Console.WriteLine($"Page number {Index + 1}");
-                            foreach (Reservation reservation in reservations.ElementAt(Index))
+                            try
                             {
-                                Console.WriteLine(reservation.Reservation_Info());
+                                Console.WriteLine($"Page number {Index + 1}");
+                                foreach (Reservation reservation in reservations.ElementAt(Index))
+                                {
+                                    Console.WriteLine(reservation.Reservation_Info());
+                                }
+                                Console.WriteLine("Enter a page, or (Q) to exit");
+                                string Page = Console.ReadLine()!.ToUpper();
+                                bool Convert = int.TryParse(Page, out int page);
+                                if (Page == "Q") { break; }
+                                if (Convert)
+                                {
+                                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                                    else { Index = page - 1; }
+                                }
                             }
-                            Console.WriteLine("Enter a page, or (Q) to exit");
-                            string Page = Console.ReadLine()!.ToUpper();
-                            bool Convert = int.TryParse(Page, out int page);
-                            if (Page == "Q") { break; }
-                            if (Convert)
+                            catch (ArgumentOutOfRangeException)
                             {
-                                if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
-                                else { Index = page - 1; }
+                                Console.WriteLine("List is empty\nPress enter to continue\n");
+                                Console.ReadLine();
                             }
                             break;
                         }

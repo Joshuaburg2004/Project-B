@@ -1,10 +1,10 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 using System.Net.Quic;
 using System.Text;
-public class Reservation
-{
-
+public class Reservation : IComparable<Reservation>
+{ 
     public static List<Reservation> All_Reservations = new();
     public int CustomerId;
     static int nextID;
@@ -30,7 +30,12 @@ public class Reservation
         All_Reservations.Add(this);
         ControllerJson.WriteJson(All_Reservations, "Reservations.json");
     }
-
+    public int CompareTo(Reservation? obj)
+    {
+        if (obj is not null)
+            return Date.CompareTo(obj.Date);
+        return 1;
+    }
     // returned de informatie van de reservatie
     public string Reservation_Info_Admin() => $"CustomerID: {CustomerId}, Customer Name: {Customer.GetCustomerByID(CustomerId)!.Name}, Reservation_ID: {Reservation_ID}, Table {Table}, number of guests: {Guests}, Date: {Date}, TimeSlot: {Time}";
     public string Reservation_Info() => $"Reservation_ID: {Reservation_ID}, Table {Table}, number of guests: {Guests}, Date: {Date}, TimeSlot: {Time}";
