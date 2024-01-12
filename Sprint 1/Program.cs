@@ -355,6 +355,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                         }
                         break;
@@ -386,6 +387,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                             break;
                         }
@@ -419,6 +421,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                             break;
                         }
@@ -451,6 +454,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                             break;
                         }
@@ -487,6 +491,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                             break;
                         }
@@ -627,6 +632,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                         }
                         break;
@@ -658,6 +664,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                             break;
                         }
@@ -691,6 +698,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                             break;
                         }
@@ -723,6 +731,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                             break;
                         }
@@ -759,6 +768,7 @@ public class Program
                             {
                                 Console.WriteLine("List is empty\nPress enter to continue\n");
                                 Console.ReadLine();
+                                break;
                             }
                             break;
                         }

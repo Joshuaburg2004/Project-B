@@ -69,6 +69,7 @@ public class Menu : IComparable<Menu>
                     { 
                         Console.WriteLine("List is empty\nPress enter to continue\n");
                         Console.ReadLine();
+                        break;
                     }
 
                 }
