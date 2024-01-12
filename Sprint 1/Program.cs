@@ -960,6 +960,11 @@ public class Program
                                 {
                                     continue;
                                 }
+                                else
+                                {
+                                    Console.WriteLine("Please enter 1 or 2");
+                                    continue;
+                                }
                             }
                             else
                             {
