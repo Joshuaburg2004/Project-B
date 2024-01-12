@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Net.Quic;
 using System.Security.Principal;
 using System.Text;
@@ -63,17 +64,29 @@ public class Program
         {
             return admin;
         }
+        else
+        {
+            Console.WriteLine("\nAccount not found \npress the enter key to continue");
+            Console.ReadLine();
+        }
         return null;
     }
 
     public static Admin? AdminLogIn(string? name, string? email, string? password)
     {
+        int counter = 1;
         foreach (Admin admin in Manager.Admins)
         {
             if (admin.Name == name && admin.Password == password && admin.Email == email)
             {
                 return admin;
             }
+            if (counter == Manager.Admins.Count)
+            {
+                Console.WriteLine("\nAccount not found \npress the enter key to continue");
+                Console.ReadLine();
+            }
+            counter++;
         }
         return null;
     }
@@ -91,12 +104,19 @@ public class Program
     }
     public static Customer? CustomerLogIn(string? email, string? password)
     {
+        int counter = 1;
         foreach (Customer customer in Manager.Customers)
         {
             if (customer.Password == password && customer.Email == email)
             {
                 return customer;
             }
+            if (counter == Manager.Customers.Count)
+            {
+                Console.WriteLine("\nAccount not found \npress the enter key to continue");
+                Console.ReadLine();
+            }
+            counter++;
         }
         return null;
     }
