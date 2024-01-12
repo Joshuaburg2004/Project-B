@@ -1467,6 +1467,12 @@ public class Program
                     Console.WriteLine("\npress the enter key to continue");
                     Console.ReadLine();
                 }
+                else
+                {
+                    System.Console.WriteLine("You don't have any reservations yet");
+                    System.Console.WriteLine("\nPress enter to continue");
+                    Console.ReadLine();
+                }
                 if (input == "5")
                 //gemaakt door sami
                 {
