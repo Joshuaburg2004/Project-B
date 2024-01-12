@@ -9,12 +9,16 @@ public class ControllerJson
     {
         try
         {
-            string json = JsonConvert.SerializeObject(ObjectToJson);
-            JArray Object = JArray.Parse(json);
-            using (StreamWriter file = File.CreateText(@FileName))
-            using (JsonTextWriter writer = new JsonTextWriter(file))
+            Newtonsoft.Json.JsonSerializer serializer = new Newtonsoft.Json.JsonSerializer();
+            serializer.Converters.Add(new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter());
+            serializer.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            serializer.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto;
+            serializer.Formatting = Newtonsoft.Json.Formatting.Indented;
+
+            using (StreamWriter sw = new StreamWriter(FileName))
+            using (Newtonsoft.Json.JsonWriter writer = new Newtonsoft.Json.JsonTextWriter(sw))
             {
-                Object.WriteTo(writer);
+                serializer.Serialize(writer, ObjectToJson, typeof(List<T>));
             }
             return true;
         }
@@ -37,8 +41,12 @@ public class ControllerJson
         try
         {
             string FileContent = File.ReadAllText(@FileName);
-            List<T>? output = JsonConvert.DeserializeObject<List<T>>(FileContent);
-            return output;
+            List<T>? obj = Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(FileName), new Newtonsoft.Json.JsonSerializerSettings
+            {
+                TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto,
+                NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
+            });
+            return obj;
         }
         catch (FileNotFoundException ex)
         {

@@ -29,7 +29,9 @@ public class Menu : IComparable<Menu>
     // Gemaakt door Alperen, verbeterd door Aymane
     public int CompareTo(Menu? obj)
     {
-        return Price.CompareTo(obj.Price);
+        if(obj is not null)
+            return Price.CompareTo(obj.Price);
+        return 1;
     }
     public static void view()
     {
@@ -46,20 +48,30 @@ public class Menu : IComparable<Menu>
                 int Index = 0;
                 while (true)
                 {
-                    foreach (Menu item in menu[Index])
+                    try
                     {
-                        Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                        foreach (Menu item in menu[Index])
+                        {
+                            Console.WriteLine($"|Name: {item.Name}|Category: {item.Category}|Price: \u20AC{item.Price},-|");
+                        }
+                        Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
+                        Console.WriteLine("Enter a page, or (Q) to exit");
+                        string Page = Console.ReadLine()!.ToUpper();
+                        bool Convert = int.TryParse(Page, out int page);
+                        if (Page == "Q") { break; }
+                        if (Convert)
+                        {
+                            if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
+                            else { Index = page - 1; }
+                        }
                     }
-                    Console.WriteLine($"You are now at page {Index + 1}/{menu.Count()}");
-                    Console.WriteLine("Enter a page, or (Q) to exit");
-                    string Page = Console.ReadLine()!.ToUpper();
-                    bool Convert = int.TryParse(Page, out int page);
-                    if (Page == "Q") { break; }
-                    if (Convert)
-                    {
-                        if (page > menu.Count()) { Console.WriteLine("This page does not exist"); }
-                        else { Index = page - 1; }
+                    catch(ArgumentOutOfRangeException) 
+                    { 
+                        Console.WriteLine("List is empty\nPress enter to continue\n");
+                        Console.ReadLine();
+                        break;
                     }
+
                 }
             }
             else if (ans == "2")
