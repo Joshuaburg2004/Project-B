@@ -1,0 +1,440 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Menu, c#]], System.Private.CoreLib",
+  "$values": [
+    {
+      "Price": 2.0,
+      "Category": "vegetarian",
+      "Name": "Bananenijsje"
+    },
+    {
+      "Price": 3.0,
+      "Category": "Vegetarian",
+      "Name": "Tofu Salade"
+    },
+    {
+      "Price": 3.0,
+      "Category": "vegan",
+      "Name": "thee"
+    },
+    {
+      "Price": 3.0,
+      "Category": "vegetarian",
+      "Name": "ijs"
+    },
+    {
+      "Price": 6.0,
+      "Category": "Vegan",
+      "Name": "Lentil Soup"
+    },
+    {
+      "Price": 6.0,
+      "Category": "Vegan",
+      "Name": "Vegetable Stir-Fry"
+    },
+    {
+      "Price": 6.0,
+      "Category": "Vegan",
+      "Name": "Spaghetti Aglio e Olio"
+    },
+    {
+      "Price": 6.0,
+      "Category": "Vegan",
+      "Name": "Vega KipBurger"
+    },
+    {
+      "Price": 7.0,
+      "Category": "Vegan",
+      "Name": "Black Bean Tacos"
+    },
+    {
+      "Price": 7.0,
+      "Category": "meat",
+      "Name": "Turkse pizza"
+    },
+    {
+      "Price": 7.0,
+      "Category": "Vegan",
+      "Name": "Quinoa Stuffed Peppers"
+    },
+    {
+      "Price": 7.0,
+      "Category": "Vegan",
+      "Name": "Chickpea Curry"
+    },
+    {
+      "Price": 7.0,
+      "Category": "Vegan",
+      "Name": "Tofu and Vegetable Stir-Fry"
+    },
+    {
+      "Price": 8.0,
+      "Category": "Vegetarian",
+      "Name": "Eggplant Rollatini"
+    },
+    {
+      "Price": 8.0,
+      "Category": "Vegan",
+      "Name": "Vegan Pasta"
+    },
+    {
+      "Price": 8.0,
+      "Category": "Meat",
+      "Name": "Kebab"
+    },
+    {
+      "Price": 8.0,
+      "Category": "Vegan",
+      "Name": "Roasted Vegetable Wrap"
+    },
+    {
+      "Price": 8.0,
+      "Category": "Vegan",
+      "Name": "Sweet Potato Buddha Bowl"
+    },
+    {
+      "Price": 8.0,
+      "Category": "Vegan",
+      "Name": "Mango Avocado Salad"
+    },
+    {
+      "Price": 8.0,
+      "Category": "Vegan",
+      "Name": "Avocado and Black Bean Salad"
+    },
+    {
+      "Price": 9.0,
+      "Category": "Vegan",
+      "Name": "Vegan Caesar Salad"
+    },
+    {
+      "Price": 9.0,
+      "Category": "Vegan",
+      "Name": "Black Bean Soup"
+    },
+    {
+      "Price": 9.0,
+      "Category": "Vegan",
+      "Name": "Chickpea Salad Wrap"
+    },
+    {
+      "Price": 9.0,
+      "Category": "Fish",
+      "Name": "Haring"
+    },
+    {
+      "Price": 9.0,
+      "Category": "Vegetarian",
+      "Name": "Caprese Salad"
+    },
+    {
+      "Price": 9.0,
+      "Category": "Vegan",
+      "Name": "Cauliflower Wings"
+    },
+    {
+      "Price": 9.0,
+      "Category": "Vegan",
+      "Name": "Quinoa Salad"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Vegetarian",
+      "Name": "Zucchini Lasagna"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Vegetarian",
+      "Name": "Eggplant Parmesan"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Vegetarian",
+      "Name": "Mushroom and Spinach Quesadilla"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Vegetarian",
+      "Name": "Cauliflower Pizza"
+    },
+    {
+      "Price": 10.0,
+      "Category": "meat",
+      "Name": "kip kapsalon"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Vegetarian",
+      "Name": "Tomato Basil Bruschetta"
+    },
+    {
+      "Price": 10.0,
+      "Category": "vegan",
+      "Name": "Pompoentaart"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Meat",
+      "Name": "Spaghetti with meat balls"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Fish",
+      "Name": "Kibbeling 10 piece"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Vegetarian",
+      "Name": "Butternut Squash Risotto"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Vegetarian",
+      "Name": "Stuffed Bell Peppers"
+    },
+    {
+      "Price": 10.0,
+      "Category": "Fish",
+      "Name": "Kibbeling 10 piece"
+    },
+    {
+      "Price": 11.0,
+      "Category": "Vegetarian",
+      "Name": "Artichoke and Tomato Pizza"
+    },
+    {
+      "Price": 11.0,
+      "Category": "Fish",
+      "Name": "Tilapia Fillet"
+    },
+    {
+      "Price": 11.0,
+      "Category": "Vegetarian",
+      "Name": "Pumpkin Risotto"
+    },
+    {
+      "Price": 11.0,
+      "Category": "Vegetarian",
+      "Name": "Mushroom Risotto"
+    },
+    {
+      "Price": 11.0,
+      "Category": "Fish",
+      "Name": "Shrimp Scampi"
+    },
+    {
+      "Price": 11.0,
+      "Category": "Vegetarian",
+      "Name": "Eggplant and Zucchini Gratin"
+    },
+    {
+      "Price": 12.0,
+      "Category": "Meat",
+      "Name": "Kapsalon"
+    },
+    {
+      "Price": 12.0,
+      "Category": "Vegetarian",
+      "Name": "Vegetable Curry"
+    },
+    {
+      "Price": 12.0,
+      "Category": "Vegetarian",
+      "Name": "Crispy Tofu Stir-Fry"
+    },
+    {
+      "Price": 12.0,
+      "Category": "Fish",
+      "Name": "Mahi Mahi Fillet"
+    },
+    {
+      "Price": 12.0,
+      "Category": "Vegetarian",
+      "Name": "Spinach and Feta Stuffed Mushrooms"
+    },
+    {
+      "Price": 12.0,
+      "Category": "Fish",
+      "Name": "Clam Chowder"
+    },
+    {
+      "Price": 12.0,
+      "Category": "Vegetarian",
+      "Name": "Vegetarian Pizza"
+    },
+    {
+      "Price": 13.0,
+      "Category": "Fish",
+      "Name": "Fish and Chips"
+    },
+    {
+      "Price": 13.0,
+      "Category": "Meat",
+      "Name": "Lamb Chops"
+    },
+    {
+      "Price": 13.0,
+      "Category": "Meat",
+      "Name": "Steak"
+    },
+    {
+      "Price": 13.0,
+      "Category": "Fish",
+      "Name": "Seared Ahi Tuna"
+    },
+    {
+      "Price": 13.0,
+      "Category": "Fish",
+      "Name": "Shrimp Pasta"
+    },
+    {
+      "Price": 13.0,
+      "Category": "Fish",
+      "Name": "Scallops with Garlic Butter"
+    },
+    {
+      "Price": 13.0,
+      "Category": "Fish",
+      "Name": "Grilled Swordfish"
+    },
+    {
+      "Price": 14.0,
+      "Category": "Meat",
+      "Name": "Beef Burger"
+    },
+    {
+      "Price": 14.0,
+      "Category": "Fish",
+      "Name": "Crab Cakes"
+    },
+    {
+      "Price": 14.0,
+      "Category": "Meat",
+      "Name": "Meatball Sub"
+    },
+    {
+      "Price": 14.0,
+      "Category": "Meat",
+      "Name": "Beef Stir-Fry"
+    },
+    {
+      "Price": 14.0,
+      "Category": "Meat",
+      "Name": "Chicken Alfredo"
+    },
+    {
+      "Price": 14.0,
+      "Category": "Fish",
+      "Name": "Lobster Tail"
+    },
+    {
+      "Price": 14.0,
+      "Category": "Fish",
+      "Name": "Grilled Halibut"
+    },
+    {
+      "Price": 15.0,
+      "Category": "Meat",
+      "Name": "Turkey Burger"
+    },
+    {
+      "Price": 15.0,
+      "Category": "Meat",
+      "Name": "Grilled Chicken"
+    },
+    {
+      "Price": 15.0,
+      "Category": "Fish",
+      "Name": "Crispy Calamari"
+    },
+    {
+      "Price": 15.0,
+      "Category": "Meat",
+      "Name": "Kip Deluxe Burger"
+    },
+    {
+      "Price": 15.0,
+      "Category": "Fish",
+      "Name": "Oyster Rockefeller"
+    },
+    {
+      "Price": 16.0,
+      "Category": "Meat",
+      "Name": "Sausage and Peppers"
+    },
+    {
+      "Price": 16.0,
+      "Category": "Meat",
+      "Name": "Lams Steak"
+    },
+    {
+      "Price": 16.0,
+      "Category": "Meat",
+      "Name": "Pork Tenderloin"
+    },
+    {
+      "Price": 16.0,
+      "Category": "Meat",
+      "Name": "Beef and Broccoli"
+    },
+    {
+      "Price": 16.0,
+      "Category": "Meat",
+      "Name": "Ham and Pineapple Pizza"
+    },
+    {
+      "Price": 17.0,
+      "Category": "Meat",
+      "Name": "Steak Fajitas"
+    },
+    {
+      "Price": 17.0,
+      "Category": "Meat",
+      "Name": "BBQ Ribs"
+    },
+    {
+      "Price": 17.0,
+      "Category": "Meat",
+      "Name": "Bacon-Wrapped Shrimp"
+    },
+    {
+      "Price": 18.0,
+      "Category": "Meat",
+      "Name": "Chicken Parmesan"
+    },
+    {
+      "Price": 18.0,
+      "Category": "Fish",
+      "Name": "Salmon Steak"
+    },
+    {
+      "Price": 18.0,
+      "Category": "Meat",
+      "Name": "Filet Mignon"
+    },
+    {
+      "Price": 18.0,
+      "Category": "Meat",
+      "Name": "Sausage Rigatoni"
+    },
+    {
+      "Price": 20.0,
+      "Category": "Fish",
+      "Name": "Tuna Sushi Roll"
+    },
+    {
+      "Price": 250.0,
+      "Category": "vegetarian",
+      "Name": "BananenIjsje"
+    },
+    {
+      "Price": 350.0,
+      "Category": "vegetarian",
+      "Name": "Aardbeijenijsje"
+    },
+    {
+      "Price": 5.0,
+      "Category": "Vegan",
+      "Name": "Bread"
+    }
+  ]
+}
