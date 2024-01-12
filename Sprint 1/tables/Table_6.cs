@@ -1,3 +1,4 @@
+//gemaakt door Berkan en Aymane
 public class Table_6 : Table
 {
     private static int _nextId;
