@@ -1312,16 +1312,16 @@ public class Program
                                 {
                                     if (i == table)
                                     {
-                                        if (!Manager.table_list[i].TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
-                                        if (!Manager.table_list[i].TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
-                                        if (!Manager.table_list[i].TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
-                                        if (!Manager.table_list[i].TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
-                                        if (!Manager.table_list[i].TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
-                                        if (!Manager.table_list[i].TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
-                                        if (!Manager.table_list[i].TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
-                                        if (!Manager.table_list[i].TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
-                                        if (!Manager.table_list[i].TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
-                                        if (!Manager.table_list[i].TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_1_reserved.Contains(date)) Console.WriteLine("Timeslot 1: 10:00-11:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_2_reserved.Contains(date)) Console.WriteLine("Timeslot 2: 11:00-12:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_3_reserved.Contains(date)) Console.WriteLine("Timeslot 3: 12:00-13:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_4_reserved.Contains(date)) Console.WriteLine("Timeslot 4: 13:00-14:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_5_reserved.Contains(date)) Console.WriteLine("Timeslot 5: 14:00-15:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_6_reserved.Contains(date)) Console.WriteLine("Timeslot 6: 15:00-16:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_7_reserved.Contains(date)) Console.WriteLine("Timeslot 7: 16:00-17:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_8_reserved.Contains(date)) Console.WriteLine("Timeslot 8: 17:00-18:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_9_reserved.Contains(date)) Console.WriteLine("Timeslot 9: 18:00-20:00");
+                                        if (!Manager.table_list[i - 1].TimeSlot_10_reserved.Contains(date)) Console.WriteLine("Timeslot 10: 20:00-22:00");
                                         break;
                                     }
                                 }
@@ -1362,44 +1362,44 @@ public class Program
                                 switch (timeslot)
                                 {
                                     case 1:
-                                        Manager.table_list[table].TimeSlot_1_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_1_reserved.Add(date);
                                         Console.WriteLine("Timeslot 1: 10:00-11:00");
                                         break;
                                     case 2:
-                                        Manager.table_list[table].TimeSlot_2_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_2_reserved.Add(date);
                                         Console.WriteLine("Timeslot 2: 11:00-12:00");
                                         break;
                                     case 3:
-                                        Manager.table_list[table].TimeSlot_3_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_3_reserved.Add(date);
                                         Console.WriteLine("Timeslot 3: 12:00-13:00");
                                         break;
                                     case 4:
-                                        Manager.table_list[table].TimeSlot_4_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_4_reserved.Add(date);
                                         Console.WriteLine("Timeslot 4: 13:00-14:00");
                                         break;
                                     case 5:
-                                        Manager.table_list[table].TimeSlot_5_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_5_reserved.Add(date);
                                         Console.WriteLine("Timeslot 5: 14:00-15:00");
                                         break;
                                     case 6:
-                                        Manager.table_list[table].TimeSlot_6_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_6_reserved.Add(date);
                                         Console.WriteLine("Timeslot 6: 15:00-16:00");
                                         break;
                                     case 7:
-                                        Manager.table_list[table].TimeSlot_7_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_7_reserved.Add(date);
                                         Console.WriteLine("Timeslot 7: 16:00-17:00");
                                         break;
                                     case 8:
-                                        Manager.table_list[table].TimeSlot_8_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_8_reserved.Add(date);
                                         Console.WriteLine("Timeslot 8: 17:00-18:00");
                                         break;
                                     case 9:
-                                        Manager.table_list[table].TimeSlot_9_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_9_reserved.Add(date);
                                         Console.WriteLine("Timeslot 9: 18:00-20:00");
                                         break;
                                     case 10:
                                         Console.WriteLine("Timeslot 10: 20:00-22:00");
-                                        Manager.table_list[table].TimeSlot_10_reserved.Add(date);
+                                        Manager.table_list[table - 1].TimeSlot_10_reserved.Add(date);
                                         break;
                                 }
 

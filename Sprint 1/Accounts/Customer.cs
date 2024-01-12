@@ -105,7 +105,7 @@ public class Customer : IAccount
                     {
                         if(c == 1)
                         {
-                            My_Reservation.Remove(reservation);
+                            My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation);
                             if (tableReserve.TimeSlot_1_reserved.Contains(reservation.Date))
                             {
                                 tableReserve.TimeSlot_1_reserved.Remove(reservation.Date);
@@ -168,8 +168,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if(ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine();}
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if(ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine();}
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if(ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -182,8 +182,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -196,8 +196,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -210,8 +210,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -224,8 +224,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -238,8 +238,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -252,8 +252,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -266,8 +266,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -280,8 +280,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -294,8 +294,8 @@ public class Customer : IAccount
                                             Console.WriteLine("Do you wish to also change the timeslot, to delete the reservation, or to keep the current arrangement?");
                                             Console.WriteLine("(1) Change timeslot\n(2) Delete Reservation\n(3) Keep current arrangement");
                                             string ChangeChoice = Console.ReadLine();
-                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
-                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "1") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); _changeTimeSlot(date, tableReserve, reservation); Console.WriteLine("Reservation updated\nPress enter to continue"); Console.ReadLine(); }
+                                            if (ChangeChoice == "2") { My_Reservation.Remove(reservation); Reservation.All_Reservations.Remove(reservation); Console.WriteLine("Reservation deleted\nPress enter to continue"); Console.ReadLine(); }
                                             if (ChangeChoice == "3") { Console.WriteLine("Date not changed\nPress enter to continue"); Console.ReadLine(); }
 
                                         }
@@ -318,7 +318,7 @@ public class Customer : IAccount
                     
 
                     // Update the JSON file after making changes
-                    ControllerJson.WriteJson(My_Reservation, "Reservations.json");
+                    ControllerJson.WriteJson(Reservation.All_Reservations, "Reservations.json");
                     ControllerJson.WriteJson(Manager.Customers, "Customers.json");
 
                     Console.WriteLine("Reservation updated successfully.");
@@ -366,43 +366,43 @@ public class Customer : IAccount
             switch (timeslot)
             {
                 case 1:
-                    if (t1) { tableReserve.TimeSlot_1_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 10:00 until 11:00"); reservation.Time = time; reservation.Date = date;  My_Reservation.Add(reservation); }
+                    if (t1) { tableReserve.TimeSlot_1_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 10:00 until 11:00"); reservation.Time = time; reservation.Date = date;  My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 2:
-                    if (t2) { tableReserve.TimeSlot_2_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 11:00 until 12:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t2) { tableReserve.TimeSlot_2_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 11:00 until 12:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 3:
-                    if (t3) { tableReserve.TimeSlot_3_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 12:00 until 13:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t3) { tableReserve.TimeSlot_3_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 12:00 until 13:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 4:
-                    if (t4) { tableReserve.TimeSlot_4_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 13:00 until 14:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t4) { tableReserve.TimeSlot_4_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 13:00 until 14:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 5:
-                    if (t5) { tableReserve.TimeSlot_5_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 14:00 until 15:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t5) { tableReserve.TimeSlot_5_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 14:00 until 15:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 6:
-                    if (t6) { tableReserve.TimeSlot_6_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 15:00 until 16:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t6) { tableReserve.TimeSlot_6_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 15:00 until 16:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 7:
-                    if (t7) { tableReserve.TimeSlot_7_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 16:00 until 17:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t7) { tableReserve.TimeSlot_7_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 16:00 until 17:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 8:
-                    if (t8) { tableReserve.TimeSlot_8_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 17:00 until 18:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t8) { tableReserve.TimeSlot_8_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 17:00 until 18:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 9:
-                    if (t9) { tableReserve.TimeSlot_9_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 18:00 until 20:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t9) { tableReserve.TimeSlot_9_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 18:00 until 20:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
                 case 10:
-                    if (t10) { tableReserve.TimeSlot_10_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 20:00 until 22:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); }
+                    if (t10) { tableReserve.TimeSlot_10_reserved.Add(date); Console.WriteLine($"Table {reservation.Table} reserved for 20:00 until 22:00"); reservation.Time = time; reservation.Date = date; My_Reservation.Add(reservation); Reservation.All_Reservations.Add(reservation); }
                     else { Console.WriteLine("Table was already reserved for this time. Please try again"); }
                     break;
             }
