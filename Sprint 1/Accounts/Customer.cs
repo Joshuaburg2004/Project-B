@@ -454,6 +454,7 @@ public class Customer : IAccount
             {
                 Console.WriteLine("List is empty\nPress enter to continue\n");
                 Console.ReadLine();
+                break;
             }
         }
     }
