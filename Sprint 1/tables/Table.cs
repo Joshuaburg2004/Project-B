@@ -1,3 +1,4 @@
+//gemaakt door Berkan en Aymane
 public abstract class Table
 {
     public string tafel_beschikbaar = "| O |";
