@@ -60,6 +60,7 @@ public class Customer : IAccount
     // Made by Alperen, Checked en waar nodig fixed by Joshua en Berkan
     public void Change_Reservation()
     {
+        if(My_Reservation.Count == 0) { Console.WriteLine("There are no reservations to edit or delete"); return; }
         Console.WriteLine("Please exit the pages when you are ready to make your choice");
         View_Reservation();
 
@@ -432,19 +433,27 @@ public class Customer : IAccount
         int Index = 0;
         while (true)
         {
-            foreach (Reservation reservation in reservations[Index])
+            try
             {
-                Console.WriteLine(reservation.Reservation_Info());
+                foreach (Reservation reservation in reservations[Index])
+                {
+                    Console.WriteLine(reservation.Reservation_Info());
+                }
+                Console.WriteLine($"You are now at page {Index + 1}/{reservations.Count()}");
+                Console.WriteLine("Enter a page, or (Q) to exit");
+                string Page = Console.ReadLine()!.ToUpper();
+                bool Convert = int.TryParse(Page, out int page);
+                if (Page == "Q") { break; }
+                if (Convert)
+                {
+                    if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
+                    else { Index = page - 1; }
+                }
             }
-            Console.WriteLine($"You are now at page {Index + 1}/{reservations.Count()}");
-            Console.WriteLine("Enter a page, or (Q) to exit");
-            string Page = Console.ReadLine()!.ToUpper();
-            bool Convert = int.TryParse(Page, out int page);
-            if (Page == "Q") { break; }
-            if (Convert)
+            catch (ArgumentOutOfRangeException)
             {
-                if (page > reservations.Count()) { Console.WriteLine("This page does not exist"); }
-                else { Index = page - 1; }
+                Console.WriteLine("List is empty\nPress enter to continue\n");
+                Console.ReadLine();
             }
         }
     }
