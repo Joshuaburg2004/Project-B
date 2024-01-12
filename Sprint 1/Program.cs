@@ -480,7 +480,9 @@ public class Program
                     }
                     else if (option == 3)
                     {
-                        List<Reservation[]> reservations = Reservation.All_Reservations.OrderBy(x => x.Date).Chunk(10).ToList();
+                        DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+                        List<Reservation[]> reservations = Reservation.All_Reservations.Where(x => x.Date == today).OrderBy(x => x.Date).Chunk(10).ToList();
                         int Index = 0;
                         while (true)
                         {
