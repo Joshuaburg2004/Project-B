@@ -33,7 +33,7 @@ public class Reservation : IComparable<Reservation>
     public int CompareTo(Reservation? obj)
     {
         if (obj is not null)
-            return Date.CompareTo(obj.Date);
+            return obj.Date.CompareTo(Date);
         return 1;
     }
     // returned de informatie van de reservatie
