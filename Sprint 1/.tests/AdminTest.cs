@@ -34,5 +34,18 @@ public class AdminTests
 
         Assert.AreEqual(0,Manager.Admins.Count);
     }
+
+    public void check_if_password_restriction()
+    {
+        string name = "Bob";
+        string email = "bob@gmail.com";
+        string password = ".";
+
+        Manager.Admins.Clear();
+        Admin.CreateAdmin(name,email,password);
+
+        Assert.AreEqual(0,Manager.Admins.Count);
+        
+    }
     
 }
