@@ -35,6 +35,7 @@ public class Review
             stars_temp +=review.Stars;
 
         }
+        if(totalreviews == 0) { return 0; }
         double stars = stars_temp / totalreviews;
         double stars_rounded = Math.Round(stars,1);
         return stars_rounded;
